@@ -15,3 +15,25 @@
 * Demo : valide, disable, value
 * Pros/cons de l’utilisation de composant Polymer avec Angular
 * L’avenir de Polymer
+
+## Polymer ?
+
+### Contexte
+Cela a commencé en mars 2013, lorsque Chrome s'est mis à supporter les custom element. Les custom elements, c'est ce qui permet de créer de nouveaux tags HTML, from scratch ou en n'en étendant. A partir de la, des googlers ont développé une surcouche pour rendre l'utilisation des custom elements plus simple.
+
+### Capacité de base
+La première chose que permet Polymer, c'est d'utiliser les capacités des custom elements sur les navigateurs qui ne le supporte pas. Il faut savoir que seul les navigateurs basés sur Blink (Chrome & Opera) supporte totalement les custom elements. Outre les custom elements, Polymer fournit un support pour trois autres piliers qui sont :
+
+#### Les template
+Permet de déclarer un bloc HTML inerte et invisibile que du js pourra cloner au besoin.
+
+#### Le shadow dom
+Permet d'isoler le DOM : lorsqu'on utilise un element ayant un shadow-dom, il nous est invisible depuis l'exterieur.
+Isole le CSS : le style définit dans le shadow dom n'agit qu'à l'intérieur, et le style extérieur n'a pas d'effet dans le shadow-dom.
+Assure la composition: un element détecte ses DOM enfant et peut faire des traitements distinctif. A la manière d'une balise select qui reconnait ses options.
+
+#### Les HTML Import
+Importe des fichiers HTML (pouvant contenir du CSS & JS). Il est possible de faire des imports dans des imports, et ceux ci ne seront parsé qu'une fois même s'ils sont importés à plusieurs endroit.
+
+### Les ajouts
+Pour nous aider a construire des web component, l'équipe Polymer a développer du data-binding, propriétés observable, calculé et un système d'évenements.
