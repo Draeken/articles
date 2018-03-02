@@ -36,15 +36,30 @@ Importe des fichiers HTML (pouvant contenir du CSS & JS). Il est possible de fai
 
 ### Les ajouts
 Pour nous aider a construire des web component, l'équipe Polymer a développer du data-binding, propriétés observable, calculé et un système d'évenements.
-Des nouvelles fonctionnalités ont émergé et au final l'équipe de dev a poussé sa bibliothèque assez loi pour nous permettre de construire des Progressive Web App complètes rien qu'avec Polymer !
+Des nouvelles fonctionnalités ont émergé et au final l'équipe de dev a poussé sa bibliothèque assez loin pour nous permettre de construire des Progressive Web App complètes rien qu'avec Polymer !
 
 ### Utilisation
-On importe le composant Polymer et on l'utilise tel quel dans le HTML.
-A-t-on besoin d'importer des polyfill ou Polymer ?
+On importe son web composant, Polymer et le polyfill, puis on l'utilise tel quel dans le HTML.
 
 ## Angular & les web components
 Angular débuta après Polymer, en septembre 2014. Mais à l'inverse de Polymer, les composants Angular ne sont pas des Web Components. Ils utilisent des techniques des Web Components, comme une émulation du shadow dom (qui peut aussi être activé nativement) pour encapsuler leur composants mais on ne peut pas utiliser un composant Angular dans un autre environement qu'Angular.
 
+### Cannibalisme ?
+A l'origine, pas vraiment... Angular a été pensé comme framework complet pour construire de large application alors que Polymer était plus dans l'idée de faire le pont entre ce qu'ils considéraient être le futur du web et les capacités actuelles des navigateurs. C'est à dire qu'avec le temps, Polymer deviendrait de plus en plus léger et finirait par disparaitre.
+Dans la pratique, j'ai l'impression que plus les framework évoluent, plus ils couvrent des choses similaires. Par exemple, il existe une équipe Angular Lab qui développe des fonctionnalités du framework hautement expérimental, et l'une de celle-ci est le Angular Element.
+
+> Angular Component on the inside, standards on the outside.” (Rob Wormald)
+
+Cela va permettre de continuer a écrire nos composants Angular normalement, mais a l'étape de build, il y aura une version compatible custom element, que l'on pourra utiliser dans d'autres projets sans avoir besoin d'angular. Pour moi ils ont juste repris un vrai avantage qu'avait Polymer.
+
+De l'autre côté, on a Polymer qui met l'accent sur sa possibilité d'écrire des web app complète, avec par exemple leur système de routing, de gestion du cache, de la localisation et d'une intégration avec une DB (firebase/ PouchDB).
+
+## Pourquoi voudrait-on utiliser les deux ?
+- développer des composants qui seraient susceptible d'être utilisé dans d'autres application quelque soit la stack.
+- supporter le standart et adhérer a la philosophie des custom elements. Espérer un futur ou les navigateurs supporteront pleinement les web component.
+- vous êtes un shadok
+
 ## Liens complémentaires:
 https://dmitriid.com/blog/2017/03/the-broken-promise-of-web-components/
+
 https://robdodson.me/regarding-the-broken-promise-of-web-components/
