@@ -9,6 +9,8 @@
   * Angular & Polymer, deux projets concurrents ?
 * Pourquoi voudrait-on utiliser Polymer & Angular pour le même projet ?
 * Le cas de STET
+  * contexte
+  * technique
 * D’autres manière d’intégrer
 * Exemple de composant : un input Polymer intégré à un formulaire Angular
 * Demo : valide, disable, value
@@ -59,7 +61,30 @@ De l'autre côté, on a Polymer qui met l'accent sur sa possibilité d'écrire d
 - supporter le standart et adhérer a la philosophie des custom elements. Espérer un futur ou les navigateurs supporteront pleinement les web component.
 - vous êtes un shadok
 
+## Le cas particulier
+### Contexte
+Il a été rapidement décidé que l'app devait être construite à base de Web Component se pliant aux spécifications W3C, même si ceux-ci étaient en draft.
+React étant de fait écarté, ça s'est joué autour d'Angular & Polymer.
+À l'époque, il n'y avait pas encore les Angular Elements, donc ils ont décidé de développer tous leurs composants via Polymer, écrit de manière générique, en vu d'être utilisé dans d'autres projets. Tous ces composants sont maintenu dans un catalogue à part, à base de git submodule.
+Dans cette situation, le rôle d'Angular se limite à disposer les élements Polymer, communiquer avec le serveur et gérer les routes et droit d'accès.
+
+### Technique
+
+
 ## Liens complémentaires:
 https://dmitriid.com/blog/2017/03/the-broken-promise-of-web-components/
 
 https://robdodson.me/regarding-the-broken-promise-of-web-components/
+
+http://recurship.com/blog/2017/11/6/angular-takes-on-web-components
+
+http://nitayneeman.com/posts/building-a-custom-element-using-angular-elements/
+
+https://developers.google.com/web/fundamentals/web-components/
+
+https://moduscreate.com/blog/angular-elements-ngcomponents-everywhere/
+
+https://github.com/angular/angular/issues/20891
+
+https://vaadin.com/blog/comparing-polymer-and-angular-from-a-developer-s-perspective
+
