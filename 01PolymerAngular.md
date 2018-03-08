@@ -69,6 +69,9 @@ React étant de fait écarté, ça s'est joué autour d'Angular & Polymer.
 Dans cette situation, le rôle d'Angular se limite à disposer les élements Polymer, communiquer avec le serveur et gérer les routes et droit d'accès.
 
 ### Technique
+Au début, la stratégie pour intégrer les composants aux vues, c'était de charger juste ce qu'il fallait au dernier moment. Pour ça, on avait recours à décorateur custom ou on lui passait les url des composants à charger.
+On a fini par tout charger dans l'index, ça rend la phase de développement plus simple.
+Dans les deux cas, il est recommandé d'utiliser polymer-bundle, qui va agir à la manière de Webpack pour les HTML Imports.
 
 
 ## Liens complémentaires:
@@ -85,6 +88,8 @@ https://developers.google.com/web/fundamentals/web-components/
 https://moduscreate.com/blog/angular-elements-ngcomponents-everywhere/
 
 https://github.com/angular/angular/issues/20891
+
+https://github.com/Polymer/project/issues/36
 
 https://vaadin.com/blog/comparing-polymer-and-angular-from-a-developer-s-perspective
 
