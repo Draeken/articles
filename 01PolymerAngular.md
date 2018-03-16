@@ -11,7 +11,6 @@
 * Le cas de STET
   * contexte
   * technique
-* D’autres manière d’intégrer
 * Exemple de composant : un input Polymer intégré à un formulaire Angular
 * Demo : valide, disable, value
 * Pros/cons de l’utilisation de composant Polymer avec Angular
@@ -69,10 +68,21 @@ React étant de fait écarté, ça s'est joué autour d'Angular & Polymer.
 Dans cette situation, le rôle d'Angular se limite à disposer les élements Polymer, communiquer avec le serveur et gérer les routes et droit d'accès.
 
 ### Technique
+Pour importer nos composants Polymer, on utilise la stratégie officielle, à savoir les importer avec bower, puisque chaque composant est release via bower individuellement.
 Au début, la stratégie pour intégrer les composants aux vues, c'était de charger juste ce qu'il fallait au dernier moment. Pour ça, on avait recours à décorateur custom ou on lui passait les url des composants à charger.
 On a fini par tout charger dans l'index, ça rend la phase de développement plus simple.
-Dans les deux cas, il est recommandé d'utiliser polymer-bundle, qui va agir à la manière de Webpack pour les HTML Imports.
+Dans les deux cas, il est recommandé d'utiliser polymer-bundler, qui va agir à la manière de Webpack pour les HTML Imports.
 
+# Pros/cons
+
+Les performances de Polymer sont moindre que celles d'Angular. (-0.5x)
+Polymer peut être complexe a coupler à des formulaires Angular et complexifie le flow de donné. Développer un composant angular serait plus rapide et plus simple.
+Le système de gestion du changement est plus lourd et complexe.
+Le comportement n'est pas le même selon le navigateur (Firefox & Chrome). Il est nécessaire de faire des checks particuliers et ce n'est pas bien documenté.
+Il manque des composants officiels essentiels (date picker), contrairement au projet Material2 d'angular. Depuis le passage a Polymer 2, beaucoup sont resté en Polymer 1 ou hybride. De manière générale, les composants développés pour Angular sont mieux maintenu et utilisé par plus de monde que leur homologue Polymer.
+Obligé d'avoir deux système d'internationalisation : un pour polymer et un pour angular.
+Pas d'asynchronisme dans le databinding de polymer (comme ce qu'on trouve avec Angular avec la pipe | async).
+Pas de TypeScript, le tooling n'est vraiment pas développé par rapport à Angular.
 
 ## Liens complémentaires:
 https://dmitriid.com/blog/2017/03/the-broken-promise-of-web-components/
