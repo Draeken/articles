@@ -73,7 +73,7 @@ Au début, la stratégie pour intégrer les composants aux vues, c'était de cha
 On a fini par tout charger dans l'index, ça rend la phase de développement plus simple.
 Dans les deux cas, il est recommandé d'utiliser polymer-bundler, qui va agir à la manière de Webpack pour les HTML Imports.
 
-# Pros/cons
+## Pros/cons
 
 Les performances de Polymer sont moindre que celles d'Angular. (-0.5x)
 Polymer peut être complexe a coupler à des formulaires Angular et complexifie le flow de donné. Développer un composant angular serait plus rapide et plus simple.
@@ -83,6 +83,12 @@ Il manque des composants officiels essentiels (date picker), contrairement au pr
 Obligé d'avoir deux système d'internationalisation : un pour polymer et un pour angular.
 Pas d'asynchronisme dans le databinding de polymer (comme ce qu'on trouve avec Angular avec la pipe | async).
 Pas de TypeScript, le tooling n'est vraiment pas développé par rapport à Angular.
+
+## L'avenir de Polymer
+
+Prochainement, Polymer sortira en version 3, abandonnant Bower et les HTML Imports au profil de NPM & les ES Module. La communauté Polymer est divisée à ce sujet. D'une part il y a ceux qui utilisaient Polymer pour sa simplicité : pas besoin de build step, juste à importer le component et ça fonctionne. Mais avec la v3, tout sera dans un fichier js. Cela ressemblera plus à ce que font les autres framework et c'est justement ceux qui n'apprécient pas React, Angular & co, qui se sont réfugié dans Polymer qui sont les plus mécontents. Il sera toujours possible de séparer le HTMLL/CSS/JS dans des fichiers séparés mais cela nécessitera une étape de build. Personnellement je trouve que c'est au contraire une bonne évolution pour Polymer, le tooling sera plus développé et on pourra facilement écrire nos composants avec TypeScript.
+Pour son intégration avec Angular, il y aura moins d'intérets avec l'arrivé d'Angular Elements, et l'utilisation de Polymer devrait donc être cantonné aux petits projets.
+
 
 ## Liens complémentaires:
 https://dmitriid.com/blog/2017/03/the-broken-promise-of-web-components/
@@ -100,6 +106,8 @@ https://moduscreate.com/blog/angular-elements-ngcomponents-everywhere/
 https://github.com/angular/angular/issues/20891
 
 https://github.com/Polymer/project/issues/36
+
+https://github.com/Polymer/polymer/issues/4806
 
 https://vaadin.com/blog/comparing-polymer-and-angular-from-a-developer-s-perspective
 
