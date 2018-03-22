@@ -70,8 +70,11 @@ Dans cette situation, le rôle d'Angular se limite à disposer les élements Pol
 ### Technique
 Pour importer nos composants Polymer, on utilise la stratégie officielle, à savoir les importer avec bower, puisque chaque composant est release via bower individuellement.
 Au début, la stratégie pour intégrer les composants aux vues, c'était de charger juste ce qu'il fallait au dernier moment. Pour ça, on avait recours à décorateur custom ou on lui passait les url des composants à charger.
-On a fini par tout charger dans l'index, ça rend la phase de développement plus simple.
-Dans les deux cas, il est recommandé d'utiliser polymer-bundler, qui va agir à la manière de Webpack pour les HTML Imports.
+Cette technique était trop lourde et on a préféré tout charger dans l'index. Ça marchait bien jusqu'à ce qu'on ait trop de soucis de lenteur sur Firefox.
+L'équipe de Polymer développe depuis le début des outils pour optimiser les imports, en générant des bundles. Pour les version V0 & V1 il y avait Vulcanize, puis Polymer-CLI est sorti. Il permet de build, mais uniquement les app entièrement faite avec Polymer. Heureusement on peut utiliser Polymer-build ou Polymer-bundler si on a besoin d'un contrôle plus fin sur ces process.
+À côté de ça, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer les elements HTML en bundle JS.
+Ça tombe bien, angular-cli utilise Webpack. Et pour ne pas avoir à faire un ng eject et customiser la conf pour rajouter ce loader, il existe origami. Il va s'occuper de tout ça pour nous, et on a plus qu'à rendre nos composants compatible Webpack.
+
 
 ## Pros/cons
 
@@ -87,6 +90,7 @@ Pas de TypeScript, le tooling n'est vraiment pas développé par rapport à Angu
 ## L'avenir de Polymer
 
 Prochainement, Polymer sortira en version 3, abandonnant Bower et les HTML Imports au profil de NPM & les ES Module. La communauté Polymer est divisée à ce sujet. D'une part il y a ceux qui utilisaient Polymer pour sa simplicité : pas besoin de build step, juste à importer le component et ça fonctionne. Mais avec la v3, tout sera dans un fichier js. Cela ressemblera plus à ce que font les autres framework et c'est justement ceux qui n'apprécient pas React, Angular & co, qui se sont réfugié dans Polymer qui sont les plus mécontents. Il sera toujours possible de séparer le HTMLL/CSS/JS dans des fichiers séparés mais cela nécessitera une étape de build. Personnellement je trouve que c'est au contraire une bonne évolution pour Polymer, le tooling sera plus développé et on pourra facilement écrire nos composants avec TypeScript.
+A noter que son concurrent, Stencil, développé par Ionic, permet déjà d'écrire ses composant en TS, avec du JSX et un système de rendu inspiré de React Fiber.
 Pour son intégration avec Angular, il y aura moins d'intérets avec l'arrivé d'Angular Elements, et l'utilisation de Polymer devrait donc être cantonné aux petits projets.
 
 
@@ -111,3 +115,10 @@ https://github.com/Polymer/polymer/issues/4806
 
 https://vaadin.com/blog/comparing-polymer-and-angular-from-a-developer-s-perspective
 
+https://custom-elements-everywhere.com/
+
+https://github.com/webpack-contrib/polymer-webpack-loader
+
+https://medium.com/google-developer-experts/mix-and-match-angular-custom-elements-polymer-1aee0b3d63a1
+
+https://github.com/hotforfeature/origami
