@@ -33,7 +33,7 @@ Isole le CSS : le style définit dans le shadow dom n'agit qu'à l'intérieur, e
 Assure la composition: un element détecte ses DOM enfant et peut faire des traitements distinctif. A la manière d'une balise select qui reconnait ses options.
 
 #### Les HTML Import
-Importe des fichiers HTML (pouvant contenir du CSS & JS). Il est possible de faire des imports dans des imports, et ceux ci ne seront parsé qu'une fois même s'ils sont importés à plusieurs endroit.
+Importe des fichiers HTML. C'est lui qui définit le template, le comportement et le style d'un custom element. Il est possible de faire des imports dans des imports, et ceux ci ne seront parsé qu'une fois même s'ils sont importés à plusieurs endroit.
 
 ### Les ajouts
 Pour nous aider a construire des web component, l'équipe Polymer a développer du data-binding, propriétés observable, calculé et un système d'évenements.
@@ -72,7 +72,7 @@ Pour importer nos composants Polymer, on utilise la stratégie officielle, à sa
 Au début, la stratégie pour intégrer les composants aux vues, c'était de charger juste ce qu'il fallait au dernier moment. Pour ça, on avait recours à décorateur custom ou on lui passait les url des composants à charger.
 Cette technique était trop lourde et on a préféré tout charger dans l'index. Ça marchait bien jusqu'à ce qu'on ait trop de soucis de lenteur sur Firefox.
 L'équipe de Polymer développe depuis le début des outils pour optimiser les imports, en générant des bundles. Pour les version V0 & V1 il y avait Vulcanize, puis Polymer-CLI est sorti. Il permet de build, mais uniquement les app entièrement faite avec Polymer. Heureusement on peut utiliser Polymer-build ou Polymer-bundler si on a besoin d'un contrôle plus fin sur ces process.
-À côté de ça, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer les elements HTML en bundle JS.
+À côté de ça, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer le fichier HTML en bundle JS, en séparant le template du JS du CSS.
 Ça tombe bien, angular-cli utilise Webpack. Et pour ne pas avoir à faire un ng eject et customiser la conf pour rajouter ce loader, il existe origami. Il va s'occuper de tout ça pour nous, et on a plus qu'à rendre nos composants compatible Webpack.
 
 
