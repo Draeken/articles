@@ -1,0 +1,43 @@
+<link rel="import"
+      href="../polymer/polymer-element.html">
+
+<dom-module id="demo-range">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        width: 100%
+      }
+    </style>
+    <span>
+      [[value.start]]
+    </span>
+    <span>
+      [[value.end]]
+    </span>
+  </template>
+
+  <script>
+    /**
+     * `demo-range`
+     * Form control about range
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class DemoRange extends Polymer.Element {
+      static get is() { return 'demo-range'; }
+      static get properties() {
+        return {
+          value: {
+            type: Object,
+            value: () => ({ start: 0, end: 1 })
+          }
+        };
+      }
+    }
+
+    window.customElements.define(DemoRange.is, DemoRange);
+  </script>
+</dom-module>
