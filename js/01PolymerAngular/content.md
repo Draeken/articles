@@ -95,6 +95,9 @@ Pour son intégration avec Angular, il y aura moins d'intérets avec l'arrivé d
 
 
 ## Liens complémentaires:
+
+https://medium.com/dev-channel/the-case-for-custom-elements-part-1-65d807b4b439
+
 https://dmitriid.com/blog/2017/03/the-broken-promise-of-web-components/
 
 https://robdodson.me/regarding-the-broken-promise-of-web-components/
