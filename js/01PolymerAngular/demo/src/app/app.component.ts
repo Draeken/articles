@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      range: []
+      range: [{ start: 0, end: 1 }]
     });
   }
 }

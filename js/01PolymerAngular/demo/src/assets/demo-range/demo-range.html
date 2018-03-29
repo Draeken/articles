@@ -1,20 +1,68 @@
 <link rel="import"
-      href="../polymer/polymer-element.html">
+      href="bower_components/polymer/polymer-element.html">
+
+<link rel="import"
+      href="bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <dom-module id="demo-range">
   <template>
     <style>
       :host {
         display: inline-block;
-        width: 100%
+        width: 100%;
+        --corner-radius: 8px;
+      }
+
+      .ranger-container-outer {
+        position: relative;
+        width: 100%;
+        height: 30px;
+      }
+
+      .range-container {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        user-select: none;
+        background-color: gray;
+        border-radius: var(--corner-radius);
+      }
+
+      .range-handler {
+        color: white;
+        padding: 5px;
+        background-color: hsla(0, 0%, 0%, 0.4);
+      }
+
+      #range-start {
+        border-radius: var(--corner-radius) 0 0 var(--corner-radius);
+      }
+
+      #range-end {
+        border-radius: 0 var(--corner-radius) var(--corner-radius) 0;
+      }
+
+      #range-inner {
+        flex: 1;
       }
     </style>
-    <span>
-      [[value.start]]
-    </span>
-    <span>
-      [[value.end]]
-    </span>
+    <div class="ranger-container-outer">
+      <div class="range-container"
+           style$="[[_getRangePosition(value)]]">
+        <div id="range-start"
+             class="range-handler"
+             on-track="_handleStartTrack">
+          [[_getFixed(value.start)]]
+        </div>
+        <div id="range-inner"
+             on-track="_handleContainerTrack"></div>
+        <div id="range-end"
+             class="range-handler"
+             on-track="_handleEndTrack">
+          [[_getFixed(value.end)]]
+        </div>
+      </div>
+    </div>
   </template>
 
   <script>
@@ -26,15 +74,87 @@
      * @polymer
      * @demo demo/index.html
      */
-    class DemoRange extends Polymer.Element {
+    class DemoRange extends Polymer.GestureEventListeners(Polymer.Element) {
       static get is() { return 'demo-range'; }
       static get properties() {
         return {
           value: {
             type: Object,
-            value: () => ({ start: 0, end: 1 })
+            notify: true,
+            observer: "onChange",
           }
         };
+      }
+
+      ready() {
+        super.ready();
+        this._previousValue = this.value;
+      }
+
+      _getFixed(number) {
+        return number.toFixed(2);
+      }
+
+      _getRangePosition(value) {
+        return `
+          left: ${value.start * 100}%;
+          right: ${(1 - value.end) * 100}%;
+        `;
+      }
+
+      _handleStartTrack(e) {
+        if (e.detail.state !== 'track') {
+          return;
+        }
+        const start = this._getNewStart(e);
+        this.value = {
+          ...this.value,
+          start
+        };
+      }
+
+      _handleEndTrack(e) {
+        if (e.detail.state !== 'track') {
+          return;
+        }
+        const end = this._getNewEnd(e);
+        this.value = {
+          ...this.value,
+          end
+        };
+      }
+
+      _handleContainerTrack(e) {
+        if (e.detail.state !== 'track') {
+          return;
+        }
+        const start = this._getNewStart(e);
+        const end = this._getNewEnd(e);
+        if (this.value.start === start || this.value.end === end) {
+          return;
+        }
+        this.value = {
+          start,
+          end
+        };
+      }
+
+      _getNewStart(e) {
+        return Math.min(Math.max(this.value.start + (e.detail.ddx) / this.clientWidth, 0), this.value.end);
+      }
+
+      _getNewEnd(e) {
+        return Math.max(Math.min(this.value.end + (e.detail.ddx) / this.clientWidth, 1), this.value.start);
+      }
+
+      onChange(newVal) {
+        if (this._previousValue === newVal) {
+          return
+        }
+        this._previousValue = newVal;
+        if (!newVal) { return }
+        this.dispatchEvent(new CustomEvent('input',
+          { bubbles: true, composed: true }));
       }
     }
 

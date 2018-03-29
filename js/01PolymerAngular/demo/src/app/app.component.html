@@ -1,9 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>Polymer x Angular demo!</h1>
-</div>
 
-<form [formGroup]="form">
-  <demo-range ngDefaultControl
-              formControlName="range"></demo-range>
-</form>
+
+  <form [formGroup]="form">
+    <demo-range ngDefaultControl
+                formControlName="range"></demo-range>
+  </form>
+
+  <div class="result">
+    Angular form value: {{ form.value.range | range }}
+  </div>
+</div>
