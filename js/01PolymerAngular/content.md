@@ -125,3 +125,5 @@ https://github.com/webpack-contrib/polymer-webpack-loader
 https://medium.com/google-developer-experts/mix-and-match-angular-custom-elements-polymer-1aee0b3d63a1
 
 https://github.com/hotforfeature/origami
+
+https://hacks.mozilla.org/2015/06/the-state-of-web-components/
