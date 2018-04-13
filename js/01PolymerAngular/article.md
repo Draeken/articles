@@ -30,3 +30,14 @@ Si vous avez écrit votre Web Component dans son fichier .html dédié, un moyen
 <link rel="import" href="myfile.html">
 ````
 Cette techno est sujet à controverse et ne sera finalement pas adopté par le standart. Selon Firefox, les outils présent et à venir (ES6 Module) sont suffisant et offrent plus de contrôle que les HTML Import.
+
+**Les ajouts de Polymer**
+
+Au delà de faire fonctionner ces 4 technos sur tous les navigateurs, on trouvera dans la boite à outil Polymer de quoi faciliter le développement des Web Components :
+- Helper pour déclarer les propriétés de notre composant (valeur par défaut, read-only, calculé, fonction observatrice, déserialisation automatique)
+- Gestion des évènements (inscription & désinscription automatique, évènements gestuelles pour les mobinautes)
+- Gestion des données, avec du 2-way data-binding
+- Custom elements équivalent aux ngIf et ngFor d'Angular
+- Debouncer pour éviter d'appeler une callback à interval trop serré
+
+En plus de ces fonctionnalités de base, Polymer fourni des solutions pour développer des applications complètes (gestion des routes, internationalisation, gestion du hors-connexion), peu utiles dans le cas où c'est déjà géré par Angular.
