@@ -2,13 +2,29 @@
 <div style="text-align:center">
   <h1>Polymer x Angular demo!</h1>
 
+  <div class="content">
+    <paper-card heading="My Custom Element: demo-range">
+      <div class="card-content">
+        <form [formGroup]="formRange">
+          <demo-range ngDefaultControl formControlName="range"></demo-range>
+        </form>
 
-  <form [formGroup]="form">
-    <demo-range ngDefaultControl
-                formControlName="range"></demo-range>
-  </form>
+        <div class="result">
+          Angular form value: {{ formRange.value.range | range }}
+        </div>
+      </div>
+    </paper-card>
 
-  <div class="result">
-    Angular form value: {{ form.value.range | range }}
+    <paper-card heading="Polymer Element: paper-slider">
+      <div class="card-content">
+        <form [formGroup]="formSlider">
+          <paper-slider min="0" max="5" polymerControl formControlName="slide"></paper-slider>
+        </form>
+
+        <div class="result">
+          Angular form value: {{ formSlider.value.slide }}
+        </div>
+      </div>
+    </paper-card>
   </div>
 </div>

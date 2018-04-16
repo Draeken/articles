@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  form: FormGroup;
+  formRange: FormGroup;
+  formSlider: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      range: [{ start: 0, end: 1 }]
+    this.formRange = this.formBuilder.group({
+      range: [{ start: 0, end: 1 }],
+    });
+
+    this.formSlider = this.formBuilder.group({
+      slide: [1],
     });
   }
 }

@@ -41,3 +41,6 @@ Au delà de faire fonctionner ces 4 technos sur tous les navigateurs, on trouver
 - Debouncer pour éviter d'appeler une callback à interval trop serré
 
 En plus de ces fonctionnalités de base, Polymer fourni des solutions pour développer des applications complètes (gestion des routes, internationalisation, gestion du hors-connexion), peu utiles dans le cas où c'est déjà géré par Angular.
+
+### et Angular ?
+Angular débuta après Polymer, en septembre 2014. Mais à l'inverse de Polymer, les composants Angular ne sont pas des Web Components. Ils utilisent des techniques propre à ceux-ci, comme une émulation du shadow dom (qui peut aussi être activé nativement) pour l'encapsulation du style, mais on ne peut pas utiliser un composant Angular dans un autre environement qu'Angular.

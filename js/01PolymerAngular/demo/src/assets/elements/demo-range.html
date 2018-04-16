@@ -1,8 +1,6 @@
-<link rel="import"
-      href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 
-<link rel="import"
-      href="bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <dom-module id="demo-range">
   <template>
@@ -47,18 +45,12 @@
       }
     </style>
     <div class="ranger-container-outer">
-      <div class="range-container"
-           style$="[[_getRangePosition(value)]]">
-        <div id="range-start"
-             class="range-handler"
-             on-track="_handleStartTrack">
+      <div class="range-container" style$="[[_getRangePosition(value)]]">
+        <div id="range-start" class="range-handler" on-track="_handleStartTrack">
           [[_getFixed(value.start)]]
         </div>
-        <div id="range-inner"
-             on-track="_handleContainerTrack"></div>
-        <div id="range-end"
-             class="range-handler"
-             on-track="_handleEndTrack">
+        <div id="range-inner" on-track="_handleContainerTrack"></div>
+        <div id="range-end" class="range-handler" on-track="_handleEndTrack">
           [[_getFixed(value.end)]]
         </div>
       </div>
@@ -92,10 +84,16 @@
       }
 
       _getFixed(number) {
+        if (number == null) {
+          return '';
+        }
         return number.toFixed(2);
       }
 
       _getRangePosition(value) {
+        if (value == null) {
+          return 'left: 0%; right: 100%;';
+        }
         return `
           left: ${value.start * 100}%;
           right: ${(1 - value.end) * 100}%;
