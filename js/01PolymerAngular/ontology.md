@@ -1,9 +1,11 @@
+```
 'Chrome'(software)
 'Component'(web)
 'Creation'(Component)(web)(with-framework)
 'with-framework'(web) {
   contains: ['React', 'Angular', 'Vue', 'Mithrill']
 }
+'Tag'(HTML)
 'custom element'(web) {
   resolves(Rob Dodson): [{
     target: 'Creation'(Component)(web)(with-framework),
@@ -11,8 +13,10 @@
   }, {
     target: 'Creation'(Component)(web)(without-framework),
     with: [{ property: 'cumbersome', how: 'provides-helpers' }]
-  }]
+  }],
+  define: 'Tag'(HTML)
 }
+```
 
 --
 Which way ?
