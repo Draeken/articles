@@ -44,3 +44,34 @@ En plus de ces fonctionnalités de base, Polymer fourni des solutions pour déve
 
 ### et Angular ?
 Angular débuta après Polymer, en septembre 2014. Mais à l'inverse de Polymer, les composants Angular ne sont pas des Web Components. Ils utilisent des techniques propre à ceux-ci, comme une émulation du shadow dom (qui peut aussi être activé nativement) pour l'encapsulation du style, mais on ne peut pas utiliser un composant Angular dans un autre environement qu'Angular.
+
+## L'intégration Angular & Polymer
+Pour illustrer cette intégration, nous allons voir deux manières: l'une simple et rapide bien pour tester et l'autre plus adaptée à un environement de production.
+
+Dans les deux cas, vous aurez besoin de bower.
+
+### La manière simple
+Dans ce cas de figure, les customs elements seront développés localement, connexes au projet Angular.
+
+1. À la racine de votre projet, initialisé bower avec
+````bash
+$ bower init
+````
+Les demandes du prompt ne sont pas intéréssant car nous ne publierons pas via bower. Notre utilisation se cantonnera à gérer les dépendences Polymer.
+
+2. Toujours à la racine, créez un fichier `.bowerrc` avec ce contenu :
+````json
+{
+  "directory": "src/assets/bower_components/"
+}
+````
+où `assets` correspond à notre répertoire d'assets Angular.
+
+3. Dans le `.gitignore`, rajoutez le chemin du `.bowerrc`.
+
+Pour l'exemple, nous utiliserons des éléments développés par l'équipe Polymer.
+
+4. Installez l'élément `paper-slider`
+````bash
+$ bower install --save PolymerElements/paper-slider
+````
