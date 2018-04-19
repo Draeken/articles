@@ -74,7 +74,7 @@ Cette technique était trop lourde et on a préféré tout charger dans l'index.
 L'équipe de Polymer développe depuis le début des outils pour optimiser les imports, en générant des bundles. Pour les version V0 & V1 il y avait Vulcanize, puis Polymer-CLI est sorti. Il permet de build, mais uniquement les app entièrement faite avec Polymer. Heureusement on peut utiliser Polymer-build ou Polymer-bundler si on a besoin d'un contrôle plus fin sur ces process.
 À côté de ça, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer le fichier HTML en bundle JS, en séparant le template du JS du CSS.
 Ça tombe bien, angular-cli utilise Webpack. Et pour ne pas avoir à faire un ng eject et customiser la conf pour rajouter ce loader, il existe origami. Il va s'occuper de tout ça pour nous, et on a plus qu'à rendre nos composants compatible Webpack.
-
+Avec ça, notre bundle total est passé de 10 Mo à 1 Mo.
 
 ## Pros/cons
 

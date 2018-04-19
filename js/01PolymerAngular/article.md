@@ -51,7 +51,7 @@ Pour illustrer cette intégration, nous allons voir deux manières: l'une simple
 Dans les deux cas, vous aurez besoin de bower.
 
 ### La manière simple
-Dans ce cas de figure, les customs elements seront développés localement, connexes au projet Angular.
+Dans ce cas de figure, les customs elements seront développés localement, connexes au projet Angular. Les éléments sont importés dans l'index.html.
 
 1. À la racine de votre projet, initialisé bower avec
 ````bash
@@ -65,13 +65,47 @@ Les demandes du prompt ne sont pas intéréssant car nous ne publierons pas via 
   "directory": "src/assets/bower_components/"
 }
 ````
-où `assets` correspond à notre répertoire d'assets Angular.
+où `assets` correspond à votre répertoire d'assets Angular.
 
 3. Dans le `.gitignore`, rajoutez le chemin du `.bowerrc`.
 
 Pour l'exemple, nous utiliserons des éléments développés par l'équipe Polymer.
 
-4. Installez l'élément `paper-slider`
+4. Installez les éléments `paper-slider` et `paper-card`
 ````bash
-$ bower install --save PolymerElements/paper-slider
+$ bower install --save PolymerElements/paper-slider PolymerElements/paper-card
 ````
+
+5. Ajoutez vos dépendances dans l'index.html.
+````html
+<head>
+  <link rel="import" href="assets/bower_components/paper-card/paper-card.html">
+  <link rel="import" href="assets/bower_components/paper-slider/paper-slider.html">
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+````
+
+6. Pour pouvoir utiliser vos nouveaux élements, il faut autoriser les balises inconnues par Angular. Dans chaque module déclarant des composants utilisant des custom elements, il faut appliquer la valeur `CUSTOM_ELEMENTS_SCHEMA` à la propriété `schemas` :
+````typescript
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class AppModule {}
+````
+
+Et voilà ! Si vous voulez développez vos WebComponents en local, mettez les dans un dossier d'`assets`. N'utilisez pas polymer-cli qui vous génerera tout le nécessaire à la publication, et entrera en conflit avec les éléments dans `bower_components`.
+Dans votre HTML définissant votre WebComponent, vous pourrez importer le Polymer récupéré après avoir installé des éléments depuis bower :
+````html
+<link rel="import" href="../bower_components/polymer/polymer.html">
+````
+
+### La manière adaptée à la prod
+
+Plutôt que de charger tous vos composants dans le point d'entrée de votre application, vous allez les importer dans vos componnents Angular, côté TypeScript.
