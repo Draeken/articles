@@ -108,4 +108,6 @@ Dans votre HTML définissant votre WebComponent, vous pourrez importer le Polyme
 
 ### La manière adaptée à la prod
 
-Plutôt que de charger tous vos composants dans le point d'entrée de votre application, vous allez les importer dans vos componnents Angular, côté TypeScript.
+Plutôt que de charger tous vos composants dans le point d'entrée de votre application, vous allez les importer dans vos componnents Angular, côté TypeScript. Ceux-ci seront intégrés dans le chunk correspondant au module de votre composant, ce qui est intéressant lorsque vous lazy-loadez vos modules. Ainsi vous diminuez beaucoup la charge initiale.
+---
+Présenter Polymer-Webpack-Loader & Origami
