@@ -109,5 +109,20 @@ Dans votre HTML définissant votre WebComponent, vous pourrez importer le Polyme
 ### La manière adaptée à la prod
 
 Plutôt que de charger tous vos composants dans le point d'entrée de votre application, vous allez les importer dans vos componnents Angular, côté TypeScript. Ceux-ci seront intégrés dans le chunk correspondant au module de votre composant, ce qui est intéressant lorsque vous lazy-loadez vos modules. Ainsi vous diminuez beaucoup la charge initiale.
----
-Présenter Polymer-Webpack-Loader & Origami
+Ceci est rendu possible grâce au projet [Polymer Webpack Loader](https://github.com/webpack-contrib/polymer-webpack-loader) qui va transformer vos définitions d'éléments HTML en bundle JS.
+
+![PolymerWebackLoader fonctionnement](https://user-images.githubusercontent.com/1066253/28131928-3b257288-66f0-11e7-8295-cb968cefb040.png "Fonctionnement")
+
+Ça tombe bien, Webpack est déjà présent et configuré via Angular CLI. Vous pouvez patcher la config généré par le CLI en utilisant Origami (Polymer + Angular) et voir un exemple d'utilisation avec ce [starter-kit](https://github.com/hotforfeature/angular-polymer-starter-kit).
+
+Attention cependant, si vos élements hébergent des images, vous devrez changer la façon dont elles sont utilisés. Soit en déplaçant les images dans le dossier asset d'Angular de manière à ce que le `importPath` de Polymer corresponde, soit en y faisant référence via une variable :
+````javascript
+const img = require('./checked.png');
+````
+de manière à ce que l'image soit incluse dans le bundle.
+
+## Points d'attention
+
+Pour intégrer un élément Polymer à un formulaire Angular, il faut s'assurer qu'ils parlent la même langue !
+En utilisant la directive `ngDefaultControl` sur votre composant, vous vous assurez qu'Angular prendra en compte les évènements `input` émit par votre composant.
+Vérifier si le notify de value est utile
