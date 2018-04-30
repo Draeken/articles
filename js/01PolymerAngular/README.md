@@ -14,7 +14,7 @@
 - Introduction aux Web Components avec Polymer
 - Angular & les Web Components
 - Deux cas d'intégration : simple / optimisé
-- Points d'attention (collision Angular/Polymer)
+- Intégration dans les formulaires Angular
 - Conclusion avec Angular Elements
 
 ## Talk
