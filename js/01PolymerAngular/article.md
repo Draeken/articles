@@ -130,5 +130,4 @@ Normalement, la validation d'un contrôle se fait toujours du côté d'Angular, 
 
 ## Conclusion: L'avenir des Web Components avec Angular
 
-Nous avons vu que pour intégrer des composants Polymer à Angular, il fallait :
-
+Nous avons vu que l'intégration de Polymer 2 dans Angular pouvait complexifier le workflow (surtout s'il s'agit de contrôle de formulaire). Avec Polymer 3, on passera de Bower à Yarn et des HTML Import aux modules ES6, rendant l'étape de build nécessaire. Comme alternative, Angular développe Angular Elements, qui permettront d'exporter nos composants Angular en Web Component utilisable n'importe où. À l'avenir, je pense qu'il y aura donc moins d'intérêt à utiliser Polymer en plus d'Angular, si les deux permettent autant de réutilisabilité...
