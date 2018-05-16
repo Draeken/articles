@@ -14,6 +14,7 @@ Utiliser les bonnes pratiques d'un projet OpenSource et mettre en place le tooli
 - Release automatique
 - Changelog automatique
 - Mise en place de la page GitHub (badges, présentation, etc...)
+- Management des dépendances : quoi déclarer dans devDependencies/PeerDependencies/Dependencies, comment ne pas alourdir pour le client ?
 
 ## Axes
 - Côté utilisateurs: métrics de confiance: couverture de test, dépendances à jour ; manière dont c'est distribué, documentation, simplicité d'utilisation, popularité.
