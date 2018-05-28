@@ -1,13 +1,152 @@
 Au cours du développement de nos projets, on peut se retrouver à écrire du comportement générique, susceptible d'être réutilisé autre part. Mais on est peut être en train de réinventer la roue si ce comportement est déjà distribué publiquement... Si ce n'est pas le cas, on pourrait être tenté de le mettre à disposition.
 Nous allons voir ensemble la procédure et les bonnes pratiques de publication d'une bibliothèque Open Source écrit en TypeScript.
 
-### Initialisation
-Si nous partons de cette structure de projet:
-- node_modules
-- package.json
-- lib
-- test
-avec un tsconfig.base.json qui mutualisera les options communes à la config de build et à celle pour le développement
+## Base minimale pour distribuer sa bibliothèque
+Pour ne pas se casser la tête à gérer les releases, nous utiliserons semantic-release. Le principe est simple : Lorsque du nouveau code est poussé sur Master, si les tests d'intégration continue passent, une nouvelle release est déclenchée.
+Pour l'exemple, nous partirons de la structure suivante :
+- src (nos sources)
+- test (tests unitaires)
+- es (contiendra les sources transpilées en ES Module)
+- lib (contiendra les sources transpilées en CommonJS)
+- build (contiendra les sources transpilées pour exécuter les tests)
+
+### Le build
+Première étape: générer ce qui sera utiliser par nos utilisateurs.
+Contrairement à un projet destiné à être directement exécuté par le navigateur, nous n'avons pas besoin de beaucoup modifier notre code source.
+Bundlelifier son code ? Si nos utilisateurs ne veulent qu'une partie de notre bibliothèque, l'ensemble serait malgré tout importé, ce qui aurait un impact très négatif sur la taille de leur distribuable. Il vaut mieux laisser notre lib modulaire pour laisser le choix à l'utilisateur de prendre tout ou partie.
+Minimifier son code ? Notre projet sera déjà servi sur NPM gzipé. Il vaut mieux garder le code clair pour l'utilisateur. Il s'y retrouvera beaucoup plus simplement s'il doit examiner une pile d'appel avec des noms de fonctions non minimifié !
+Si notre bibliothèque est utilisé dans un projet Web, il est de leur responsabilité d'embarque une étape de build pour au moins élaguer le code mort et minimifier le reste.
+
+Si nous partons de la config TS de base suivante :
+
+tsconfig.base.json
+````json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "types": [],
+    "declaration": true,
+    "inlineSourceMap": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node"
+  }
+}
+````
+
+Ajoutons la config TS pour générer ce build :
+
+tsconfig.build.json
+````json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": [
+    "src/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "es",
+    "lib",
+    "build"
+  ]
+}
+````
+
+Et les scripts pour générer le livrable :
+
+package.json
+````json
+{
+  "scripts": {
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build": "npm run build:ts && npm run build:ts -- -m es6 --outDir es"
+  }
+}
+````
+
+### Les tests
+Pour éviter de mettre sur une NPM une release qui ne fonctionne pas, il est indispensable que chaque merge candidat à une nouvelle release passe une batterie de tests ! Pour l'exemple nous utiliserons [AVA](https://github.com/avajs/ava).
+
+test/lib.test.ts
+````typescript
+import test from 'ava'
+import { myLibFunction } from '../src/lib'
+
+test('will work', t => {
+  const result = myLibFunction();
+  t.truthy(result);
+});
+````
+
+Pour exécuter les tests, AVA a besoin des fichiers transpilés en js. Mettons en place un build par défaut qui sera utilisé par les tests :
+
+tsconfig.json
+````json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./build",
+    "baseUrl": "./",
+    "sourceMap": true
+  },
+  "include": [
+    "src/*",
+    "test/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+````
+
+Ajoutons les scripts nécessaire à executer les tests :
+
+package.json
+````json
+{
+  "scripts": {
+    "ava": "ava build/**/*.test.js",
+    "test": "tsc && npm run ava",
+  }
+}
+````
+
+Pour simplifier le développement, nous pouvons également ajouter un script qui va builder et tester à chaque modification du code.
+Le package concurrently nous permettra d'exécuter en parallèle le build et l'exécution des tests.
+````bash
+npm i -D concurrently
+````
+
+package.json
+````json
+{
+  "scripts": {
+    "watch:ts": "tsc -w",
+    "watch:ava": "ava -w build/*.test.js",
+    "watch:test": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Ava\" -c \"blue.bold,magenta.bold\" \"npm run watch:ts\" \"npm run watch:ava\""
+
+  }
+}
+````
+Voilà, maintenant vous n'aurez plus qu'à lancer `npm run watch:test` pour faciliter votre pratique du TDD !
+
+### Configurer semantic-release
+
 
 ### Packager notre projet pour NPM
 Cette partie va répondre à "Que fournissons-nous à l'utilisateur". Pour éviter que le `node_module` de nos utilisateurs se transforme en monstre, il faut rester soucieux de n'embarquer que le nécessaire :
@@ -21,33 +160,6 @@ Pour cacher le superflus de NPM, créons un fichier `.npmignore` et mettons-y :
   - les tests
   - la doc
 Sans ce fichier, NPM va par défaut se calquer sur le `.gitignore`, mais les deux usages étant vraiment séparés, ça ne suffira pas. À noter aussi que certains fichiers sont ignorés implicitement, tel que node_modules.
-
-### L'étape de build
-Contrairement à un projet destiné à être directement exécuté par le navigateur, nous n'avons pas besoin de beaucoup modifier notre code source.
-Bundlelifier son code ? Si nos utilisateurs ne veulent qu'une partie de notre bibliothèque, l'ensemble serait malgré tout importé, ce qui aurait un impact très négatif sur la taille de leur distribuable. Il vaut mieux laisser notre lib modulaire pour laisser le choix à l'utilisateur de prendre tout ou partie.
-Minimifier son code ? Notre projet sera déjà servi sur NPM gzipé. Il vaut mieux garder le code clair pour l'utilisateur. Il s'y retrouvera beaucoup plus simplement s'il doit examiner une pile d'appel avec des noms de fonctions non minimifié !
-Si notre bibliothèque est utilisé dans un projet Web, il est de leur responsabilité d'embarque une étape de build pour au moins élaguer le code mort et minimifier le reste.
-
-Ajoutons la config TS pour générer ce build:
-````json
-{
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "rootDir": "lib",
-    "outDir": "dist"
-  },
-  "include": [
-    "lib/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "es",
-    "dist",
-    "build"
-  ]
-}
-````
-
 
 ### Tester son packaging localement
 

@@ -19,3 +19,12 @@ Utiliser les bonnes pratiques d'un projet OpenSource et mettre en place le tooli
 ## Axes
 - Côté utilisateurs: métrics de confiance: couverture de test, dépendances à jour ; manière dont c'est distribué, documentation, simplicité d'utilisation, popularité.
 - Côté contributeurs: documentation du code et globalement du projet, qualité du code, simplicité du workflow, système de validation des contributions.
+
+## Structure
+- Base minimum pour distribuer sa bibliothèque
+  - Le build
+  - Les tests
+  - Configurer Semantic Release
+  - Le package.json
+  - L'intégration continue
+  - Le packaging
