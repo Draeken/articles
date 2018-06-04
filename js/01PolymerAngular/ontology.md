@@ -22,3 +22,4 @@
 Which way ?
 define 'Creation'(Component)(web)(custom element)(web) or
 in 'custom element'(web)
+How to defines relationship between properties ?
