@@ -35,3 +35,13 @@ Et Polymer dans tout ça ? Le dévelopement débuta quelques mois plus tard, en 
 Angular débuta peu de temps après Polymer, en septembre 2014. Mais à l'inverse de Polymer, les composants Angular ne sont pas des Web Components. Ils utilisent néanmoins certaines de leur techniques, comme une émulation du shadow dom pour encapsuler les styles. Il est même possible de l'activer nativement, sans passer par l'émulation. La grosse différence, c'est qu'on ne peut pas utiliser un composant Angular dans un autre environement qu'Angular. L'objectif de ce projet c'est d'avoir un successeur pour AngularJS - et éventuellement de ne pas laisser React, qui date de 2013, récupérer tout le marché.
 
 ## Projets concurrents ?
+
+A l'origine, pas vraiment... Angular a été pensé comme framework complet pour construire de large application alors que Polymer était plus dans l'optique de promouvoir les Web Components, via une fine library.
+Mais avec les évolutions, il y a eu de plus en plus de recouvrement :
+Polymer met à disposition des éléments et outils pour construire des applications complètes :
+  - routing
+  - gestion du cache
+  - localisation
+  - intégration avec une DB (firebase/ PouchDB).
+  - outil de build
+et depuis Angular 6, il est possible d'exporter ses composants en Web Component, réutilisable n'importe où. En théorie, on peut maintenant faire avec Angular ce qui était avant réservé à Polymer ! Pour faire face à ça, l'équipe Polymer a récemment sorti la version 3, en abandonnant les HTML Import au profit des ES Module, et en désignant lit-element comme successeur de PolymerElement. L'équipe se repositionne avec une version ultra-légère et simplifié de leur produit.
