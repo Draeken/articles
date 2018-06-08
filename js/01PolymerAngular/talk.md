@@ -44,4 +44,27 @@ Polymer met à disposition des éléments et outils pour construire des applicat
   - localisation
   - intégration avec une DB (firebase/ PouchDB).
   - outil de build
-et depuis Angular 6, il est possible d'exporter ses composants en Web Component, réutilisable n'importe où. En théorie, on peut maintenant faire avec Angular ce qui était avant réservé à Polymer ! Pour faire face à ça, l'équipe Polymer a récemment sorti la version 3, en abandonnant les HTML Import au profit des ES Module, et en désignant lit-element comme successeur de PolymerElement. L'équipe se repositionne avec une version ultra-légère et simplifié de leur produit.
+et depuis Angular 6, il est possible d'exporter ses composants en Web Component, réutilisable n'importe où. En théorie, on peut maintenant faire avec Angular ce qui était avant réservé à Polymer ! A noter que ces elements embarqueront une version minimale d'Angular pour gérer le data-binding. Pour faire face à ça, l'équipe Polymer a récemment sorti la version 3, en abandonnant les HTML Import au profit des ES Module, et en désignant lit-element comme successeur de PolymerElement. L'équipe se repositionne avec une version ultra-légère et simplifié de leur produit.
+
+## Pourquoi avoir combiner les deux ?
+
+Il y a d'abord une raison historique : d'un coté, pouvoir écrire des composants réutilisable sans avoir a embarquer une library lourde, en s'appuiyant directement sur la plateforme et les standards. De l'autre, avoir un framework robuste pour gérer l'interface avec le backend et la logique métier.
+C'était également un pari, sur un avenir où tous les navigateurs supporteront le standard des web components... À ce propos, Firefox devrait bientôt les supporter nativement.
+Il y a aussi le nombre de composants communautaires disponibles : pour Polymer, il existe un store qui les répertories : www.webcomponents.org/ et ça, c'est super pratique, on peut voir leur doc, l'API, avoir une démo, et chacun peut simplement publier son composant. L'équivalent pour Angular c'est une awesome-list.
+Au final ça a mené à avoir tout le visuel, les styles, le design encapsulé dans des composants Polymer pour qu'Angular n'ait plus qu'un rôle de glue et de gérer la logique avec le backend.
+
+## Solutions techniques mise en place
+
+L'application Angular et le catalogue de composants ont chacun leur répo séparés. Ça c'est plutôt chouette.
+Maintenant, le répo Polymer utilise git submodule, donc on a un monorepo mais sans les avantages du monorepo, vu que chaque composant est sur sa branche. Les releases sont faites par composant, de manière indépendante.
+Au début, la stratégie pour intégrer les composants aux vues Angular, c'était de charger juste ce qu'il fallait au dernier moment. Pour ça, on avait recours à un décorateur ou on lui passait les url des composants à charger.
+Cette technique était trop lourde et on a préféré tout charger dans l'index.
+Ça marchait bien jusqu'à ce qu'on ait trop de soucis de lenteur sur Firefox.
+Heureusement, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer le fichier HTML des composants en bundle JS. Ça nous a permis d'avoir les avantages de la première méthode : charger les composants au dernier moment, sans que ça soit trop lourd a gérer. Et puis c'est plus performant vu qu'on ne passe plus par les polyfill des HTML Import requis pour Firefox
+Avec la sortie de Polymer 3, on envisage de migrer tout le catalogue dans un nouveau vrai monorepo, et normalement, cette nouvelle version devrait simplifier l'intégration a Angular : plus besoin de transformer le HTML en bundle JS vu qu'ils seront déjà en JS...
+
+## Conclusion
+
+Développer un catalogue de composant Polymer est-il pertinant si vous développez déjà une application Angular ?
+Non
+Avec Angular Element, il n'y a plus de raison de combiner les deux. Si vous utilisez autre chose qu'Angular, ça serait envisable, soit avec lit-element (le successeur officiel de PolymerElement) ou Stencil, développé par Ionic
