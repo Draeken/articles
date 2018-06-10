@@ -5,7 +5,7 @@ import {
   InjectionToken,
   Optional,
   Renderer2,
-  forwardRef,
+  forwardRef
 } from "@angular/core";
 import { ɵgetDOM as getDOM } from "@angular/platform-browser";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -13,16 +13,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 export const POLYMER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => PolymerValueAccessor),
-  multi: true,
+  multi: true
 };
 
 @Directive({
   selector: "[polymerControl]",
   host: {
     "(change)": "$any(this)._handleInput($event.target.value)",
-    "(blur)": "onTouched()",
+    "(blur)": "onTouched()"
   },
-  providers: [POLYMER_VALUE_ACCESSOR],
+  providers: [POLYMER_VALUE_ACCESSOR]
 })
 export class PolymerValueAccessor implements ControlValueAccessor {
   onChange = (_: any) => {};
@@ -32,7 +32,11 @@ export class PolymerValueAccessor implements ControlValueAccessor {
 
   writeValue(value: any): void {
     const normalizedValue = value == null ? "" : value;
-    this._renderer.setProperty(this._elementRef.nativeElement, "value", normalizedValue);
+    this._renderer.setProperty(
+      this._elementRef.nativeElement,
+      "value",
+      normalizedValue
+    );
   }
 
   registerOnChange(fn: (_: any) => void): void {
@@ -43,7 +47,11 @@ export class PolymerValueAccessor implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this._renderer.setProperty(this._elementRef.nativeElement, "disabled", isDisabled);
+    this._renderer.setProperty(
+      this._elementRef.nativeElement,
+      "disabled",
+      isDisabled
+    );
   }
 
   _handleInput(value: any): void {

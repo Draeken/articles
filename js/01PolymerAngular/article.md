@@ -125,6 +125,23 @@ de manière à ce que l'image soit incluse dans le bundle.
 
 Pour intégrer un élément Polymer à un formulaire Angular, il faut s'assurer qu'ils parlent la même langue !
 En utilisant la directive `ngDefaultControl` sur votre composant, vous vous assurez qu'Angular prendra en compte les évènements `input` émit par votre composant. C'est à dire que lorsque vous voulez que la valeur du `FormControl` Angular soit raffraichi par l'élément Polymer, vous devrez émètre un évènement `input`. Par exemple pour un champ texte, `input` pourra être émit après chaque frappe du clavier.
+
+````javascript
+class DemoElem extends Polymer.Element {
+  static get is() { return 'demo-elem'; }
+  static get properties() {
+    return {
+      value: {
+        type: String
+      }
+    };
+  }
+
+  notifyChange(newVal) {
+    this.dispatchEvent(new CustomEvent('input'));
+  }
+}
+````
 Si vous utilisez un WebComponent récupéré et qui n'émet pas `input`, vous pouvez passer par une directive qui implémentera `ControlValueAccessor`. L'équipe d'Angular en a développé une bonne flopée ([ici](https://github.com/angular/angular/blob/master/packages/forms/src/directives)) que l'on pourra utiliser comme modèle si l'on ne trouve pas son bonheur. C'est la où vous pourrez écouter l'évènement du composant et interpréter le résultat avant de la passer au formulaire Angular, et inversement lorsque le formulaire Angular veut définir une valeur pour ce contrôle.
 Normalement, la validation d'un contrôle se fait toujours du côté d'Angular, via les `Validators`. Angular peut indiquer à un WebComponent que celui ci est invalide via le data-binding. C'est géré de base par les WebComponents développés par l'équipe Polymer qui met à disposition une propriété `invalid` et `error-message`. Dans certains cas complexes vous voudrez éventuellement gérer la validité dans le composant (pour avoir un meilleur contrôle de la mise en forme par exemple). Pour qu'Angular soit conscient de l'invalidité de ce composant, plutôt que de dupliquer le code de validation, vous pourrez intercepter un évenement généré par le composant pour indiquer que son état de validité à changé.
 

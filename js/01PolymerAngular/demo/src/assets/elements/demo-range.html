@@ -151,7 +151,7 @@
         this._previousValue = newVal;
         if (!newVal) { return }
         this.dispatchEvent(new CustomEvent('input',
-          { bubbles: true, composed: true }));
+          { bubbles: false, composed: false }));
       }
     }
 
