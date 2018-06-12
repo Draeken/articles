@@ -13,11 +13,11 @@ Pour l'exemple, nous partirons de la structure suivante :
 
 ### Le build
 
-Première étape: générer ce qui sera utiliser par nos utilisateurs.
+Première étape: générer ce qui sera utilisé par nos utilisateurs.
 Contrairement à un projet destiné à être directement exécuté par le navigateur, nous n'avons pas besoin de beaucoup modifier notre code source.
 Bundlelifier son code ? Si nos utilisateurs ne veulent qu'une partie de notre bibliothèque, l'ensemble serait malgré tout importé, ce qui aurait un impact très négatif sur la taille de leur distribuable. Il vaut mieux laisser notre lib modulaire pour laisser le choix à l'utilisateur de prendre tout ou partie.
 Minimifier son code ? Notre projet sera déjà servi sur NPM gzipé. Il vaut mieux garder le code clair pour l'utilisateur. Il s'y retrouvera beaucoup plus simplement s'il doit examiner une pile d'appel avec des noms de fonctions non minimifié !
-Si notre bibliothèque est utilisé dans un projet Web, il est de leur responsabilité d'embarque une étape de build pour au moins élaguer le code mort et minimifier le reste.
+Si notre bibliothèque est utilisé dans un projet Web, il est de leur responsabilité d'embarquer une étape de build pour au moins élaguer le code mort et minimifier le reste.
 
 Si nous partons de la config TS de base suivante :
 
@@ -156,12 +156,50 @@ Assurez-vous d'avoir accès à vos identifiants GitHub et NPM, puis lancer la co
 ````bash
 npm install -g semantic-release-cli
 
-cd your-module
+cd my-lib
 semantic-release-cli setup
 ````
 ![semantic-release setup](https://github.com/semantic-release/semantic-release/raw/caribou/media/semantic-release-cli.png)
 
 Pour plus de détails sur ce que fait cette commande, rendez vous [ici](https://github.com/semantic-release/cli#what-it-does).
+
+### Configurer votre package.json pour la publication
+
+Avec l'étape précédente, le setup de semantic-release aura déjà mis à jour le package.json mais il reste quelques points à voir.
+Pour que tout ce passe bien lorsqu'un utilisateur importera votre lib, il faut indiquer des points d'entrée :
+
+package.json
+````json
+{
+  "main": "lib/lib.js",
+  "module": "es/lib.js",
+  "types": "es/lib.d.ts"
+}
+````
+Le champ `module` permet à des outils comme Rollup ou Webpack d'importer directement en ES Module.
+Si ce n'est pas déjà fait, indiquez que votre package est destiné à être publique :
+
+package.json
+````json
+{
+  "private": false,
+  "publishConfig": {
+    "tag": "latest",
+    "access": "public"
+  }
+}
+````
+
+Si vos modules ne génèrent pas d'effet de bord, vous pouvez également rajouter :
+
+package.json
+````json
+{
+  "sideEffects": false
+}
+````
+
+qui permettra à Webpack (v4) d'optmisier les re-exports, menant à des bundles plus léger.
 
 ### Packager notre projet pour NPM
 
