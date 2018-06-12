@@ -51,9 +51,9 @@ Polymer met à disposition des éléments et outils pour construire des applicat
 
 ## Pourquoi avoir combiner les deux ?
 
-Il y a d'abord une raison historique : d'un coté, pouvoir écrire des composants réutilisable sans avoir a embarquer une library lourde, en s'appuiyant directement sur la plateforme et les standards. De l'autre, avoir un framework robuste pour gérer l'interface avec le backend et la logique métier.
+Il y a d'abord une raison historique : d'un coté, pouvoir écrire des composants qui puissent être récupéré dans les prochains projet, en s'appuiyant directement sur la plateforme et les standards. De l'autre, avoir un framework robuste pour gérer l'interface avec le backend et la logique métier. Alors, il me semble que ceux qui ont pris la décision n'étaient pas conscient qu'Angular permettait déjà d'écrire des composants facilement réinjectable dans d'autres projets Angular, mais c'est pas étonnant : leur doc met essentiellement l'accent sur la création d'une app complète et pas vraiment sur la possibilité de publier des composants unitaires
 C'était également un pari, sur un avenir où tous les navigateurs supporteront le standard des web components... À ce propos, Firefox devrait bientôt les supporter nativement.
-Il y a aussi le nombre de composants communautaires disponibles : pour Polymer, il existe un store qui les répertories : www.webcomponents.org/ et ça, c'est super pratique, on peut voir leur doc, l'API, avoir une démo, et chacun peut simplement publier son composant. L'équivalent pour Angular c'est une awesome-list.
+Il y a aussi le nombre de composants communautaires disponibles : pour Polymer, il existe un store qui les répertories : www.webcomponents.org/ et ça, c'est super pratique, on peut voir leur doc, l'API, avoir une démo, et chacun peut simplement publier son composant. L'équivalent pour Angular c'est une awesome-list sur GitHub.
 Au final ça a mené à avoir tout le visuel, les styles, le design encapsulé dans des composants Polymer pour qu'Angular n'ait plus qu'un rôle de glue et de gérer la logique avec le backend.
 
 ## Solutions techniques mise en place
@@ -64,7 +64,7 @@ Au début, la stratégie pour intégrer les composants aux vues Angular, c'étai
 Cette technique était trop lourde et on a préféré tout charger dans l'index.
 Ça marchait bien jusqu'à ce qu'on ait trop de soucis de lenteur sur Firefox.
 Heureusement, un projet indépendant à vu le jour : polymer-webpack-loader, qui va transformer le fichier HTML des composants en bundle JS. Ça nous a permis d'avoir les avantages de la première méthode : charger les composants au dernier moment, sans que ça soit trop lourd a gérer. Et puis c'est plus performant vu qu'on ne passe plus par les polyfill des HTML Import requis pour Firefox
-Avec la sortie de Polymer 3, on envisage de migrer tout le catalogue dans un nouveau vrai monorepo, et normalement, cette nouvelle version devrait simplifier l'intégration a Angular : plus besoin de transformer le HTML en bundle JS vu qu'ils seront déjà en JS...
+Avec la sortie de Polymer 3, on envisage de migrer tout le catalogue dans un nouveau vrai monorepo, et normalement, cette nouvelle version devrait simplifier l'intégration a Angular, vu qu'ils ont supprimé les HTML Imports : plus besoin de transformer en bundle JS vu qu'ils seront déjà en JS...
 
 ## Conclusion
 
