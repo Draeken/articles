@@ -201,6 +201,10 @@ package.json
 
 qui permettra à Webpack (v4) d'optmisier les re-exports, menant à des bundles plus léger.
 
+### L'intégration continue
+
+Avec les options par défaut, le setup de semantic-release génère un fichier de conf dédié à Travis (`travis.yml`). Pour une base minimale, cette conf est suffisante. Si ce n'est pas déjà fait, ouvrez un compte sur https://travis-ci.org/ avec votre compte GitHub et sélectionnez votre répo pour que Travis puisse observer les pull-request/merge. Si vous n'êtes pas fan de Travis, sachez que semantic-release supporte également CircleCI et GitLab CI de base (et vous pourrez trouver ou faire des plugins pour en supporter d'autres).
+
 ### Packager notre projet pour NPM
 
 Cette partie va répondre à "Que fournissons-nous à l'utilisateur". Pour éviter que le `node_module` de nos utilisateurs se transforme en monstre, il faut rester soucieux de n'embarquer que le nécessaire :
@@ -216,6 +220,22 @@ Pour cacher le superflus de NPM, créons un fichier `.npmignore` et mettons-y :
 Sans ce fichier, NPM va par défaut se calquer sur le `.gitignore`, mais les deux usages étant vraiment séparés, ça ne suffira pas. À noter aussi que certains fichiers sont ignorés implicitement, tel que node_modules.
 
 ### Tester son packaging localement
+
+Nous serons plus serein en voyant ce qui sera publié avant sa publication effective ! Pour cela, utilisons la commande :
+````bash
+npm pack
+````
+qui est un dry-run de npm publish. Nous avons grâce à ça un fichier .tgz qui nous permettra de vérifier que tout est bien la, et rien de plus !
+
+### La premire release
+
+Maintenant que tout est en place, nous allons pouvoir voir si tout fonctionne bien. Commitons un changement avec un message type qui déclenchera une nouvelle release, par exemple `fix: presence on npm`. Les types possibles sont définis par la [convention Angular](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) (par défaut).
+Les types déclenchant une release sont :
+- `fix`
+- `feat`
+- tous les autres s'ils sont suivi d'une mention `BREAKING CHANGE`
+Maintenant, soit nous poussons sur une branche, et la release sera déclenchée lors du merge de la pull request, soit nous poussons directement sur `master`. En cas de problème, la release n'aura pas lieu (si les tests sont bien fait :), donc pas de soucis à avoir.
+Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinants d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple.
 
 ## Votre projet sur NPM
 Si vous n'avez pas de compte NPM, il va être temps d'en créer un ! Ensuite vous aurez le choix de publier directement via ce compte ou via une organisation rattaché à ce compte. Publier via une organisation permet d'avoir des packages NPM scopés, et de les regrouper (comme avec @angular par exemple).
