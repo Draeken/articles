@@ -237,5 +237,12 @@ Les types déclenchant une release sont :
 Maintenant, soit nous poussons sur une branche, et la release sera déclenchée lors du merge de la pull request, soit nous poussons directement sur `master`. En cas de problème, la release n'aura pas lieu (si les tests sont bien fait :), donc pas de soucis à avoir.
 Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinants d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple.
 
-## Votre projet sur NPM
-Si vous n'avez pas de compte NPM, il va être temps d'en créer un ! Ensuite vous aurez le choix de publier directement via ce compte ou via une organisation rattaché à ce compte. Publier via une organisation permet d'avoir des packages NPM scopés, et de les regrouper (comme avec @angular par exemple).
+Notre workflow nous permet maintenant de générer des releases automatiquement en analysant nos commits, mais il reste des points à améliorer. Ces points sont répartis selon deux axes : pour les utilisateurs et pour les contributeurs. Du point de vue de l'utilisateur, il est bon de lui fournir des métrics qui l'aideront à le mettre en confiance : couverture de test, dépendances à jour, doc, etc... Du point de vue du contributeur, ça se jouera sur la qualité/modularité du code et de sa documentation, et assurer une cohésion via un contrôle automatique des commits et de la coding style.
+
+## Best Practices côté Utilisateurs
+
+Les efforts seront concentré sur le README. C'est la première chose que les utilisateurs voient, donc il doit être particulièrement soigné. Les images/gifs seront notamment privilégié (on peut s'inspirer des répo qui sont dans les [GitHub Trendings](https://github.com/trending)).
+
+### Les badges
+
+Il y a déjà un certains nombre de badges que l'on peut dès-à-présent intégrer : la version du pacakge NPM, le badge semantic-release, le status du dernier build de Travis CI. Pour nous assurer d'avoir nos dépendances à jour, utilisons Greenkeeper.

@@ -28,3 +28,10 @@ Utiliser les bonnes pratiques d'un projet OpenSource et mettre en place le tooli
   - Le package.json
   - L'intégration continue
   - Le packaging
+
+  ## Lien
+  https://medium.freecodecamp.org/how-i-got-1000-%EF%B8%8F-on-my-github-project-654d3d394ca6
+
+  https://medium.freecodecamp.org/how-to-get-up-to-3500-github-stars-in-one-week-339102b62a8f
+
+http://shields.io/
