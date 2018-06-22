@@ -241,8 +241,19 @@ Notre workflow nous permet maintenant de générer des releases automatiquement 
 
 ## Best Practices côté Utilisateurs
 
-Les efforts seront concentré sur le README. C'est la première chose que les utilisateurs voient, donc il doit être particulièrement soigné. Les images/gifs seront notamment privilégié (on peut s'inspirer des répo qui sont dans les [GitHub Trendings](https://github.com/trending)).
+### Le Readme
 
-### Les badges
+Ce qui émane des articles pour passer son répo de rien à > 1000 stars, c'est que les efforts doivent concentrés sur le README. C'est la première chose que les utilisateurs voient, donc il doit être particulièrement soigné. Les images/gifs seront notamment privilégié pour montrer rapidement ce que permet la lib (on peut s'inspirer des répo qui sont dans les [GitHub Trendings](https://github.com/trending)). Il y aussi un certains nombre de badges que l'on peut dès-à-présent intégrer : la version du pacakge NPM, le badge semantic-release, le status du dernier build de Travis CI. Au fur et à mesure que l'on intègre des outils/process, il ne faut pas hésiter à ajouter le badge correspondant.
 
-Il y a déjà un certains nombre de badges que l'on peut dès-à-présent intégrer : la version du pacakge NPM, le badge semantic-release, le status du dernier build de Travis CI. Pour nous assurer d'avoir nos dépendances à jour, utilisons Greenkeeper.
+### Dépendances à jour
+
+Avoir nos dépendances à jour nous permet de minimiser les failles de sécurité. Pour l'utilisateur, si il a des dépendances communes avec nous mais en spécifiant des versions plus récentes, NPM devra installer plusieurs version du même package (ce qui pourra mener a plusieurs duplication vu qu'il ne peut y avoir qu'une seule version d'un package qui soit partageable entre plusieurs modules). On va aussi pouvoir contrôler qu'une monté de version mineur ne casse pas notre lib (normalement, cela ne devrait pas arriver si le semantic versioning est respecté).
+Pour nous aider à gérer ces dépendances, utilisons Greenkeeper. Il va générer une branche pour chaque nouvelle version d'une dépendance, en nous disant si on peut merge sans risque ou si cela nécessite de revoir notre code (Greenkeeper execute nos tests en simulant une montée de version). Le service est disponible via GitHub App et est gratuit pour les projets Open Source ; mais le plus beau dans tout ça, c'est qu'il va nous permettre de rajouter un badge pour montrer à tout le monde qu'on est bien à jour !
+
+### Le poids de la lib
+
+À moins de ne travailler que pour Node, les utilisateurs sont très regardant sur le poids des libs qu'ils importent. C'est pour cela que lorsque nous écrivons une lib, nous devons toujours faire en sorte qu'elle la plus petite possible. Pour y veiller, nous avons plusieurs leviers :
+- Nos dépendances : est-ce qu'elles intègrent leur version en module ES6 ? Si non, sont-elles découpés en plusieurs fichiers ? En faisant un `require` d'un fichier plutôt que du main, on évitera ainsi de rajouter toute la lib dans le bundle de l'utilisateur - même si ça reste moins idéale que l'ES6 qui éliminera toute fonction non utilisée. Il est inutile de viser le 0 dépendance si cela amène à écrire du code qui a déjà été écrit. Surtout que les dépendances communes avec l'utilisateur sont dédupliqués (si disponible en module ES6).
+- Notre code : je suis amené à penser qu'il vaut mieux exporter un code minimal - sans fioriture : gérer le minimum de cas possible, quitte à exporter à côté des fonctions d'aide pour gérer des cas particulier. Au mieux, l'utilisateur rentre dans le cas géré et le coût d'importation est minime, au pire, il devra gérer ça de son côté ou utiliser les fonctions d'aide fourni par la lib.
+- Notre export : exporter en module ES6, mettre à jour son package.json... tout ceci a déjà été fait dans la première partie.
+Pour vérifier la taille de notre lib avec toutes ses dépendances, nous pouvons créer un répo avec juste un webpack et un import d'une partie de notre lib. Ainsi on vérifiera la taille du bundle généré (en mode production !). Il y a aussi le package `size-limit`, qui indiquera la taille du bundle tel que Webpack le génerera (minimifié, gzipé), mais ça ne permet pas une grande souplesse (la taille sera différente en fonction de ce que l'utilisateur importera).
