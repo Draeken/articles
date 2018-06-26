@@ -14,3 +14,7 @@ limitation: pas de typage pour les fonctions récursives - variadic type (en cou
 
 ## liens :
 https://github.com/Microsoft/TypeScript/issues/5453
+
+https://github.com/Microsoft/TypeScript/issues/4183
+
+https://github.com/Microsoft/TypeScript/issues/12215
