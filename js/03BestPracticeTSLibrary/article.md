@@ -243,7 +243,7 @@ Notre workflow nous permet maintenant de générer des releases automatiquement 
 
 ### Le Readme
 
-Ce qui émane des articles pour passer son répo de rien à > 1000 stars, c'est que les efforts doivent concentrés sur le README. C'est la première chose que les utilisateurs voient, donc il doit être particulièrement soigné. Les images/gifs seront notamment privilégié pour montrer rapidement ce que permet la lib (on peut s'inspirer des répo qui sont dans les [GitHub Trendings](https://github.com/trending)). Il y aussi un certains nombre de badges que l'on peut dès-à-présent intégrer : la version du pacakge NPM, le badge semantic-release, le status du dernier build de Travis CI. Au fur et à mesure que l'on intègre des outils/process, il ne faut pas hésiter à ajouter le badge correspondant.
+Ce qui émane des articles pour passer son répo de rien à > 1000 stars, c'est que les efforts doivent concentrés sur le README. C'est la première chose que les utilisateurs voient, donc il doit être particulièrement soigné. Les images/gifs seront notamment privilégié pour montrer rapidement ce que permet la lib (on peut s'inspirer des répo qui sont dans les [GitHub Trendings](https://github.com/trending)). On pourra y inclure directement une documentation plus formelle pour une petite lib. Sinon il vaut mieux l'heberger sur une page à part (GithubPage par exemple).  Il y aussi un certains nombre de badges que l'on peut dès-à-présent afficher : la version du pacakge NPM, le badge semantic-release, le status du dernier build de Travis CI. Au fur et à mesure que l'on intègre des outils/process, il ne faut pas hésiter à ajouter le badge correspondant.
 
 ### Dépendances à jour
 
@@ -257,3 +257,7 @@ Pour nous aider à gérer ces dépendances, utilisons Greenkeeper. Il va génér
 - Notre code : je suis amené à penser qu'il vaut mieux exporter un code minimal - sans fioriture : gérer le minimum de cas possible, quitte à exporter à côté des fonctions d'aide pour gérer des cas particulier. Au mieux, l'utilisateur rentre dans le cas géré et le coût d'importation est minime, au pire, il devra gérer ça de son côté ou utiliser les fonctions d'aide fourni par la lib.
 - Notre export : exporter en module ES6, mettre à jour son package.json... tout ceci a déjà été fait dans la première partie.
 Pour vérifier la taille de notre lib avec toutes ses dépendances, nous pouvons créer un répo avec juste un webpack et un import d'une partie de notre lib. Ainsi on vérifiera la taille du bundle généré (en mode production !). Il y a aussi le package `size-limit`, qui indiquera la taille du bundle tel que Webpack le génerera (minimifié, gzipé), mais ça ne permet pas une grande souplesse (la taille sera différente en fonction de ce que l'utilisateur importera).
+
+### La couverture de test
+
+Cette étape est un incontournable pour toute bibliothèque populaire et n'ait pas compliquée à mettre en place (surtout que nos tests sont déjà écrit). Le setup à mettre en place va dépendre du service externe qui va s'occuper de lancer les tests. Les plus connus sont Coveralls & Codecov (gratuits pour les projets Open Source).
