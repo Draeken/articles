@@ -260,4 +260,16 @@ Pour vérifier la taille de notre lib avec toutes ses dépendances, nous pouvons
 
 ### La couverture de test
 
-Cette étape est un incontournable pour toute bibliothèque populaire et n'ait pas compliquée à mettre en place (surtout que nos tests sont déjà écrit). Le setup à mettre en place va dépendre du service externe qui va s'occuper de lancer les tests. Les plus connus sont Coveralls & Codecov (gratuits pour les projets Open Source).
+Cette étape est un incontournable pour toute bibliothèque populaire et n'ait pas compliquée à mettre en place (surtout que nos tests sont déjà écrit). Le principe est de mesurer le taux de code utilisés dans les tests, pour s'assurer que tous les cas particuliers sont testés. Notons que ce n'est pas parce qu'il y a une couverture à 100% que notre lib n'a pas de bug. En général, plus la couverture se rapproche de 100%, plus les efforts sont importants. De ce fait, le 100% n'est pas vu comme un objectif. Avoir au moins 90% est suffisant comme indice de confiance. Le setup à mettre en place va dépendre du service externe qui va s'occuper d'analyser les tests. Les plus connus sont Coveralls & Codecov, qui sont spécialisés dans la couverture de tests. Il y a aussi CodeClimate qui fait d'autres analyses de qualités en plus (gratuits pour les projets Open Source). Le setup standard consiste à ajouter un script npm pour générer un rapport de couverture (ava couplé à nyc le font très bien), et à modifier la config du CI pour envoyer ce rapport au service d'analyse.
+Pour un rapport au format lcov, nous pourrons modifier notre script de test comme suit:
+
+````json
+{
+  "scripts": {
+    "test": "tsc && nyc --reporter=lcov npm run ava",
+    "test:codecov": "tsc && nyc npm run ava",
+  }
+}
+````
+
+La deuxième ligne permet d'afficher le resultat du rapport dans la console. C'est un bon moyen de voir notre avancement du taux de couverture.
