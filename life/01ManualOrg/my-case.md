@@ -1,0 +1,2 @@
+Suis-je satisfais de la vie ?
+Je pense que la vie peut être beaucoup plus intéressante et enrichissante que ça. De mon point de vue, ça serait avoir une puissance créatrice plus forte : pouvoir matérialiser des idées plus rapidement, à une plus grande échelle, grâce à plus de moyens. Pas forcément être présent du début jusqu'à la fin, mais être présent au début pour assurer une certaine direcion. - [Foster your projects](https://vanslaars.io/post/foster-your-projects/).
