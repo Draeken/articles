@@ -273,3 +273,26 @@ Pour un rapport au format lcov, nous pourrons modifier notre script de test comm
 ````
 
 La deuxième ligne permet d'afficher le resultat du rapport dans la console. C'est un bon moyen de voir notre avancement du taux de couverture.
+
+### La documentation
+
+La qualité de la documentation est l'un des facteurs de choix déterminant : une bonne documentation permettra à l'utilisateur de s'assurer une prise en main simple et rapide, une compréhension complète sans avoir à fouiller le code source pour comprendre les mécanismes de notre bibliothèque. Si celle-ci est conséquente, nous avons tout intérêt à la générer à partir du code source. Le fait de documenter notre code permettra en plus aux utilisateurs d'y avoir directement accès depuis leur IDE (la taille de leur bundle ne sera pas impacté s'ils suppriment les commentaires). Dans notre cas, nous utiliserons [TypeDoc](http://typedoc.org/), qui va générer du HTML et pourra être mis sur GithubPage.
+
+````typescript
+/**
+ * @param value  Comment for parameter ´value´.
+ * @returns      Comment for special return value.
+ */
+function bar(target:any, value:number):number;
+
+/**
+ * Comment for method ´foo´. It uses [[bar]] function
+ * @param target  Comment for parameter ´target´.
+ * @returns       Comment for return value.
+ */
+function foo(target:any, arg:any):number {
+    return bar(target, 42);
+}
+````
+TypeDoc reprends certains tags de JavaDoc (moins nécessaires ici vu que les types sont déjà renseignés), parse le markdown et les bloques de code présent dans les commentaires pour une belle mise en forme avec coloration syntaxique. Il est également possible de référencer d'autres fonctions/classes via la notation double crochets : `[[functionName]]`.
+TODO: script de génération & déploiement
