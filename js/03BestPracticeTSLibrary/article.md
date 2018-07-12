@@ -283,16 +283,31 @@ La qualité de la documentation est l'un des facteurs de choix déterminant : un
  * @param value  Comment for parameter ´value´.
  * @returns      Comment for special return value.
  */
-function bar(target:any, value:number):number;
+export function bar(target:any, value:number):number;
 
 /**
  * Comment for method ´foo´. It uses [[bar]] function
+
+ * markdown table:
+ * target |  arg  | return
+ * ------ | ----- | -----
+ *  'foo' | 'bar' | 42
  * @param target  Comment for parameter ´target´.
  * @returns       Comment for return value.
  */
-function foo(target:any, arg:any):number {
+export function foo(target:any, arg:any):number {
     return bar(target, 42);
 }
 ````
 TypeDoc reprends certains tags de JavaDoc (moins nécessaires ici vu que les types sont déjà renseignés), parse le markdown et les bloques de code présent dans les commentaires pour une belle mise en forme avec coloration syntaxique. Il est également possible de référencer d'autres fonctions/classes via la notation double crochets : `[[functionName]]`.
-TODO: script de génération & déploiement
+Nous pouvons configurer TypeDoc via le fichier typedoc.js, à la racine du projet. Cela va être utile pour exclure de la documentation nos dépendances externes, ou bien ajouter une page de garde en référant un fichier en markdown.
+
+Une fois que le code visible par l'utilisateur est bien documenté, nous pouvons générer la doc via la commande typedoc :
+````json
+{
+  "scripts": {
+    "doc": "npm run build && typedoc --out docs/ es/"
+  }
+}
+````
+Maintenant, nous pouvons utiliser le service Github Pages pour servir le dossier docs de notre projet ! Rendez-vous sur la page des Settings de votre répo, à la section Github Pages : la, nous pouvons choisir la source de nos docs, le plus simple dans notre cas étant le dossier /docs de la branche Master. Une fois validé, nous obtiendrons le lien vers le site de la documentation, que nous pourrons renseigner dans le `README.md`
