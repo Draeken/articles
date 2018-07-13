@@ -1,0 +1,2 @@
+# Goals
+Avoir le même pouvoir que les mixins des Web Components, mais implémenté avec le CSS-in-JS : pouvoir étendre/écraser le style par défaut en transmettant un objet de style. L'élément fournit son "API" de style, en documentant les propriétés de l'objet qui seront liés aux parties de son UI (mapping 1-1). L'utilisateur doit pouvoir étendre/écraser en utilisant les variables du thème.
