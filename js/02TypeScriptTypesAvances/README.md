@@ -7,6 +7,9 @@ Gérer un type générique et les valeurs possibles des propriétés de ce type
 <K>(defaultValue: K[keyof K], obj: K | undefined, propToCheck: Array<keyof K>): K[keyof K]
 ````
 
+- keyof typeof
+- type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+
 version immutable-js de TS -> tslint avec règles custom, usage de readonly/const & ReadonlyArray
 Reprendre la doc sur les type guard ? les modificateur d'interface (readonly, optional) ?
 
