@@ -5,6 +5,7 @@ Nous allons voir ensemble quel workflow nous permettrait de publier et maintenir
 
 Pour ne pas se casser la tête à gérer les releases, nous utiliserons semantic-release. Le principe est simple : Lorsque du nouveau code est poussé sur Master, si les tests d'intégration continue passent, une nouvelle release est déclenchée.
 Pour l'exemple, nous partirons de la structure suivante :
+
 - src (nos sources)
 - test (tests unitaires)
 - es (contiendra les sources transpilées en ES Module)
@@ -22,15 +23,13 @@ Si notre bibliothèque est utilisé dans un projet Web, il est de leur responsab
 Si nous partons de la config TS de base suivante :
 
 tsconfig.base.json
-````json
+
+```json
 {
   "compilerOptions": {
     "target": "ES2017",
     "module": "commonjs",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "types": [],
     "declaration": true,
     "inlineSourceMap": false,
@@ -45,63 +44,60 @@ tsconfig.base.json
     "moduleResolution": "node"
   }
 }
-````
+```
 
 Ajoutons la config TS pour générer ce build :
 
 tsconfig.build.json
-````json
+
+```json
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib"
   },
-  "include": [
-    "src/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "es",
-    "lib",
-    "build"
-  ]
+  "include": ["src/*"],
+  "exclude": ["node_modules", "es", "lib", "build"]
 }
-````
+```
 
 Et les scripts pour générer le livrable :
 
 package.json
-````json
+
+```json
 {
   "scripts": {
     "build:ts": "tsc -p tsconfig.build.json",
     "build": "npm run build:ts && npm run build:ts -- -m es6 --outDir es"
   }
 }
-````
+```
 
 Il n'y a plus qu'à lancer `npm run build` pour générer la sortie en commonjs et la sortie en es6.
 
 ## Les tests
 
-Pour éviter de mettre sur une NPM une release qui ne fonctionne pas, il est indispensable que chaque merge candidat à une nouvelle release passe une batterie de tests ! Pour l'exemple nous utiliserons [AVA](https://github.com/avajs/ava). Ils sont modernes (avec le support d'ES6), simple d'utilisation et supportent les promesses, async await et les observables !
+Pour éviter de mettre sur une NPM une release qui ne fonctionne pas, il est indispensable que chaque merge candidat à une nouvelle release passe une batterie de tests ! Pour l'exemple nous utiliserons [AVA](https://github.com/avajs/ava). C'est moderne (avec le support d'ES6), simple d'utilisation et ça supporte les promesses, async await et les observables !
 
 test/lib.test.ts
-````typescript
-import test from 'ava'
-import { myLibFunction } from '../src/lib'
 
-test('will work', t => {
+```typescript
+import test from "ava";
+import { myLibFunction } from "../src/lib";
+
+test("will work", t => {
   const result = myLibFunction();
   t.truthy(result);
 });
-````
+```
 
 Pour exécuter les tests, AVA a besoin des fichiers transpilés en js. Mettons en place un build par défaut qui sera utilisé par les tests :
 
 tsconfig.json
-````json
+
+```json
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
@@ -109,59 +105,59 @@ tsconfig.json
     "baseUrl": "./",
     "sourceMap": true
   },
-  "include": [
-    "src/*",
-    "test/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/*", "test/*"],
+  "exclude": ["node_modules"]
 }
-````
+```
 
 Ajoutons les scripts nécessaire à executer les tests :
 
 package.json
-````json
+
+```json
 {
   "scripts": {
     "ava": "ava build/**/*.test.js",
-    "test": "tsc && npm run ava",
+    "test": "tsc && npm run ava"
   }
 }
-````
+```
 
 Pour simplifier le développement, nous pouvons également ajouter un script qui va builder et tester à chaque modification du code.
 Le package concurrently nous permettra d'exécuter en parallèle le build et l'exécution des tests.
 
-````bash
+```bash
 npm i -D concurrently
-````
+```
 
 package.json
-````json
+
+```json
 {
   "scripts": {
     "watch:ts": "tsc -w",
     "watch:ava": "ava -w build/*.test.js",
-    "watch:test": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Ava\" -c \"blue.bold,magenta.bold\" \"npm run watch:ts\" \"npm run watch:ava\""
-
+    "watch:test":
+      "concurrently -k -p \"[{name}]\" -n \"TypeScript,Ava\" -c \"blue.bold,magenta.bold\" \"npm run watch:ts\" \"npm run watch:ava\""
   }
 }
-````
+```
+
 Voilà, maintenant vous n'aurez plus qu'à lancer `npm run watch:test` pour faciliter votre pratique du TDD !
 
 ## Configurer semantic-release
 
 `semantic-release` s'appuie fortement sur un système de plugin. Qu'il s'agisse de release sur NPM / GitHub / GitLab, de s'interfacer avec la plateforme de CI, d'analyser les commits et de générer le CHANGELOG, tout est fait via des plugins. Certains sont officiels, d'autres communautaires. `semantic-release` est configuré par défaut avec certains plugins officiels pour supporter le cas d'usage le plus courant : GitHub, NPM & Travis. Pour simplifier, nous utiliserons la configuration par défaut mais sachez que leur doc est très complète et il ne vous sera pas dur de la changer. La plupart de ces plugins nécessitent l'accès à vos dépôts, et auront besoin d'un token pour Git et NPM. Cette étape peut être réalisé simplement avec leur CLI :
 
-Assurez-vous d'avoir accès à vos identifiants GitHub et NPM, puis lancer la configuration :
-````bash
+Assurez-vous d'avoir accès à vos identifiants GitHub et NPM, puis lancez la configuration :
+
+```bash
 npm install -g semantic-release-cli
 
 cd my-lib
 semantic-release-cli setup
-````
+```
+
 ![semantic-release setup](https://github.com/semantic-release/semantic-release/raw/caribou/media/semantic-release-cli.png)
 
 Pour plus de détails sur ce que fait cette commande, rendez vous [ici](https://github.com/semantic-release/cli#what-it-does).
@@ -169,21 +165,24 @@ Pour plus de détails sur ce que fait cette commande, rendez vous [ici](https://
 ## Configurer votre package.json pour la publication
 
 Avec l'étape précédente, le setup de semantic-release aura déjà mis à jour le package.json mais il reste quelques points à voir.
-Pour que tout ce passe bien lorsqu'un utilisateur importera votre lib, il faut indiquer des points d'entrée :
+Pour que tout se passe bien lorsqu'un utilisateur importera votre lib, il faut indiquer des points d'entrée :
 
 package.json
-````json
+
+```json
 {
   "main": "lib/lib.js",
   "module": "es/lib.js",
   "types": "es/lib.d.ts"
 }
-````
+```
+
 Le champ `module` permet à des outils comme Rollup ou Webpack d'importer directement en ES Module. Le champ type fait référence au fichier de déclaration des types généré par `tsc` pour votre lib.
 Si ce n'est pas déjà fait, indiquez que votre package est destiné à être publique :
 
 package.json
-````json
+
+```json
 {
   "private": false,
   "publishConfig": {
@@ -191,18 +190,19 @@ package.json
     "access": "public"
   }
 }
-````
+```
 
 Si vos modules ne génèrent pas d'effet de bord lors de leur importation (comme la modification de prototype), vous pouvez également rajouter :
 
 package.json
-````json
+
+```json
 {
   "sideEffects": false
 }
-````
+```
 
-qui permettra à Webpack (v4) d'optmisier les re-exports, menant à des bundles plus léger.
+qui permettra à Webpack (v4) d'optimiser les re-exports, menant à des bundles plus léger.
 
 ## L'intégration continue
 
@@ -211,34 +211,39 @@ Avec les options par défaut, le setup de semantic-release génère un fichier d
 ## Packager notre projet pour NPM
 
 Cette partie va répondre à "Que fournissons-nous à l'utilisateur". Pour éviter que le `node_module` de nos utilisateurs se transforme en monstre, il faut rester soucieux de n'embarquer que le nécessaire :
- - le package.json
- - la lib
- - les types
+
+- le package.json
+- la lib
+- les types
 
 Pour cacher le superflus de NPM, créons un fichier `.npmignore` et mettons-y :
-  - les sources TypeScript
-  - les fichiers de config
-  - les tests
-  - la doc
-Sans ce fichier, NPM va par défaut se calquer sur le `.gitignore`, mais les deux usages étant vraiment séparés, ça ne suffira pas. À noter aussi que certains fichiers sont ignorés implicitement, tel que node_modules.
+
+- les sources TypeScript
+- les fichiers de config
+- les tests
+- la doc
+  Sans ce fichier, NPM va par défaut se calquer sur le `.gitignore`, mais les deux usages étant vraiment séparés, ça ne suffira pas. À noter aussi que certains fichiers sont ignorés implicitement, tel que node_modules.
 
 ## Tester son packaging localement
 
 Nous serons plus serein en voyant ce qui sera publié avant sa publication effective ! Pour cela, utilisons la commande :
-````bash
+
+```bash
 npm pack
-````
+```
+
 qui est un dry-run de npm publish. Nous avons grâce à ça un fichier .tgz qui nous permettra de vérifier que tout est bien la, et rien de plus !
 
-## La premire release
+## La première release
 
 Maintenant que tout est en place, nous allons pouvoir voir si tout fonctionne bien. Commitons un changement avec un message type qui déclenchera une nouvelle release, par exemple `fix: presence on npm`. Les types possibles sont définis par la [convention Angular](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) (par défaut).
 Les types déclenchant une release sont :
+
 - `fix`
 - `feat`
 - tous les autres s'ils sont suivi d'une mention `BREAKING CHANGE`
-Maintenant, soit nous poussons sur une branche, et la release sera déclenchée lors du merge de la pull request, soit nous poussons directement sur `master`. En cas de problème, la release n'aura pas lieu (si les tests sont bien fait :), donc pas de soucis à avoir.
-Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinants d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple.
+  Maintenant, soit nous poussons sur une branche, et la release sera déclenchée lors du merge de la pull request, soit nous poussons directement sur `master`. En cas de problème, la release n'aura pas lieu (si les tests sont bien fait :), donc pas de soucis à avoir.
+  Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinents d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple.
 
 Notre workflow nous permet maintenant de générer des releases automatiquement, vous n'avez plus qu'à vous souciez du code et des tests !
 
