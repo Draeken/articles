@@ -1,11 +1,3 @@
-goal:
-
-- AS app with lots of agents - developped by third party
-- top 1 app worldwide
-- achieve hard goal with the help of AS.
-
-iterative approach but with a long range view
-
 # Value Creation
 
 People need more time to do more things. New products to test and enjoy, there are more and more tasty experience sellers.
@@ -14,7 +6,13 @@ People want a way to simplify their life full of goals. They want to conciliate 
 They want to know the consequences of pursuing a specific goal, potentially conflincting with other goals - what will my life look like? Helping them to select most valuable goals (we can't do everything we want).
 How planning can help them ?
 It connects primarily to acquire more control of how we consume our time. But all human drives can be reached through agents.
+
+How to create a business that fulfill these needs ?
+
+
+
 ## Market evaluation:
+
 - Urgency: 7 - there is lots of methods and product that try to make you more productive
 - Market size: 3 - many doesn't seem to be actively interested in being more organized
 - Pricing potential: 5 - to be detailed
@@ -35,7 +33,23 @@ Generally speaking, planning:
 - Distract from other, more important priorities. Doing things instead of planning
 - Involve too much confusion, uncertainty, or complexity.
 
-How to create a business that fulfill these needs ?
+Hassle will be resolved through agents expertise
+
+## Perceived Value
+
+Attractive and easy to visualize end-result.
+Reduce end-user efforts.
+
+## Prototype
+
+goal: get user feedback
+
+- v1. Landing page with diagrams/flows explaing core principles ; goals & end results
+- v2. add developer tool to test planning generation
+
+## Economics Values
+
+It's more about conveience than fidelity (in a first time). Both aren't incompatible.
 
 # Sales
 
