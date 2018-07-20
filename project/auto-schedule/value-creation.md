@@ -9,8 +9,6 @@ It connects primarily to acquire more control of how we consume our time. But al
 
 How to create a business that fulfill these needs ?
 
-
-
 ## Market evaluation:
 
 - Urgency: 7 - there is lots of methods and product that try to make you more productive
@@ -28,6 +26,7 @@ How to create a business that fulfill these needs ?
 ## Hassle Premium
 
 Generally speaking, planning:
+
 - Take too much time to complete.
 - Require too much effort to ensure a good result/flexibility.
 - Distract from other, more important priorities. Doing things instead of planning
@@ -53,11 +52,16 @@ It's more about conveience than fidelity (in a first time). Both aren't incompat
 
 # Sales
 
-Free account:
-save user's data for commercial purpose, limited access to agent features.
+## User pay
 
-Premium:
-access premium features from agents (reducing hassle), guarantee that user's data aren't saved.
+- Trial: I personnaly don't like to invest if I know it's limited in time. But if the only way to use the app is to pay, it's good to have a trial. If a friend invite you to plan an activity, you would likely refuse if there is no trial.
+
+- Premium: access premium features from agents (reducing hassle), guarantee that user's data aren't saved.
+
+## Ads pay
+
+- save user's data for commercial purpose, full access to agent's features
+- one time fee for putting app in the marketplace
 
 # Value-Delivery (aka customer service)
 
