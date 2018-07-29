@@ -3,7 +3,7 @@ Nous allons voir ensemble quel workflow nous permettrait de publier et maintenir
 
 ## Automatiser les releases
 
-Pour ne pas se casser la tête à gérer les releases, nous utiliserons semantic-release. Le principe est simple : Lorsque du nouveau code est poussé sur Master, si les tests d'intégration continue passent, une nouvelle release est déclenchée.
+Pour ne pas se casser la tête à gérer les releases, nous utiliserons semantic-release. Le principe est simple : lorsque du nouveau code est poussé sur Master, si les tests d'intégration continue passent, une nouvelle release est déclenchée. Cela implique que les releases seront très fréquentes, mais ça nous force à suivre les bonnes pratiques, et à respecter la règle que master doit toujours être déployable. Si nous avons besoin davantage de contrôle, nous pouvons utiliser une branche dev au lieu de master par défaut, et merger dev sur master lorsque nous voulons déclencher une nouvelle release. Nous pouvons aussi distribuer la lib sur un tag npm autre que `@last`, comme `@next` ou `@canary` par exemple.
 Pour l'exemple, nous partirons de la structure suivante :
 
 - src (nos sources)
@@ -29,7 +29,10 @@ tsconfig.base.json
   "compilerOptions": {
     "target": "ES2017",
     "module": "commonjs",
-    "lib": ["es2017", "dom"],
+"lib": [
+"es2017",
+"dom"
+],
     "types": [],
     "declaration": true,
     "inlineSourceMap": false,
@@ -46,7 +49,7 @@ tsconfig.base.json
 }
 ```
 
-Ajoutons la config TS pour générer ce build :
+Ajoutons la config TS pour générer les sources du livrable :
 
 tsconfig.build.json
 
@@ -57,8 +60,15 @@ tsconfig.build.json
     "rootDir": "src",
     "outDir": "lib"
   },
-  "include": ["src/*"],
-  "exclude": ["node_modules", "es", "lib", "build"]
+"include": [
+"src/*"
+],
+"exclude": [
+"node_modules",
+"es",
+"lib",
+"build"
+]
 }
 ```
 
@@ -79,7 +89,7 @@ Il n'y a plus qu'à lancer `npm run build` pour générer la sortie en commonjs 
 
 ## Les tests
 
-Pour éviter de mettre sur une NPM une release qui ne fonctionne pas, il est indispensable que chaque merge candidat à une nouvelle release passe une batterie de tests ! Pour l'exemple nous utiliserons [AVA](https://github.com/avajs/ava). C'est moderne (avec le support d'ES6), simple d'utilisation et ça supporte les promesses, async await et les observables !
+Pour éviter de mettre sur une NPM une release qui ne fonctionne pas, il est indispensable que chaque merge candidat à une nouvelle release passe une batterie de test ! Pour l'exemple nous utiliserons [AVA](https://github.com/avajs/ava). C'est moderne (avec le support d'ES6), simple d'utilisation et ça supporte les promesses, async await et les observables !
 
 test/lib.test.ts
 
@@ -105,8 +115,13 @@ tsconfig.json
     "baseUrl": "./",
     "sourceMap": true
   },
-  "include": ["src/*", "test/*"],
-  "exclude": ["node_modules"]
+"include": [
+"src/*",
+"test/*"
+],
+"exclude": [
+"node_modules"
+]
 }
 ```
 
@@ -206,11 +221,11 @@ qui permettra à Webpack (v4) d'optimiser les re-exports, menant à des bundles 
 
 ## L'intégration continue
 
-Avec les options par défaut, le setup de semantic-release génère un fichier de conf dédié à Travis (`travis.yml`). Pour une base minimale, cette conf est suffisante. Si ce n'est pas déjà fait, ouvrez un compte sur https://travis-ci.org/ avec votre compte GitHub et sélectionnez votre répo pour que Travis puisse observer les pull-request/merge. Si vous n'êtes pas fan de Travis, sachez que semantic-release supporte également CircleCI et GitLab CI de base (et vous pourrez trouver ou faire des plugins pour en supporter d'autres).
+Avec les options par défaut, le setup de semantic-release génère un fichier de conf dédié à Travis (`travis.yml`). Pour une base minimale, cette conf est suffisante. Si ce n'est pas déjà fait, ouvrez un compte sur [https://travis-ci.org](https://travis-ci.org) avec votre compte GitHub et sélectionnez votre répo pour que Travis puisse observer les pull-request/merge. Si vous n'êtes pas fan de Travis, sachez que semantic-release supporte également CircleCI et GitLab CI de base (et vous pourrez trouver ou faire des plugins pour en supporter d'autres).
 
 ## Packager notre projet pour NPM
 
-Cette partie va répondre à "Que fournissons-nous à l'utilisateur". Pour éviter que le `node_module` de nos utilisateurs se transforme en monstre, il faut rester soucieux de n'embarquer que le nécessaire :
+Cette partie va répondre à "Que fournissons-nous à l'utilisateur". Pour éviter que le `node_module` de nos utilisateurs ne se transforme en monstre, il faut rester soucieux de n'embarquer que le nécessaire :
 
 - le package.json
 - la lib
@@ -243,7 +258,7 @@ Les types déclenchant une release sont :
 - `feat`
 - tous les autres s'ils sont suivi d'une mention `BREAKING CHANGE`
   Maintenant, soit nous poussons sur une branche, et la release sera déclenchée lors du merge de la pull request, soit nous poussons directement sur `master`. En cas de problème, la release n'aura pas lieu (si les tests sont bien fait :), donc pas de soucis à avoir.
-  Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinents d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple.
+  Une fois fait, nous devrions voir une nouvelle release sur GitHub et NPM. Si ce n'est pas le cas, nous pouvons vérifier les logs de Travis - il y a toute les chances d'y trouver l'explication, et par défaut il n'y a que les logs pertinents d'affichés. On peut aussi relancer le build de Travis pour nous éviter de repousser un commit, si c'était une erreur lié au réseau par exemple. Une fois sur NPM, il ne faut pas hésiter à tester l'installation de notre lib (au moins la première fois), car les tests s'assurent que le code fonctionne, mais rien ne vérifie que les points d'entrée renseignés dans le package.json soient corrects, par exemple.
 
 Notre workflow nous permet maintenant de générer des releases automatiquement, vous n'avez plus qu'à vous souciez du code et des tests !
 
