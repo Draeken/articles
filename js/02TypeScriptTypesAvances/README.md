@@ -1,16 +1,17 @@
 ## Plan
 - Pourquoi vouloir typer au mieux son code ?
+- Quand ne pas typer ?
+  - retour de fonction
+  - variable directement initialisé
+  - paramètre d'argument de callback
+  - sauf si le type inféré n'est pas assez spécifique (tableau au lieu de tuple par exemple)
 - Cookbook (cas d'utilisation)
-  - Quand ne pas typer ?
-    - retour de fonction
-    - variable directement initialisé
-    - paramètre d'argument de callback
-    - sauf si le type inféré n'est pas assez spécifique (tableau au lieu de tuple par exemple)
   - Exprimer une différence de type la ou il y en a pas (sur une valeur primitive par exemple)
   - Gérer l'immutabilité:
     - readonly modifier d'interface et de classe
     - const
     - ReadonlyArray
+  - Gérer l'exclusion de propriété grâce à Exclude
 - Take Away
 
 ### À traiter :

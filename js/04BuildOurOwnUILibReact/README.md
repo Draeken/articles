@@ -1,0 +1,13 @@
+# Plan
+- Why developping our own UI library ?
+  - my story
+  - to learn
+  - control technical stack
+  - reduce boilerplate or bundle size
+- Design choice
+  - How to handle feature addition ?
+  - How to handle user customization ?
+- Development with React
+  - Using emotion
+  - Using react-spring
+  - Comparing approach (consequences): React.Component, HoC, render props and props function
