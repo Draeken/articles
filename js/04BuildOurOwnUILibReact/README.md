@@ -1,5 +1,5 @@
 # Plan
-- Why developping our own UI library ?
+- Why developping our own UI ?
   - my story
   - to learn
   - control technical stack
@@ -7,7 +7,14 @@
 - Design choice
   - How to handle feature addition ?
   - How to handle user customization ?
+  - What to support ? device - old browser
 - Development with React
-  - Using emotion
-  - Using react-spring
-  - Comparing approach (consequences): React.Component, HoC, render props and props function
+  - Comparing approach (consequences):
+    - React.Component,
+    - HoC,
+    - render props,
+    - props function
+  - Base class with PureComponent: handling theme and default props with emotion
+  - Make a responsive theme
+  - Handling simple aniamation with react-spring
+  - Handling container morphing

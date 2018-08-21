@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "plugins": [{
+      "name": "typescript-styled-plugin",
+      "tags": [
+        "css",
+        "keyframes"
+      ]
+    }],
+    "types": [],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "declaration": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "outDir": "./build",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "baseUrl": "./"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
