@@ -17,4 +17,4 @@
   - Base class with PureComponent: handling theme and default props with emotion
   - Make a responsive theme
   - Handling simple aniamation with react-spring
-  - Handling container morphing
+  - Handling container morphing -> React-morphing (< 400 sloc)

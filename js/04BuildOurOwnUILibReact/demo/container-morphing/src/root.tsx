@@ -1,5 +1,6 @@
 import { css } from 'emotion';
 import * as React from 'react';
+import { Item } from './item';
 
 const parentStyle = css`
   display: flex;
@@ -14,66 +15,37 @@ const baseStyles = css`
   border: 1px solid #d9d4ff;
 `;
 
-const childStyle = css`
-  ${baseStyles};
-`;
-
-const addStyle = (createNew: boolean) => {
-  if (!createNew) {
-    return css`
-      display: none;
-    `;
-  }
-  return css`
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    border: 1px solid #fafa;
-    padding: 8px;
-  `;
-};
-
 export class Root extends React.PureComponent<{}> {
   state: {
-    createNew: boolean;
     items: Array<{ id: number; content: string }>;
-    content: string;
   };
-
-  private addRef = React.createRef<HTMLDivElement>();
 
   constructor(props) {
     super(props);
-    this.state = { createNew: false, items: [], content: '' };
-    this.addClicked = this.addClicked.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { items: [] };
+    this.addItem = this.addItem.bind(this);
   }
 
-  addClicked() {
-    this.setState({ createNew: true });
-  }
-
-  handleChange(e) {
-    this.setState({ content: e.target.value });
+  addItem(content) {
+    const items = this.state.items;
+    const lastId = items[0] ? items[0].id : 0;
+    this.setState({ items: [{ id: lastId + 1, content }, ...items] });
   }
 
   render() {
-    const { items, createNew } = this.state;
+    const { items } = this.state;
     const itemElms = items.map(item => (
-      <div key={item.id} className={childStyle}>
+      <Item key={item.id} className={baseStyles} addItem={this.addItem}>
         {item.content}
-      </div>
+      </Item>
     ));
     return (
       <React.Fragment>
         <div className={parentStyle}>
-          <div ref={this.addRef} onClick={this.addClicked} className={childStyle}>
+          <Item className={baseStyles} addItem={this.addItem}>
             add
-          </div>
+          </Item>
           {itemElms}
-        </div>
-        <div className={addStyle(createNew)}>
-          item content: <input value={this.state.content} onChange={this.handleChange} />
         </div>
       </React.Fragment>
     );
