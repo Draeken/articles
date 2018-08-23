@@ -102,7 +102,7 @@ export const keyframe = (originalFrames: { [key: number]: (v: number) => void })
     // When 0 is present considered it done like the initial state similar to css keyframes.
     frames[0](1);
 
-    chucks.forEach(chunk => {
+    chucks.forEach((chunk) => {
       // Handle the last chunk [100] without and end;
       if (!chunk[1]) {
         return;
@@ -110,7 +110,6 @@ export const keyframe = (originalFrames: { [key: number]: (v: number) => void })
 
       const func = frames[chunk[1]];
       const interpolatedValue = interpolate([chunk[0], chunk[1]], [0, 1]);
-
       func(interpolatedValue(progress * 100));
     });
 

@@ -39,14 +39,37 @@ export class Item extends React.PureComponent<ItemProps> {
     const { item } = this.props;
     return (
       <div>
-        <div {...data.from('content')} onClick={() => data.go(1)}>
-          {item ? item.content : 'add'}
+        <div {...data.from('card')} onClick={() => data.go(1)}>
+          <div>{item ? item.content : 'add'}</div>
         </div>
-        <div className={editClass} {...data.to('content')}>
-          <span>content: </span>
-          <input type="text" value={this.state.content} onChange={this.handleChange} />
-          <button onClick={() => { this.handleValidate(); this.setState({ content: '' }) }}>VALIDATE</button>
+        <div {...data.from('edit-content')} />
+        <div className={editClass} {...data.to('card')} />
+        <div className={editClass} {...data.to('edit-content')}>
+          <div {...data.fadeIn({ times: [0.4, 1] })}>
+            <span>content: </span>
+            <input type="text" value={this.state.content} onChange={this.handleChange} />
+            <button
+              onClick={() => {
+                this.handleValidate();
+                this.setState({ content: '' });
+              }}
+            >
+              VALIDATE
+            </button>
+          </div>
         </div>
+        <input
+          type="range"
+          defaultValue="100"
+          onChange={({ target: { value } }) => data.go(+value / 100)}
+          step="0.01"
+          style={{
+            position: 'absolute',
+            zIndex: 9999,
+            bottom: 10,
+            width: '90%',
+          }}
+        />
       </div>
     );
   }
