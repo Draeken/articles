@@ -35,16 +35,12 @@ export class Root extends React.PureComponent<{}> {
   render() {
     const { items } = this.state;
     const itemElms = items.map(item => (
-      <Item key={item.id} className={baseStyles} addItem={this.addItem}>
-        {item.content}
-      </Item>
+      <Item key={item.id} className={baseStyles} addItem={this.addItem} item={item} />
     ));
     return (
       <React.Fragment>
         <div className={parentStyle}>
-          <Item className={baseStyles} addItem={this.addItem}>
-            add
-          </Item>
+          <Item className={baseStyles} addItem={this.addItem} />
           {itemElms}
         </div>
       </React.Fragment>

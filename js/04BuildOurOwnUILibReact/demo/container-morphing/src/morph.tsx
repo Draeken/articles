@@ -111,7 +111,7 @@ interface ISpring {
   damping: number;
 }
 
-type keyOptFunc = (key: string, opts: MorphOptions) => { ref: (node: HTMLDivElement) => void };
+type keyOptFunc = (key: string, opts?: MorphOptions) => { ref: (node: HTMLDivElement) => void };
 type optFunc = (opts: MorphOptions) => { ref: (node: HTMLDivElement) => void };
 
 export interface MorphParameters {
@@ -143,7 +143,7 @@ interface MorphOptions {
 
 interface ElemWithOpt {
   element: HTMLDivElement;
-  options: MorphOptions;
+  options?: MorphOptions;
 }
 
 export class Morph extends React.Component<MorphProps> {
@@ -185,7 +185,7 @@ export class Morph extends React.Component<MorphProps> {
   isPlaying = false;
   timeline: ColdSubscription[] = [];
 
-  hide = (options: MorphOptions) => ({
+  hide = (options?: MorphOptions) => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       this.hideElements.push({ element, options });
@@ -202,7 +202,7 @@ export class Morph extends React.Component<MorphProps> {
 
   progress = value(0, this.seek);
 
-  fadeIn = (options: MorphOptions) => ({
+  fadeIn = (options?: MorphOptions) => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       if (!element) return;
@@ -214,7 +214,7 @@ export class Morph extends React.Component<MorphProps> {
     },
   });
 
-  fadeOut = (options: MorphOptions) => ({
+  fadeOut = (options?: MorphOptions) => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       if (!element) return;
@@ -224,7 +224,7 @@ export class Morph extends React.Component<MorphProps> {
     },
   });
 
-  from = (key: string, options: MorphOptions) => ({
+  from = (key: string, options?: MorphOptions) => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       if (!element || this.elementFrom[key]) return;
@@ -234,7 +234,7 @@ export class Morph extends React.Component<MorphProps> {
     },
   });
 
-  to = (key: string, options: MorphOptions) => ({
+  to = (key: string, options?: MorphOptions) => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       if (!element || this.elementTo[key]) return;
