@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import { SpringMorph, SpringMorphParameters } from './morph';
 
 const fromClassname = css`
-
+  width: 100px;
 `;
 
 const toClassname = css`

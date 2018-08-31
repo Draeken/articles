@@ -86,8 +86,9 @@ export class SpringMorph extends React.Component<SpringMorphProps> {
       }
       this.boxTo = getBox(element);
 
-      const leave = diffRect(this.boxFrom, this.boxTo);
-      const from = diffRect(this.boxTo, this.boxFrom);
+      const from = diffRect(this.boxFrom, this.boxTo);
+      const leave = diffRect(this.boxTo, this.boxFrom);
+      console.log('from, leave', from, leave);
       this.setState({
         morph: {
           ...this.state.morph,
@@ -99,10 +100,11 @@ export class SpringMorph extends React.Component<SpringMorphProps> {
   });
 
   toggle = () => {
+    console.log('state', this.state);
     if (this.state.state === 'from') {
-      return this.setState({ state: 'to', morph: { from: this.state.morph.to, to: this.state.morph.from } });
+      return this.setState({ state: 'to' });
     }
-    return this.setState({ state: 'from', morph: { from: this.state.morph.to, to: this.state.morph.from } });
+    return this.setState({ state: 'from' });
   };
 
   render() {
@@ -165,12 +167,15 @@ interface IBox {
   height: number;
 }
 
-const diffRect = (a: IBox, b: IBox) => ({
-  translateY: a.top - b.top,
-  translateX: a.left - b.left,
-  scaleY: a.height / b.height,
-  scaleX: a.width / b.width,
-});
+const diffRect = (a: IBox, b: IBox) => {
+  console.log('diffRect', a, b);
+  return {
+    translateY: a.top - b.top,
+    translateX: a.left - b.left,
+    scaleY: a.height / b.height,
+    scaleX: a.width / b.width,
+  };
+};
 
 const getBox = (elm: HTMLDivElement): IBox => {
   const box = elm.getBoundingClientRect();
