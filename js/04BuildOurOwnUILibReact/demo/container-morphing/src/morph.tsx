@@ -1,11 +1,162 @@
-import { ColdSubscription } from 'popmotion/lib/action/types';
-import keyframes from 'popmotion/lib/animations/keyframes';
-import { KeyframeProps } from 'popmotion/lib/animations/keyframes/types';
-import spring from 'popmotion/lib/animations/spring';
-import value, { ValueReaction } from 'popmotion/lib/reactions/value';
 import * as React from 'react';
-import css from 'stylefire/lib/css';
-import { keyframe } from './keyframe';
+import { animated, Transition, interpolate } from 'react-spring';
+
+interface SpringMorphProps extends React.HTMLAttributes<HTMLDivElement> {
+  fromClass: string;
+  toClass: string;
+  children: (params: SpringMorphParameters) => React.ReactNode;
+}
+
+export interface SpringMorphParameters {
+  from: () => { ref: React.Ref<any> };
+  to: () => { ref: React.Ref<any> };
+  toggle: () => void;
+}
+
+interface SpringMorphState {
+  state: 'from' | 'to';
+  morph: {
+    from: {
+      scaleX: number;
+      scaleY: number;
+      translateX: number;
+      translateY: number;
+    };
+    leave: {
+      scaleX: number;
+      scaleY: number;
+      translateX: number;
+      translateY: number;
+    };
+  };
+}
+
+export class SpringMorph extends React.Component<SpringMorphProps> {
+  state: SpringMorphState = {
+    state: 'from',
+    morph: {
+      from: {
+        scaleX: 1,
+        scaleY: 1,
+        translateX: 0,
+        translateY: 0,
+      },
+      leave: {
+        scaleX: 1,
+        scaleY: 1,
+        translateX: 0,
+        translateY: 0,
+      },
+    },
+  };
+
+  //FROM compute scale/transform for [to] to correspond to [from]
+
+  //ENTER neutral scale/transform
+
+  //LEAVE compute scale/transform for [from] to correspond to [to]
+
+  /**
+   * start: [from]
+   * transition: [from] leave and [to] come
+   * [from] has to go to [to] (to -> leave prop)
+   * [to] has to go from [from] to [to] (from -> from prop) and (to -> enter prop)
+   */
+
+  boxFrom: IBox;
+  boxTo: IBox;
+
+  from = () => ({
+    ref: (node: HTMLDivElement) => {
+      const element = node;
+      console.log('from ref', node);
+      if (!element || this.boxFrom) {
+        return;
+      }
+      this.boxFrom = getBox(element);
+    },
+  });
+
+  to = () => ({
+    ref: (node: HTMLDivElement) => {
+      console.log('to ref', node);
+      const element = node;
+      if (!element || this.boxTo) {
+        return;
+      }
+      this.boxTo = getBox(element);
+
+      const leave = diffRect(this.boxFrom, this.boxTo);
+      const from = diffRect(this.boxTo, this.boxFrom);
+      this.setState({
+        morph: {
+          ...this.state.morph,
+          from,
+          leave,
+        },
+      } as SpringMorphState);
+    },
+  });
+
+  toggle = () => {
+    if (this.state.state === 'from') {
+      return this.setState({ state: 'to', morph: { from: this.state.morph.to, to: this.state.morph.from } });
+    }
+    return this.setState({ state: 'from', morph: { from: this.state.morph.to, to: this.state.morph.from } });
+  };
+
+  render() {
+    const { fromClass, toClass, children, ...defaultProps } = this.props;
+    const toRender: any = children({
+      from: this.from,
+      to: this.to,
+      toggle: this.toggle,
+    });
+    const childrenArr = toRender.props.children;
+    const { from, leave } = this.state.morph;
+    const enter = { opacity: 1, scaleX: 1, scaleY: 1, translateX: 0, translateY: 0 };
+    console.log('enter, from, leave', enter, from, leave);
+    return (
+      <React.Fragment>
+        <Transition
+          native
+          keys={[this.state.state]}
+          from={{ ...from, opacity: 0 }}
+          enter={enter}
+          leave={{ ...leave, opacity: 0 }}
+        >
+          {[
+            ({ opacity, scaleX, scaleY, translateX, translateY }) => {
+              const styles = {
+                opacity,
+                transform: interpolate(
+                  [scaleX, scaleY, translateX, translateY],
+                  (sX, sY, tX, tY) => `scale(${sX}, ${sY}) translate(${tX}px, ${tY}px)`
+                ),
+              };
+              // console.log('Transition function evaluated !');
+              // console.log('state', this.state.state);
+              if (this.state.state === 'from') {
+                // console.log('display 0', childrenArr[0]);
+                return (
+                  <animated.div {...defaultProps} className={fromClass} style={styles}>
+                    {childrenArr[0]}
+                  </animated.div>
+                );
+              }
+              // console.log('display 1', childrenArr[1]);
+              return (
+                <animated.div {...defaultProps} className={toClass} style={styles}>
+                  {childrenArr[1]}
+                </animated.div>
+              );
+            },
+          ]}
+        </Transition>
+      </React.Fragment>
+    );
+  }
+}
 
 interface IBox {
   top: number;
@@ -14,92 +165,6 @@ interface IBox {
   height: number;
 }
 
-const _pipe = (a, b) => (...args) => b(a(...args));
-export const pipe = (...ops) => ops.reduce(_pipe);
-
-const getBox = (elm: HTMLDivElement, { getMargins = false } = {}): IBox => {
-  const box = elm.getBoundingClientRect();
-  const styles = getComputedStyle(elm);
-
-  return {
-    top: box.top + window.scrollY - (getMargins ? parseInt(styles.marginTop || '', 10) : 0),
-    left: box.left + window.scrollX - (getMargins ? parseInt(styles.marginLeft || '', 10) : 0),
-    width:
-      box.width +
-      (getMargins
-        ? parseInt(styles.marginLeft || '', 10) + parseInt(styles.marginRight || '', 10)
-        : 0),
-    height:
-      box.height +
-      (getMargins
-        ? parseInt(styles.marginTop || '', 10) + parseInt(styles.marginBottom || '', 10)
-        : 0),
-  };
-};
-
-const getValueFromProgress = (from, to, progress) => -progress * from + progress * to + from;
-
-const interpolateObject = (from = {}, to = {}) => t => ({
-  ...Object.keys(from).reduce(
-    (acc, key) => ({
-      [key]: getValueFromProgress(from[key], to[key], t),
-      ...acc,
-    }),
-    {}
-  ),
-});
-
-const fadeOutTween = ({ element, options = {} }) => {
-  const styler = css(element);
-  return keyframes({
-    values: [{ opacity: 1 }, { opacity: 0 }],
-    easings: [p => p],
-    times: [0, 1],
-    ...options,
-  }).start(style => {
-    const node = element;
-    styler.set(style);
-    if (style.opacity === 1) {
-      node.style.pointerEvents = 'all';
-    }
-  });
-};
-
-const fadeInTween = ({ element, options = {} }) => {
-  const styler = css(element);
-  return keyframes({
-    values: [{ opacity: 0 }, { opacity: 1 }],
-    easings: [p => p],
-    times: [0.8, 1],
-    ...options,
-  }).start(style => {
-    const node = element;
-
-    styler.set(style);
-
-    if (style.opacity === 1) {
-      node.style.pointerEvents = 'all';
-    }
-  });
-};
-
-const hideTween = ({ element }) => ({
-  seek: pipe(
-    Math.round,
-    t => {
-      const node = element;
-      node.style.visibility = t > 0 ? 'hidden' : 'visible';
-      console.log('node', node, 't', t, 'style', node.style.visibility);
-    }
-  ),
-});
-
-const hide = styler => t =>
-  styler.set({
-    opacity: t,
-    visibility: t > 0 ? 'visible' : 'hidden',
-  });
-
 const diffRect = (a: IBox, b: IBox) => ({
   translateY: a.top - b.top,
   translateX: a.left - b.left,
@@ -107,313 +172,13 @@ const diffRect = (a: IBox, b: IBox) => ({
   scaleX: a.width / b.width,
 });
 
-interface ISpring {
-  restDelta?: number;
-  restSpeed?: number;
-  stiffness: number;
-  mass?: number;
-  damping: number;
-}
+const getBox = (elm: HTMLDivElement): IBox => {
+  const box = elm.getBoundingClientRect();
 
-type keyOptFunc = (key: string, opts?: any) => { ref: (node: HTMLDivElement) => void };
-type optFunc = (opts?: Partial<KeyframeProps>) => { ref: (node: HTMLDivElement) => void };
-type noParamFunc = () => { ref: (node: HTMLDivElement) => void };
-
-export interface MorphParameters {
-  from: keyOptFunc;
-  to: keyOptFunc;
-  fadeIn: optFunc;
-  fadeOut: optFunc;
-  seek: (t: number) => void;
-  go: (t: number, opts?: MorphOptions) => void;
-  progress: ValueReaction;
-  state: 'from' | 'to';
-  hide: noParamFunc;
-  init: (t: number) => void;
-}
-
-type childFunc = (data: MorphParameters) => React.ReactNode;
-
-interface MorphProps {
-  portalElement?: any;
-  children: childFunc;
-  spring?: ISpring;
-}
-
-interface MorphOptions {
-  zIndex?: number;
-  getMargins?: boolean;
-  easing?: (a: any) => any;
-  limit?: number;
-}
-
-interface ElemWithOpt {
-  element: HTMLDivElement;
-  options?: MorphOptions;
-}
-
-interface ElemWithKeyframeOpt {
-  element: HTMLDivElement;
-  options?: Partial<KeyframeProps>;
-}
-
-interface Elem {
-  element: HTMLDivElement;
-}
-
-export class Morph extends React.Component<MorphProps> {
-  static defaultProps = {
-    portalElement: document && document.body,
-    spring: {
-      restDelta: 0.001,
-      restSpeed: 0.001,
-      damping: 26,
-      mass: 1,
-      stiffness: 170,
-    },
+  return {
+    top: box.top + window.scrollY,
+    left: box.left + window.scrollX,
+    width: box.width,
+    height: box.height,
   };
-
-  state: {
-    state: 'from' | 'to';
-  } = {
-    state: 'from',
-  };
-
-  componentWillUnmount() {
-    // Remove clones.
-    this.elementsCloned.forEach(node => this.props.portalElement.removeChild(node));
-  }
-
-  elementFrom: {
-    [key: string]: ElemWithOpt;
-  } = {};
-  elementTo: {
-    [key: string]: ElemWithOpt;
-  } = {};
-
-  elementsCloned: HTMLDivElement[] = [];
-
-  hideElements: Elem[] = [];
-  fadeInElements: ElemWithKeyframeOpt[] = [];
-  fadeOutElements: ElemWithKeyframeOpt[] = [];
-
-  isPlaying = false;
-  timeline: ColdSubscription[] = [];
-
-  hide = () => ({
-    ref: (node: HTMLDivElement) => {
-      const element = node;
-      this.hideElements.push({ element });
-    },
-  });
-
-  seek = (t: number) => {
-    if (t === 1 || t === 0) {
-      this.state = { state: t ? 'to' : 'from' };
-      this.setState({ state: t ? 'to' : 'from' });
-    }
-
-    this.timeline.forEach(x => (x as any).seek(t));
-  };
-
-  progress = value(0, this.seek);
-
-  fadeIn = (options?: Partial<KeyframeProps>) => ({
-    ref: (node: HTMLDivElement) => {
-      const element = node;
-      if (!element) return;
-
-      (element as any).style.willChange = 'opacity';
-      element.style.pointerEvents = 'none';
-      element.style.opacity = '0';
-      this.fadeInElements.push({ element, options });
-    },
-  });
-
-  fadeOut = (options?: Partial<KeyframeProps>) => ({
-    ref: (node: HTMLDivElement) => {
-      const element = node;
-      if (!element) return;
-
-      (element as any).style.willChange = 'opacity';
-      this.fadeOutElements.push({ element, options });
-    },
-  });
-
-  from = (key: string, options?: any) => ({
-    ref: (node: HTMLDivElement) => {
-      const element = node;
-      if (!element || this.elementFrom[key]) return;
-
-      (element as any).style.willChange = 'transform';
-      this.elementFrom[key] = { element, options };
-    },
-  });
-
-  to = (key: string, options?: any) => ({
-    ref: (node: HTMLDivElement) => {
-      const element = node;
-      if (!element || this.elementTo[key]) return;
-      element.style.visibility = 'hidden';
-      element.style.opacity = '0';
-      (element as any).style.willChange = 'transform';
-      this.elementTo[key] = { element, options };
-    },
-  });
-
-  go = (to: number, options: MorphOptions = {}) => {
-    if (!this.timeline.length) {
-      this.init(to);
-      return;
-    }
-
-    spring({
-      from: this.progress.get(),
-      to,
-      ...this.props.spring,
-      ...options,
-    }).start(x => {
-      this.progress.update(x);
-      this.seek(x);
-    });
-  };
-
-  /* eslint-disable max-statements */
-  morph = (key: string) => {
-    const {
-      element: original,
-      options: {
-        zIndex = 1,
-        getMargins = true,
-        easing: optEasing = x => x,
-        limit: startLimit = 0,
-        ...options
-      } = {},
-    } = this.elementFrom[key];
-    const { element: target, options: { limit: endLimit = 100 } = {} } = this.elementTo[key];
-
-    const originalRect = getBox(original, { getMargins });
-    const targetRect = getBox(target, { getMargins });
-    const originalCloneContainer = document.createElement('div');
-    const originalClone = original.cloneNode(true);
-
-    originalCloneContainer.appendChild(originalClone);
-
-    const originalStyler = css(original);
-    const cloneStyler = css(originalCloneContainer);
-    const targetStyler = css(target);
-
-    cloneStyler.set({
-      position: 'absolute',
-      transformOrigin: 'top left',
-      pointerEvents: 'none',
-      ...originalRect,
-      ...options,
-      zIndex,
-    });
-    targetStyler.set({
-      'transform-origin': 'top left',
-      visibility: 'visible',
-    });
-
-    this.props.portalElement.appendChild(originalCloneContainer);
-    this.elementsCloned = [...this.elementsCloned, originalCloneContainer];
-
-    const diffStyle = diffRect(targetRect, originalRect);
-
-    const cloneTranslateIn = interpolateObject(
-      { translateX: 0, translateY: 0, scaleX: 1, scaleY: 1 },
-      diffStyle
-    );
-
-    const diffTargetStyles = diffRect(originalRect, targetRect);
-    const targetTranslateFLIP = interpolateObject(diffTargetStyles, {
-      translateX: 0,
-      translateY: 0,
-      scaleX: 1,
-      scaleY: 1,
-    });
-
-    const keyframeStart = startLimit + 0.02;
-    const keyframeMiddle = Math.ceil((endLimit - startLimit) * 0.3);
-
-    this.timeline.push(
-      // In and out track.
-      {
-        seek: keyframe({
-          0.01: () => {},
-          [keyframeStart]: t => {
-            hide(originalStyler)(1 - t);
-          },
-          [keyframeMiddle]: () => {},
-          [endLimit]: t => {
-            hide(cloneStyler)(1 - t);
-          },
-        }),
-      },
-      // Full track.
-      {
-        seek: keyframe({
-          [keyframeStart]: () => {},
-          [endLimit]: t => {
-            pipe(
-              optEasing,
-              cloneTranslateIn,
-              cloneStyler.set
-            )(t);
-            pipe(
-              optEasing,
-              targetTranslateFLIP,
-              targetStyler.set
-            )(t);
-          },
-        }),
-      },
-      // Half way track.
-      {
-        seek: keyframe({
-          0.01: () => {},
-          [keyframeStart]: t => {
-            hide(cloneStyler)(t);
-          },
-          [keyframeMiddle]: t => hide(targetStyler)(t),
-        }),
-      }
-    );
-
-    this.isPlaying = true;
-  };
-
-  init = (to: number) => {
-    if (this.timeline.length) {
-      return;
-    }
-
-    Object.keys(this.elementFrom).forEach(this.morph);
-
-    const fadeOuts = this.fadeOutElements.map(fadeOutTween);
-    const fadeIns = this.fadeInElements.map(fadeInTween);
-    const hidesIns = this.hideElements.map(hideTween);
-
-    this.timeline = [...fadeOuts, ...fadeIns, ...hidesIns, ...this.timeline];
-
-    requestAnimationFrame(() => this.go(to));
-  };
-
-  render() {
-    const renderedChildren = this.props.children({
-      from: this.from,
-      to: this.to,
-      fadeIn: this.fadeIn,
-      fadeOut: this.fadeOut,
-      seek: this.seek,
-      go: this.go,
-      progress: this.progress,
-      state: this.state.state,
-      hide: this.hide,
-      init: this.init,
-    });
-
-    return renderedChildren && React.Children.only(renderedChildren);
-  }
-}
+};
