@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { animated, Transition, interpolate } from 'react-spring';
+import { animated, AnimatedValue, controller as spring, interpolate } from 'react-spring';
 
 interface SpringMorphProps extends React.HTMLAttributes<HTMLDivElement> {
   fromClass: string;
@@ -15,39 +15,30 @@ export interface SpringMorphParameters {
 
 interface SpringMorphState {
   state: 'from' | 'to';
-  morph: {
-    from: {
-      scaleX: number;
-      scaleY: number;
-      translateX: number;
-      translateY: number;
-    };
-    leave: {
-      scaleX: number;
-      scaleY: number;
-      translateX: number;
-      translateY: number;
-    };
-  };
 }
 
-export class SpringMorph extends React.Component<SpringMorphProps> {
+export class SpringMorph extends React.PureComponent<SpringMorphProps> {
+  // opacity, scaleX, scaleY, translateX, translateY
+  fromAnimations = [
+    new AnimatedValue(1),
+    new AnimatedValue(1),
+    new AnimatedValue(1),
+    new AnimatedValue(0),
+    new AnimatedValue(0),
+  ];
+  toAnimations = [
+    new AnimatedValue(0),
+    new AnimatedValue(1),
+    new AnimatedValue(1),
+    new AnimatedValue(0),
+    new AnimatedValue(0),
+  ];
+  fromMorph: number[];
+  toMorph: number[];
+  neutralMorph = [1, 1, 0, 0];
+
   state: SpringMorphState = {
     state: 'from',
-    morph: {
-      from: {
-        scaleX: 1,
-        scaleY: 1,
-        translateX: 0,
-        translateY: 0,
-      },
-      leave: {
-        scaleX: 1,
-        scaleY: 1,
-        translateX: 0,
-        translateY: 0,
-      },
-    },
   };
 
   //FROM compute scale/transform for [to] to correspond to [from]
@@ -69,7 +60,6 @@ export class SpringMorph extends React.Component<SpringMorphProps> {
   from = () => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
-      console.log('from ref', node);
       if (!element || this.boxFrom) {
         return;
       }
@@ -79,32 +69,50 @@ export class SpringMorph extends React.Component<SpringMorphProps> {
 
   to = () => ({
     ref: (node: HTMLDivElement) => {
-      console.log('to ref', node);
       const element = node;
       if (!element || this.boxTo) {
         return;
       }
       this.boxTo = getBox(element);
 
-      const from = diffRect(this.boxFrom, this.boxTo);
-      const leave = diffRect(this.boxTo, this.boxFrom);
-      console.log('from, leave', from, leave);
-      this.setState({
-        morph: {
-          ...this.state.morph,
-          from,
-          leave,
-        },
-      } as SpringMorphState);
+      this.fromMorph = diffRect(this.boxFrom, this.boxTo);
+      this.toMorph = diffRect(this.boxTo, this.boxFrom);
+      this.fromMorph.forEach((morphVal, i) => this.toAnimations[i + 1].setValue(morphVal));
     },
   });
 
   toggle = () => {
-    console.log('state', this.state);
     if (this.state.state === 'from') {
-      return this.setState({ state: 'to' });
+      return this.setState({ state: 'to' }, this.launchAnimation);
     }
-    return this.setState({ state: 'from' });
+    return this.setState({ state: 'from' }, this.launchAnimation);
+  };
+
+  launchAnimation = () => {
+    if (this.state.state === 'to') {
+      const [fromOpacity, ...fromMorpProps] = this.fromAnimations;
+      const [toOpacity, ...toMorpProps] = this.toAnimations;
+      spring(fromOpacity, { to: 0 }).start();
+      fromMorpProps.forEach((anim, i) => {
+        spring(anim, { to: this.toMorph[i] }).start();
+      });
+      spring(toOpacity, { to: 1 }).start();
+      toMorpProps.forEach((anim, i) => {
+        spring(anim, { to: this.neutralMorph[i] }).start();
+      });
+    }
+  };
+
+  // opacity, scaleX, scaleY, translateX, translateY
+  interpolateSTyles = (animations: any[]) => {
+    const [opacity, scaleX, scaleY, translateX, translateY] = animations;
+    return {
+      opacity,
+      transform: interpolate(
+        [scaleX, scaleY, translateX, translateY],
+        (sX, sY, tX, tY) => `scale(${sX}, ${sY}) translate(${tX}px, ${tY}px)`
+      ),
+    };
   };
 
   render() {
@@ -115,46 +123,24 @@ export class SpringMorph extends React.Component<SpringMorphProps> {
       toggle: this.toggle,
     });
     const childrenArr = toRender.props.children;
-    const { from, leave } = this.state.morph;
-    const enter = { opacity: 1, scaleX: 1, scaleY: 1, translateX: 0, translateY: 0 };
-    console.log('enter, from, leave', enter, from, leave);
     return (
       <React.Fragment>
-        <Transition
-          native
-          keys={[this.state.state]}
-          from={{ ...from, opacity: 0 }}
-          enter={enter}
-          leave={{ ...leave, opacity: 0 }}
+        <animated.div
+          key="from"
+          {...defaultProps}
+          className={fromClass}
+          style={this.interpolateSTyles(this.fromAnimations)}
         >
-          {[
-            ({ opacity, scaleX, scaleY, translateX, translateY }) => {
-              const styles = {
-                opacity,
-                transform: interpolate(
-                  [scaleX, scaleY, translateX, translateY],
-                  (sX, sY, tX, tY) => `scale(${sX}, ${sY}) translate(${tX}px, ${tY}px)`
-                ),
-              };
-              // console.log('Transition function evaluated !');
-              // console.log('state', this.state.state);
-              if (this.state.state === 'from') {
-                // console.log('display 0', childrenArr[0]);
-                return (
-                  <animated.div {...defaultProps} className={fromClass} style={styles}>
-                    {childrenArr[0]}
-                  </animated.div>
-                );
-              }
-              // console.log('display 1', childrenArr[1]);
-              return (
-                <animated.div {...defaultProps} className={toClass} style={styles}>
-                  {childrenArr[1]}
-                </animated.div>
-              );
-            },
-          ]}
-        </Transition>
+          {childrenArr[0]}
+        </animated.div>
+        <animated.div
+          key="to"
+          {...defaultProps}
+          className={toClass}
+          style={this.interpolateSTyles(this.toAnimations)}
+        >
+          {childrenArr[1]}
+        </animated.div>
       </React.Fragment>
     );
   }
@@ -168,13 +154,11 @@ interface IBox {
 }
 
 const diffRect = (a: IBox, b: IBox) => {
-  console.log('diffRect', a, b);
-  return {
-    translateY: a.top - b.top,
-    translateX: a.left - b.left,
-    scaleY: a.height / b.height,
-    scaleX: a.width / b.width,
-  };
+  const scaleY = a.height / b.height;
+  const scaleX = a.width / b.width;
+  const translateY = a.top - b.top;
+  const translateX = a.left - b.left;
+  return [scaleX, scaleY, translateX, translateY];
 };
 
 const getBox = (elm: HTMLDivElement): IBox => {

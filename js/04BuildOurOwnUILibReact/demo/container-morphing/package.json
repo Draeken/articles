@@ -18,7 +18,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-spring": "^5.6.7",
+    "react-spring": "^5.6.12",
     "rxjs": "^6.2.2",
     "typescript": "^3.0.1"
   }
