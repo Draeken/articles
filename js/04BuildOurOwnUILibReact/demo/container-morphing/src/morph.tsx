@@ -100,6 +100,17 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
       toMorpProps.forEach((anim, i) => {
         spring(anim, { to: this.neutralMorph[i] }).start();
       });
+    } else {
+      const [fromOpacity, ...fromMorpProps] = this.fromAnimations;
+      const [toOpacity, ...toMorpProps] = this.toAnimations;
+      spring(fromOpacity, { to: 1 }).start();
+      fromMorpProps.forEach((anim, i) => {
+        spring(anim, { to: this.neutralMorph[i] }).start();
+      });
+      spring(toOpacity, { to: 0 }).start();
+      toMorpProps.forEach((anim, i) => {
+        spring(anim, { to: this.fromMorph[i] }).start();
+      });
     }
   };
 
