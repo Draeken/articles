@@ -15,6 +15,7 @@ export interface SpringMorphParameters {
 
 interface SpringMorphState {
   state: 'from' | 'to';
+  displayTo: boolean;
 }
 
 export class SpringMorph extends React.PureComponent<SpringMorphProps> {
@@ -39,6 +40,7 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
 
   state: SpringMorphState = {
     state: 'from',
+    displayTo: false,
   };
 
   //FROM compute scale/transform for [to] to correspond to [from]
@@ -83,7 +85,7 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
 
   toggle = () => {
     if (this.state.state === 'from') {
-      return this.setState({ state: 'to' }, this.launchAnimation);
+      return this.setState({ state: 'to', displayTo: true }, this.launchAnimation);
     }
     return this.setState({ state: 'from' }, this.launchAnimation);
   };
@@ -107,7 +109,7 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
       fromMorpProps.forEach((anim, i) => {
         spring(anim, { to: this.neutralMorph[i] }).start();
       });
-      spring(toOpacity, { to: 0 }).start();
+      spring(toOpacity, { to: 0 }).start(() => this.setState({ displayTo: false }));
       toMorpProps.forEach((anim, i) => {
         spring(anim, { to: this.fromMorph[i] }).start();
       });
@@ -144,14 +146,16 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
         >
           {childrenArr[0]}
         </animated.div>
-        <animated.div
-          key="to"
-          {...defaultProps}
-          className={toClass}
-          style={this.interpolateSTyles(this.toAnimations)}
-        >
-          {childrenArr[1]}
-        </animated.div>
+        {this.state.displayTo && (
+          <animated.div
+            key="to"
+            {...defaultProps}
+            className={toClass}
+            style={this.interpolateSTyles(this.toAnimations)}
+          >
+            {childrenArr[1]}
+          </animated.div>
+        )}
       </React.Fragment>
     );
   }
