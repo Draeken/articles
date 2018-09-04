@@ -1,17 +1,24 @@
+import { css } from 'emotion';
 import * as React from 'react';
-import { css } from 'emotion';
 import { SpringMorph, SpringMorphParameters } from './morph';
 
 const fromClassname = css`
+  display: inline-block;
   width: 100px;
+  border: 2px solid black;
+  transform-origin: top left;
 `;
 
 const toClassname = css`
+  display: inline-block;
   position: absolute;
   top: 120px;
   left: 70px;
   width: 150px;
   border: 2px solid black;
+  border-radius: 15px;
+  padding: 15px;
+  transform-origin: top left;
 `;
 
 export class Root extends React.PureComponent<{}> {
@@ -28,15 +35,22 @@ export class Root extends React.PureComponent<{}> {
     return (
       <React.Fragment>
         <span>test1</span>
-      <SpringMorph fromClass={fromClassname} toClass={toClassname}>
-        {(params: SpringMorphParameters) => {
-          return <React.Fragment>
-            <div {...params.from()} onClick={() => params.toggle()}>TEST FROM</div>
-            <div {...params.to()} onClick={() => params.toggle()}>TEST TO</div>
-          </React.Fragment>;
-        }}
-      </SpringMorph>
-      <span>test2</span>
+        <SpringMorph>
+          {(params: SpringMorphParameters) => {
+            return (
+              <React.Fragment>
+                <div {...params.from()} className={fromClassname} onClick={() => params.toggle()}>
+                  TEST FROM
+                </div>
+                <div {...params.to()} className={toClassname} onClick={() => params.toggle()}>
+                  <div>TEST TO</div>
+                  <div>HERE</div>
+                </div>
+              </React.Fragment>
+            );
+          }}
+        </SpringMorph>
+        <span>test2</span>
       </React.Fragment>
     );
   }

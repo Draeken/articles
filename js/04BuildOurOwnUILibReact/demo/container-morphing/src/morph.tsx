@@ -1,9 +1,8 @@
+import { css } from 'emotion';
 import * as React from 'react';
 import { animated, AnimatedValue, controller as spring, interpolate } from 'react-spring';
 
 interface SpringMorphProps extends React.HTMLAttributes<HTMLDivElement> {
-  fromClass: string;
-  toClass: string;
   children: (params: SpringMorphParameters) => React.ReactNode;
 }
 
@@ -11,12 +10,17 @@ export interface SpringMorphParameters {
   from: () => { ref: React.Ref<any> };
   to: () => { ref: React.Ref<any> };
   toggle: () => void;
+  state: 'from' | 'to';
 }
 
 interface SpringMorphState {
   state: 'from' | 'to';
   displayTo: boolean;
 }
+
+const defaultClass = css`
+  display: inline-block;
+`;
 
 export class SpringMorph extends React.PureComponent<SpringMorphProps> {
   // opacity, scaleX, scaleY, translateX, translateY
@@ -43,23 +47,9 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
     displayTo: false,
   };
 
-  //FROM compute scale/transform for [to] to correspond to [from]
-
-  //ENTER neutral scale/transform
-
-  //LEAVE compute scale/transform for [from] to correspond to [to]
-
-  /**
-   * start: [from]
-   * transition: [from] leave and [to] come
-   * [from] has to go to [to] (to -> leave prop)
-   * [to] has to go from [from] to [to] (from -> from prop) and (to -> enter prop)
-   */
-
   boxFrom: IBox;
-  boxTo: IBox;
 
-  from = () => ({
+  from = (): any => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
       if (!element || this.boxFrom) {
@@ -69,16 +59,16 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
     },
   });
 
-  to = () => ({
+  to = (): any => ({
     ref: (node: HTMLDivElement) => {
       const element = node;
-      if (!element || this.boxTo) {
+      if (!element || this.fromMorph) {
         return;
       }
-      this.boxTo = getBox(element);
 
-      this.fromMorph = diffRect(this.boxFrom, this.boxTo);
-      this.toMorph = diffRect(this.boxTo, this.boxFrom);
+      const boxTo = getBox(element);
+      this.fromMorph = diffRect(this.boxFrom, boxTo);
+      this.toMorph = diffRect(boxTo, this.boxFrom, true);
       this.fromMorph.forEach((morphVal, i) => this.toAnimations[i + 1].setValue(morphVal));
     },
   });
@@ -90,29 +80,32 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
     return this.setState({ state: 'from' }, this.launchAnimation);
   };
 
+  executeAnimation = (
+    fromOpaTo: number,
+    toOpacTo: number,
+    fromRef: number[],
+    toRef: number[],
+    endAnimCallBack?: () => void
+  ) => {
+    const [fromOpacity, ...fromMorpProps] = this.fromAnimations;
+    const [toOpacity, ...toMorpProps] = this.toAnimations;
+    spring(fromOpacity, { to: fromOpaTo }).start();
+    fromMorpProps.forEach((anim, i) => {
+      spring(anim, { to: fromRef[i] }).start();
+    });
+    spring(toOpacity, { to: toOpacTo }).start(endAnimCallBack);
+    toMorpProps.forEach((anim, i) => {
+      spring(anim, { to: toRef[i] }).start();
+    });
+  };
+
   launchAnimation = () => {
     if (this.state.state === 'to') {
-      const [fromOpacity, ...fromMorpProps] = this.fromAnimations;
-      const [toOpacity, ...toMorpProps] = this.toAnimations;
-      spring(fromOpacity, { to: 0 }).start();
-      fromMorpProps.forEach((anim, i) => {
-        spring(anim, { to: this.toMorph[i] }).start();
-      });
-      spring(toOpacity, { to: 1 }).start();
-      toMorpProps.forEach((anim, i) => {
-        spring(anim, { to: this.neutralMorph[i] }).start();
-      });
+      this.executeAnimation(0, 1, this.toMorph, this.neutralMorph);
     } else {
-      const [fromOpacity, ...fromMorpProps] = this.fromAnimations;
-      const [toOpacity, ...toMorpProps] = this.toAnimations;
-      spring(fromOpacity, { to: 1 }).start();
-      fromMorpProps.forEach((anim, i) => {
-        spring(anim, { to: this.neutralMorph[i] }).start();
-      });
-      spring(toOpacity, { to: 0 }).start(() => this.setState({ displayTo: false }));
-      toMorpProps.forEach((anim, i) => {
-        spring(anim, { to: this.fromMorph[i] }).start();
-      });
+      this.executeAnimation(1, 0, this.neutralMorph, this.fromMorph, () =>
+        this.setState({ displayTo: false })
+      );
     }
   };
 
@@ -129,28 +122,27 @@ export class SpringMorph extends React.PureComponent<SpringMorphProps> {
   };
 
   render() {
-    const { fromClass, toClass, children, ...defaultProps } = this.props;
+    const { children, ...defaultProps } = this.props;
     const toRender: any = children({
       from: this.from,
       to: this.to,
       toggle: this.toggle,
+      state: this.state.state,
     });
     const childrenArr = toRender.props.children;
     return (
       <React.Fragment>
         <animated.div
-          key="from"
           {...defaultProps}
-          className={fromClass}
+          className={defaultClass}
           style={this.interpolateSTyles(this.fromAnimations)}
         >
           {childrenArr[0]}
         </animated.div>
         {this.state.displayTo && (
           <animated.div
-            key="to"
             {...defaultProps}
-            className={toClass}
+            className={defaultClass}
             style={this.interpolateSTyles(this.toAnimations)}
           >
             {childrenArr[1]}
@@ -168,21 +160,23 @@ interface IBox {
   height: number;
 }
 
-const diffRect = (a: IBox, b: IBox) => {
+const diffRect = (a: IBox, b: IBox, scale?: boolean) => {
   const scaleY = a.height / b.height;
   const scaleX = a.width / b.width;
   const translateY = a.top - b.top;
   const translateX = a.left - b.left;
-  return [scaleX, scaleY, translateX, translateY];
+  return scale
+    ? [scaleX, scaleY, translateX / scaleX, translateY / scaleY]
+    : [scaleX, scaleY, translateX, translateY];
 };
 
 const getBox = (elm: HTMLDivElement): IBox => {
   const box = elm.getBoundingClientRect();
-
-  return {
+  const iBox = {
     top: box.top + window.scrollY,
     left: box.left + window.scrollX,
     width: box.width,
     height: box.height,
   };
+  return iBox;
 };
