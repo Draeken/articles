@@ -17,10 +17,14 @@
   - Base class with PureComponent: handling theme and default props with emotion
   - Make a responsive theme
   - explain technical choice
-  - Handling simple aniamation with react-spring
+  - Handling simple animation with react-spring
   - Handling container morphing -> React-morphing (< 400 sloc)
     - issues with it
     - The Morph Issue when animating scale and translate in the same time (solution - matrix!)
   - Is it worth it to depend on D3 when the chart need comes ?
     - Different libs
     - The cheap choice: depend on SVG only
+- Distribution of the lib
+  - How to make it available on other projects
+  - How can other test it easily
+  - Handle component documentation
