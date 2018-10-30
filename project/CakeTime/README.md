@@ -10,10 +10,17 @@ We want the pastry to be accessible, fun to cook with your friends and without h
 
 # How to do that ?
 
+- Onboarding
+  - present how the app work
+    - Pick the date and vote the cake with your friends
+    - Find the best products
+    - When it's time, cook the cake
+  - sign in with Google/FB/Twitter or email (optional)
+  - creation of the first filter - The cakes I like
 - Suggest user 3 differents cake to be cooked for the next week-end
-  - Confirm the date: date should have an slight influance on suggestion (confectiontime)
+  - Confirm the date: date should have a slight influance on suggestion (confection time)
   - How to make relevant suggestion ?
-    - Two discovery, one already ate (could be parameterized)
+    - Two discovery, one already ate (could be configured)
     - Ensure that a certain distance between suggestions is respected
   - One image per cake with a short description, naming the main ingredients
     - description could be generated from ingredient list and a list of random adjectives
@@ -51,5 +58,21 @@ We want the pastry to be accessible, fun to cook with your friends and without h
   - when user lack a little of one ingredient that need to be proportional to other, it can suggest the user to optimize the slice size to match user's ingredient quantities
   - user can touch an item to get more information or request one (maker name, retailer)
     - when user request information, it notify users who made this cake to ask where they bought it, or the name of the branded product
+    - notion of quality ? discount (red) - basic (white) - premium (blue) - premium+ (violet): too excentric
   - user can export / share the list in other product - Google Keep ; email ; sms ; clipboard
   - the export feature should be configured in another screen - to automatically export in other app.
+- In the same hierarchy of Shopping List: Instructions
+  - all instructions visible, bundled by cooker box (cooker A: 1. 2. 3. ; cooker B: 1. 2. 3.)
+  - start button: when multiple cooker: popup to explain that each cooker can be on his device
+    - start button launch the timer, cooker instructions are kept in sync
+    - a quit button is displayed (with confirmation popup), reseting the progress
+    - only one instruction is displayed, with possibility to go for the next or previous
+    - a 'roadmap' is displayed to indicate the progress.
+    - integrate a timer for baking (not mandatory ; suggest it with a button 'start timer')
+    - when finished: congrats ! display cooking time - suggest share with appropriate #tag
+      - if cooking time is less than the average, show it
+- After completing the cake, display the cutting map of the cake
+
+# Design
+
+Imagery of Alice in the wonderland
