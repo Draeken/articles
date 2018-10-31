@@ -58,6 +58,7 @@ We want the pastry to be accessible, fun to cook with your friends and without h
   - user can ask additional "slice" to the cake (default match eaters)
   - when it makes sense, user can choose the size of one slice
   - user can cross items already owned (=> user has at least the quantity required. If slice are added the item is uncrossed ; displaying only the difference could be confusing).
+  - allow user to indicate that he already own a product of one sub-recipe (eg: the dough. Could be done elsewhere): this will remove from the shopping list items from this sub-recipe + remove the instructions of this sub-recipe.
   - user can long press to set the quantity owned (slider from 0 to +20% required)
   - when user lack a little of one ingredient that need to be proportional to other, it can suggest the user to optimize the slice size to match user's ingredient quantities
   - user can touch an item to get more information or request one (maker name, retailer)
