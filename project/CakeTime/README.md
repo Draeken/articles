@@ -36,6 +36,10 @@ We want the pastry to be accessible, fun to cook with your friends and without h
     - by confidence of enjoyement
     - by texture (crunchy, soft, creamy, frothy)
     - by utensil / equipement (oven, cooler, siphon)
+  - choose button (ignore the suggestions)
+    - grid of cakes
+    - accessible filters
+    - button to create your own cake -> recipe editor
   - have a list of participant: cooker and eater
     - participant doesn't need the app to vote. Only a valid email or name (if no email, participant will vote on the owner device).
     - option to allow them to vote (display percentage of confidence)
@@ -72,6 +76,23 @@ We want the pastry to be accessible, fun to cook with your friends and without h
     - when finished: congrats ! display cooking time - suggest share with appropriate #tag
       - if cooking time is less than the average, show it
 - After completing the cake, display the cutting map of the cake
+- Recipe editor
+  - can use base recipe to customize them
+  - could be shared & approved by other users
+
+# Recipe System
+
+Try to create generic recipes. But suggest specific cake.
+
+Why ?
+- Easy to customize cake, or to create a new cake using base recipe
+- Easier to manage when recipes use base recipe (factorisation)
+- Easier to filter
+
+How ?
+- fractale organisation ? With a graph of dependency for tasks, it could detect a new sub-recipe at each merging point
+- sub-recipe are saved once, with variables over actual quantities
+- quantities that must remain proportional have to be bound. Other could vary (eg: till 20%)
 
 # Design
 
