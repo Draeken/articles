@@ -69,7 +69,9 @@ We want the pastry to be accessible, fun to cook with your friends and without h
 - In the same hierarchy of Shopping List: Instructions
   - all instructions visible, bundled by cooker box (cooker A: 1. 2. 3. ; cooker B: 1. 2. 3.)
   - start button: when multiple cooker: popup to explain that each cooker can be on his device
+    - multiple way to control instructions : by touch, by voice or automatically with a timer
     - start button launch the timer, cooker instructions are kept in sync
+    - could display comments on current instruction?
     - a quit button is displayed (with confirmation popup), reseting the progress
     - only one instruction is displayed, with possibility to go for the next or previous
     - a 'roadmap' is displayed to indicate the progress.
