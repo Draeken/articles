@@ -10,6 +10,7 @@
   - [Data Modeling Introduction](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
   - [When to use GridFS](https://docs.mongodb.com/manual/core/gridfs/#faq-developers-when-to-use-gridfs)
   - [Use Cases: Logs](https://docs.mongodb.com/ecosystem/use-cases/storing-log-data/)
+  - [Intro Data Modeling](https://docs.mongodb.com/guides/server/introduction/)
 - Articles
   - [6 Rules of Thumb for MongoDB Schema Design - 2014](https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1)
   - [Thinking in documents - 2015](https://www.mongodb.com/blog/post/thinking-documents-part-1?jmp=docs)
