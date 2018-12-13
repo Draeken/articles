@@ -2,6 +2,7 @@
 - Petite présentation holistique de MongoDB
 - Le contexte du processus décisionnel du design de donnée
   - Son expressivité schématique
+    - CappedCollection & TTL
   - Ses capacités de recherche
 - Modélisation de la donnée
   - Considération
@@ -26,7 +27,7 @@ Lorsque l'on chercher à modéliser ses données, la difficulté est de trouver 
 
 Les documents de mongoDB respectent le format BSON, pour Binary JSON. C'est un format qui binairifie le JSON. La version binaire reste légère et rapide a encoder/décoder, mais n'est pas forcément plus légère que sa version JSON. En fait la version binaire rajoute des informations comme la taille des chaine de caractères ou des sous-objets, pour permettre de traverser le JSON plus efficacement. Le BSON permet également d'avoir d'autres types de valeur, comme Date ou BinaryData. MongoDB apporte lui aussi une surcouche avec ses propres types, comme le GeoJSON pour gérer les requêtes géospatiales.
 Et comme avec le JSON, on peut retrouver dans nos documents des sous documents, et des tableaux de sous documents. Il y a une limite de profondeur à 100 niveaux de sous documents.
-Et chaque document est limité a 16 Mo.
+Et chaque document est limité a 16 Mo. Il est possible de passer cette limite en utilisant GridFS, qui va diviser les documents en plusieurs parties mais rendre ça transparent pour nous.
 
 ## Les capacités de recherche
 
