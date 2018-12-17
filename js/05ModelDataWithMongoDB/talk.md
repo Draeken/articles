@@ -14,6 +14,8 @@
 
 _Schema montrant Mongo au milieu des autres SGBD_
 En 2007, trois anciens de la Silicon Valley fonde une entreprise de plateforme as a service, mais ne trouvant aucun sgbd respectant leurs principes pour une architecture dans le Cloud, décident de créer le leur. À cette époque, il y a très peu de NoSQL (CouchDB et BigTable sorti en 2005). Ils sortent MongoDB en 2009, sous license OpenSource, écrit en C, C++ & JS. Il est de type NoSQL. C'est à dire qu'il va s'astreindre des contraintes trop rigides des SGBD classiques pour pouvoir garder de bonne performances en montant en volume. De plus il est orienté document, cela signifie qu'il stocke la donnée sous forme d'objet, qui a la même forme qu'un objet JSON, dans des collections. La forme de l'objet n'est pas stricte et on peut avoir des objets de forme différentes dans la même collection.
+MongoDB a tenu a respecter la conformité ACID au niveau du document, et même multi-document depuis la version 4.
+Lors du design, l'objectif était d'optimiser l'accessibilié des donnéees, et non l'espace disque utilisé comme à l'origine avec les SGBD.
 On a la hierarchie suivante:
 _Schema sur la hierarchie des artéfacts de MongoDB : DB, Collection, Document [, EmbededDocument, EmbededDocument bis (etc...x100)]_
 Les EmbededDocuments sont parti intégrante du document et...Peut on vraiment les considérer comme un sous niveau de la hiérarchie ? La liaison est plus forte qu'entre DB & Collection & Document
@@ -62,6 +64,8 @@ Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nou
 
 ## Example de modélisation One-to-Many
 --> montrer des examples visuels + requete pour accéder aux données d'un côté et de l'autre + indice de performance.
+
+Si on accède fréquemment qu'à une partie du document, on peut envisager de mettre l'autre partie dans un autre document, surtout si celle ci est volumineuse. Cela évitera d'occuper plus de mémoire vive que nécessaire lors de la récupération de ce document.
 
 On ne modélisera pas de la même manière si c'est du one-to-[pas beaucoup] que si c'est du one-to-zillion
 Par exemple pour modéliser un produit et ses composants, on pourrait avoir un tableau de référence. Cela a l'avantage de chercher et manipuler les composants plus simplement car découplé du parent. Et cela permet d'avoir d'autres produits référencer les mêmes composants.

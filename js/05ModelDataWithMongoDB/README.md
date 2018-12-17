@@ -13,7 +13,7 @@
   - [x] [Intro Data Modeling](https://docs.mongodb.com/guides/server/introduction/)
 - Articles
   - [x] [6 Rules of Thumb for MongoDB Schema Design - 2014](https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1)
-  - [Thinking in documents - 2015](https://www.mongodb.com/blog/post/thinking-documents-part-1?jmp=docs)
+  - [x] [Thinking in documents - 2015](https://www.mongodb.com/blog/post/thinking-documents-part-1?jmp=docs)
   - [Rules of Thumb for MongoDB Schema Design - Jan 2017](https://keon.io/mongodb-schema-design/)
   - [Design Decisions: The Data Model  - Dec 2017](https://medium.com/bigpanda-engineering/design-decisions-the-data-model-e429bb66715e)
   - [Schema Design Considerations - Aug 2017](https://www.kenwalger.com/blog/nosql/mongodb/schema-design-considerations-mongodb/)
