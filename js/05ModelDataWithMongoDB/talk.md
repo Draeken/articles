@@ -76,6 +76,8 @@ Il est également possible de combiner les deux technique, en gardant une réfé
 
 Si on connait à l'avance les requêtes qui seront frequement faites, on peut aussi dénormaliser en incluant des informations de l'un des documents dans l'autre. Ça à l'avantage d'avoir accès à l'information en une seule requête. Mais la encore, ça complique les mise à jour d'information.
 
+MongoDB a mis à disposition un nouveau moteur de stockage, en passant de MMAPv1 à WiredTiger. Et avec ce nouveau moteur, il n'y a plus de mise à jour sur place de document. C'est à dire qu'avant, il fallait faire attention lors de notre modélisation à ce qu'un document ne grossisent pas trop souvent en taille, pour éviter des réallocation. Maintenant, à chaque mise à jour, il y a toujours une nouvelle réécriture. Au moins c'est plus simple.
+
 ## Quelles sont les limites vis-à-vis des collections ?
 
 Il peut être intéressant de stocker des documents à première vu similaire dans des collections séparés, pour avoir de meilleures performances.
