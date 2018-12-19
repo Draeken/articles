@@ -12,3 +12,7 @@ Concernant AutoSchedule :
 - ne pas s'arrêter de faire des meetups / apprendre sur les startups & business & UX/UI
 - réserver un week-end entier sur deux aux objectifs (sans oublier de faire des pauses à l'extérieur)
 - manger dans la cuisine
+
+Il est plus facile de concevoir les choses lorsque le périmètre est bien découpé.
+Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable.
+C'est pour ça que réfléchir en amont à comment son code sera découpé en plusieurs projets aillant chacun leur indépendance est important.
