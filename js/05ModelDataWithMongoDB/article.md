@@ -16,7 +16,8 @@ Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nou
 Le cas le plus simple : on embarque les sous documents. C'est le choix par défaut.
 Par exemple, si l'on veut enregistrer les différentes addresses d'un utilisateur, on aura aucune raison de ne pas les embarqués avec l'utilisateur.
 En revanche, si pour chaque utilisateur on a des rapports générés sur son activité, il faut faire attention :
-en embarquant tous ces rapports directement avec l'utilisateur, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite des 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance.
+en embarquant tous ces rapports directement avec l'utilisateur, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite des 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation.
+Pour ce cas la, il serait possible de le gérer en simulant une capped collection - MongoDB propose des Capped Collection ayant une taille maximale, en supprimant les anciens documents pour faire place aux nouveaux. Avec l'opérateur $slice, utilisé lors d'un $push, vous pouvez demander à ne garder que les N derniers sous documents.
 
 -- Comment savoir la taille d'un fichier embarqué estimer le nombre max de ce type de fichier embarcable ?
 
@@ -31,4 +32,5 @@ Il est également possible de combiner les deux technique, en gardant une réfé
 
 Si on connait à l'avance les requêtes qui seront frequement faites, on peut aussi dénormaliser en incluant des informations de l'un des documents dans l'autre. Ça à l'avantage d'avoir accès à l'information en une seule requête. Mais la encore, ça complique les mise à jour d'information.
 
+NB:
 MongoDB a mis à disposition un nouveau moteur de stockage, en passant de MMAPv1 à WiredTiger. Et avec ce nouveau moteur, il n'y a plus de mise à jour sur place de document. C'est à dire qu'avant, il fallait faire attention lors de notre modélisation à ce qu'un document ne grossisent pas trop souvent en taille, pour éviter des réallocation. Maintenant, à chaque mise à jour, il y a toujours une nouvelle réécriture. Au moins c'est plus simple.
