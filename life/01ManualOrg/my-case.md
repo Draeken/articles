@@ -9,6 +9,15 @@ Accepter la personne que l'on est, accepter notre attrait pour certaines activit
 J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party. Quelles seraient les autres activités possibles et facile d'accès ?
 - Sport: ultimate, marathon, basket, tennis, natation ?
 - Faire tourner son business
+- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux).
+
+Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
+Manger la même chose à chaque repas (Feed ?); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
+Socialiser uniquement pendant les pauses au boulot. Pas de social en semaine, à la maison.
+Voir combien de temps je peux tenir ou mettre une deadline ? _Don't break the chain_ -> À la manière de GitHub, avoir une frise pour chaque conditions à respecter. Mettre un objectif à 21 jours.
+Comment gérer les week-ends ? 1 week-end sur 2 avec une party 16h->soirée => plannifier ça sur G.Agenda pour être préparé à refuser des invitations. Samedi: resté concentré sur le projet jusqu'au départ. Dimanche: tâche ménagères, TODO, préparer la semaine.
+Préparer la veille faite dans les transports pendant les pauses du boulot.
+Comment gérer la nécessité de décompresser ? -> chaque vendredi soir: CheatTime jusqu'à minuit. A préparer en amont vendredi en journée.
 
 Imaginons une société où pour profiter des équipements de loisir, de tourisme, etc, il soit nécessaire d'avoir contribuer à un certain niveau. Plus on contribue, plus on peut profiter. Il vaut mieux éviter de motiver les gens à contribuer que pour pouvoir profiter, mais plutôt leur montrer la où ils pourraient être utile (à leur niveau actuelle ou après s'être formé).
 J'aimerai profiter de ce que propose notre société, mais pour être sur de vraiment profiter, il faut rendre disponible certains outils ou environement qui n'existe pas. Je dois donc commencer par la.
