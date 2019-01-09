@@ -44,8 +44,33 @@ _Un document utilisateur_
 
 Ici, les adresses sont des documents spécifiques à l'utilisateur. Ça ne ferait pas sens d'y accéder sans passer en premier lieu par lui. Elles sont également peu nombreuses, donc les embarquer est le choix idéal.
 
-Pour afficher les adresses d'un utilisateur donné:
-
+Pour afficher les adresses d'un utilisateur donné : soit on les récupères en même temps que l'utilisateur, soit, à partir de l'id :
+````shell
+db.users.findOne({ _id: ObjectId("5c35c49e80951734b243ab3c")}, { address: 1 })
+````
+````json
+{
+  "_id": ObjectId("5c35c49e80951734b243ab3c"),
+  "address": [
+    {
+      "name": "mclaughlin.info",
+      "country": "Trinidad and Tobago",
+      "city": "Morarside"
+    },
+    {
+      "name": "ledner.net",
+      "country": "British Virgin Islands",
+      "city": "Monteburgh"
+    },
+    {
+      "name": "emmerich.name",
+      "country": "Brunei Darussalam",
+      "city": "Kaylinhaven"
+    }
+  ]
+}
+````
+db.users.aggregate([{ $project: { address: { country: 1 } } }, { $unwind: "$address" }])
 
 En revanche, si pour chaque utilisateur on a des rapports générés sur son activité, il faut faire attention :
 en embarquant tous ces rapports directement avec l'utilisateur, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite des 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation.
