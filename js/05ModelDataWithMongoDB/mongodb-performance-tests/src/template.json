@@ -1,0 +1,27 @@
+[
+  {
+    "database": "perftests",
+    "collection": "users",
+    "count": 1000,
+    "content": {
+      "name": { "type": "faker", "method": "Name" },
+      "birthDate": {
+        "type": "date",
+        "startDate": "1949-12-30T23:00:00.000Z",
+        "endDate": "2000-12-30T23:01:00.000Z"
+      },
+      "address": {
+        "type": "array",
+        "size": 3,
+        "arrayContent": {
+          "type": "object",
+          "objectContent": {
+            "name": { "type": "faker", "method": "DomainName" },
+            "country": { "type": "faker", "method": "Country" },
+            "city": { "type": "faker", "method": "City" }
+          }
+        }
+      }
+    }
+  }
+]
