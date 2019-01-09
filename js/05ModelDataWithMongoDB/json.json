@@ -1,0 +1,22 @@
+{
+  "_id": ObjectId("5c35c49e80951734b243ab3c"),
+  "name": "Zola Torp",
+  "birthDate": ISODate("1997-04-02T22:41:50Z"),
+  "address": [
+    {
+      "name": "mclaughlin.info",
+      "country": "Trinidad and Tobago",
+      "city": "Morarside"
+    },
+    {
+      "name": "ledner.net",
+      "country": "British Virgin Islands",
+      "city": "Monteburgh"
+    },
+    {
+      "name": "emmerich.name",
+      "country": "Brunei Darussalam",
+      "city": "Kaylinhaven"
+    }
+  ]
+}

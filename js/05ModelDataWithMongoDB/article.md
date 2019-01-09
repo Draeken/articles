@@ -15,20 +15,37 @@ Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nou
 ## Modélisation du One-to-Many
 
 Le cas le plus simple : on embarque les sous documents. C'est le choix par défaut.
-Par exemple, si l'on veut enregistrer les différentes addresses d'un utilisateur, on aura à priori aucune raison de ne pas les embarqués avec l'utilisateur.
+Par exemple, si l'on veut enregistrer les différentes adresses d'un utilisateur, pour lui proposer ensuite une adresse de livraison, on aura à priori aucune raison de ne pas les embarquer avec l'utilisateur.
 ````json
 {
-  "name": "Arnold",
-  "birthDate": 655486962000,
+  "_id": ObjectId("5c35c49e80951734b243ab3c"),
+  "name": "Zola Torp",
+  "birthDate": ISODate("1997-04-02T22:41:50Z"),
   "address": [
-    { "name": "Main", "country": "Italia", "city": "Napoli" },
-    { "name": "Work", "country": "Luxembourg", "city": "Clervaux" },
+    {
+      "name": "mclaughlin.info",
+      "country": "Trinidad and Tobago",
+      "city": "Morarside"
+    },
+    {
+      "name": "ledner.net",
+      "country": "British Virgin Islands",
+      "city": "Monteburgh"
+    },
+    {
+      "name": "emmerich.name",
+      "country": "Brunei Darussalam",
+      "city": "Kaylinhaven"
+    }
   ]
 }
 ````
 _Un document utilisateur_
 
 Ici, les adresses sont des documents spécifiques à l'utilisateur. Ça ne ferait pas sens d'y accéder sans passer en premier lieu par lui. Elles sont également peu nombreuses, donc les embarquer est le choix idéal.
+
+Pour afficher les adresses d'un utilisateur donné:
+
 
 En revanche, si pour chaque utilisateur on a des rapports générés sur son activité, il faut faire attention :
 en embarquant tous ces rapports directement avec l'utilisateur, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite des 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation.
@@ -38,7 +55,7 @@ Ainsi, nous rassemblons tous les rapports d'activités de chaque utilisateur dan
 Si toute fois ce n'est toujours pas suffisant, il reste un dernier recours avant de passer à GridFS : garder la référence côté rapport et non côté utilisateur. Et pour ne pas faire une collection scan (analyser l'ensemble de la collection pour répondre à une requête) lorsqu'on veut récupérer tous les rapports d'un utilisateur, on peut simplement construire un index sur le champ du rapport référençant l'utilisateur.
 Dans le cas où les documents ne sont pas embarqués, on peut dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des rapports d'activités, prenons le cas où notre application doit afficher en diagramme la répartition des types de rapport pour un utilisateur donné et où l'utilsateur a un tableau de référence de rapports. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un $lookup), puis agréger les types en quantité.
 
--- Comment savoir la taille d'un fichier embarqué estimer le nombre max de ce type de fichier embarcable ?
+-- Comment savoir la taille d'un fichier embarqué estimer le nombre max de ce type de fichier embarquable ?
 
 NB:
 MongoDB a mis à disposition un nouveau moteur de stockage, en passant de MMAPv1 à WiredTiger. Et avec ce nouveau moteur, il n'y a plus de mise à jour sur place de document. C'est à dire qu'avant, il fallait faire attention lors de notre modélisation à ce qu'un document ne grossisent pas trop souvent en taille, pour éviter des réallocation. Maintenant, à chaque mise à jour, il y a toujours une nouvelle réécriture. Au moins c'est plus simple.
