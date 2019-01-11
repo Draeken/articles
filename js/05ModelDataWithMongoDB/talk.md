@@ -9,6 +9,20 @@
   - Exemples
     - Logs
     - Aggretations
+# Mise en contexte
+
+## L'essors du NoSQL et des document-based DB
+
+Pourquoi le NoSQL s'est développé ?
+
+- répondre aux besoins d'un nombre grandissant d'utilisateur, en gardant une latence faible
+- être toujours disponible, tolérent aux pannes
+- s'adapter rapidement aux changement business
+
+Les premiers systèmes NoSQL n'était pas vraiment conformes avec les propriétés ACID. Mais les systèmes NoSQL ont progressés et peuvent maintenant garantir ces propriétés dans une majorité des cas.
+
+## Que sont et où se situent les document-based DB
+
 
 # Petite présentation holistique de MongoDB
 

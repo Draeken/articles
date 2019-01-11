@@ -1,0 +1,1 @@
+Use https://github.com/feliixx/mgodatagen to generate mock data
