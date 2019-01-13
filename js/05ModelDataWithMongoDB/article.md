@@ -16,7 +16,8 @@ Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nou
 
 Le cas le plus simple : on embarque les sous documents. C'est le choix par défaut.
 Par exemple, si l'on veut enregistrer les différentes adresses d'un utilisateur, pour lui proposer ensuite une adresse de livraison, on aura à priori aucune raison de ne pas les embarquer avec l'utilisateur.
-````json
+
+```json
 {
   "_id": ObjectId("5c35c49e80951734b243ab3c"),
   "name": "Zola Torp",
@@ -39,16 +40,21 @@ Par exemple, si l'on veut enregistrer les différentes adresses d'un utilisateur
     }
   ]
 }
-````
+```
+
 _Un document utilisateur_
 
 Ici, les adresses sont des documents spécifiques à l'utilisateur. Ça ne ferait pas sens d'y accéder sans passer en premier lieu par lui. Elles sont également peu nombreuses, donc les embarquer est le choix idéal.
 
 Pour afficher les adresses d'un utilisateur donné : soit on les récupères en même temps que l'utilisateur, soit, à partir de l'id :
-````shell
+
+```shell
 db.users.findOne({ _id: ObjectId("5c35c49e80951734b243ab3c")}, { address: 1 })
-````
-````json
+```
+
+Cela nous donne :
+
+```json
 {
   "_id": ObjectId("5c35c49e80951734b243ab3c"),
   "address": [
@@ -69,8 +75,65 @@ db.users.findOne({ _id: ObjectId("5c35c49e80951734b243ab3c")}, { address: 1 })
     }
   ]
 }
-````
-db.users.aggregate([{ $project: { address: { country: 1 } } }, { $unwind: "$address" }])
+```
+
+Si nous avions d'autres besoins, comme par exemple afficher les pays où nous avons le plus d'utilisateurs, la requête serait un peu plus complexe :
+
+```shell
+db.users.aggregate([
+  { $project: { address: { country: 1 } } },
+  { $unwind: "$address" },
+  { $group: { _id: "$address.country", totalPop: { $sum: 1}}},
+  { $sort: { totalPop: -1 }},
+  { $limit: 10 }
+]);
+```
+
+\$project va nous garder uniquement, pour chaque utilisateur, la liste de ses pays de résidence.
+Example pour un utilisateur :
+
+```json
+{
+  "_id": ObjectId("5c3b543484a1ba3e7e28cb01"),
+  "address": [
+    { "country": "Guadeloupe" },
+    { "country": "Chad" },
+    { "country": "Guadeloupe" }
+  ]
+}
+```
+
+\$unwind va transformer une ligne de résultat ayant N adresses en N lignes avec une seul adresse.
+
+```json
+{ "_id" : ObjectId("5c3b543484a1ba3e7e28cb01"), "address" : { "country" : "Guadeloupe" } }
+{ "_id" : ObjectId("5c3b543484a1ba3e7e28cb01"), "address" : { "country" : "Chad" } }
+{ "_id" : ObjectId("5c3b543484a1ba3e7e28cb01"), "address" : { "country" : "Guadeloupe" } }
+```
+
+$group et $sum vont regrouper toutes les lignes ayant le même pays et sommer leur nombre.
+
+```json
+{ "_id" : "Chad", "totalPop" : 1 }
+{ "_id" : "Guadeloupe", "totalPop" : 2 }
+```
+
+Cela nous donne :
+
+```json
+{ "_id" : "Congo", "totalPop" : 32 }
+{ "_id" : "Korea", "totalPop" : 23 }
+{ "_id" : "Cayman Islands", "totalPop" : 23 }
+{ "_id" : "British Virgin Islands", "totalPop" : 21 }
+{ "_id" : "Swaziland", "totalPop" : 21 }
+{ "_id" : "Saint Martin", "totalPop" : 20 }
+{ "_id" : "United Arab Emirates", "totalPop" : 20 }
+{ "_id" : "Tonga", "totalPop" : 19 }
+{ "_id" : "Japan", "totalPop" : 19 }
+{ "_id" : "Cambodia", "totalPop" : 19 }
+```
+
+Avoir ce résultat précis implique un scan de collection et le modèle actuel n'est pas adapté pour des requêtes fréquentes. On pourrait envisager d'avoir une collection de pays en maintenant le nombre d'utilisateur à jour, mais ça impliquerait deux requêtes lors d'un ajout ou d'une maj d'utilisateur.
 
 En revanche, si pour chaque utilisateur on a des rapports générés sur son activité, il faut faire attention :
 en embarquant tous ces rapports directement avec l'utilisateur, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite des 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation.
@@ -78,7 +141,7 @@ Pour ce cas la, il serait possible de le gérer en simulant une capped collectio
 Dans notre exemple, si l'on doit garder un nombre de rapport tel que le poids du document racine devient inaceptable, il faudra recourir à l'autre grande stratégie : utiliser des références plutôt qu'embarquer directement le document.
 Ainsi, nous rassemblons tous les rapports d'activités de chaque utilisateur dans une collection dédiée, et nous rajoutons un tableau de références dans le schéma de l'utilisateur. Les références de MongoDB utilisent 12 octets, ce qui est souvent bien inférieur au poids d'un sous-document. Avec cette stratégie, le schema de l'utilisateur pourra référencer un peu plus de 1 350 000 rapports !
 Si toute fois ce n'est toujours pas suffisant, il reste un dernier recours avant de passer à GridFS : garder la référence côté rapport et non côté utilisateur. Et pour ne pas faire une collection scan (analyser l'ensemble de la collection pour répondre à une requête) lorsqu'on veut récupérer tous les rapports d'un utilisateur, on peut simplement construire un index sur le champ du rapport référençant l'utilisateur.
-Dans le cas où les documents ne sont pas embarqués, on peut dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des rapports d'activités, prenons le cas où notre application doit afficher en diagramme la répartition des types de rapport pour un utilisateur donné et où l'utilsateur a un tableau de référence de rapports. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un $lookup), puis agréger les types en quantité.
+Dans le cas où les documents ne sont pas embarqués, on peut dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des rapports d'activités, prenons le cas où notre application doit afficher en diagramme la répartition des types de rapport pour un utilisateur donné et où l'utilsateur a un tableau de référence de rapports. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un \$lookup), puis agréger les types en quantité.
 
 -- Comment savoir la taille d'un fichier embarqué estimer le nombre max de ce type de fichier embarquable ?
 
