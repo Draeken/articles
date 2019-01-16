@@ -32,3 +32,13 @@ Concernant AutoSchedule :
 Il est plus facile de concevoir les choses lorsque le périmètre est bien découpé.
 Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable.
 C'est pour ça que réfléchir en amont à comment son code sera découpé en plusieurs projets aillant chacun leur indépendance est important.
+
+## travailler avec une équipe ou chacun serait investi - en étant associé:
+### Pros
+- bonne entante, partage de valeur et direction (au début du moins).
+- investissement personnel, moins d'abandon ?
+- bonne efficacité
+## Cons
+- si on veut changer de projet, c'est compliqué - car on y est impliqué
+- plus difficile de gérer les conflits entre associés
+- difficile de trouver les bonnes personnes
