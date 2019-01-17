@@ -22,6 +22,6 @@
   - [x] [Design Patterns - 2017](https://dev.to/mrm8488/mongodb-schema-design-patterns-i-4gdp)
   - [Design Time Serie Data - Oct 2013](https://www.mongodb.com/blog/post/schema-design-for-time-series-data-in-mongodb)
 - Book
-  - [][mastering mongodb 3.x](https://books.google.fr/books?id=JkBPDwAAQBAJ&lpg=PA207&ots=OXhida_aMJ&dq=mongodb%20size%20bytes%20of%20subdocument&hl=fr&pg=PR1#v=onepage&q&f=false)
+  - [] [mastering mongodb 3.x](https://books.google.fr/books?id=JkBPDwAAQBAJ&lpg=PA207&ots=OXhida_aMJ&dq=mongodb%20size%20bytes%20of%20subdocument&hl=fr&pg=PR1#v=onepage&q&f=false)
 - Outils
   - [Schema Simulator Tool](https://www.npmjs.com/package/mongodb-schema-simulator)
