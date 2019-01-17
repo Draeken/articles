@@ -34,9 +34,13 @@ client.connect(err => {
   const db = client.db(dbName);
   insertUser()
     .then(displayAddForOne(db))
+    .then(() => {
+      // db.collection('activityLogSimple').drop();
+    })
+    .then(linkActivityLog(db))
     .catch(err => log(err))
     .then(() => client.close())
-    .then(() => process.exit())
+    .then(() => process.exit());
 });
 
 const insertUser = () => {
@@ -50,12 +54,28 @@ const insertUser = () => {
 
 const displayAddForOne = db => () => {
   log("Display address for one user");
-  const users = db.collection("users");
-  return users
-    .findOne({}, { projection: { _id: 1 } })
-    .then(res => {
-      return users.findOne({ _id: res._id }, { projection: { address: 1 }, explain: true });
-    })
-    .then(log)
-    .then(prettyExplain);
+  const users = db.collection("usersEmbedded");
+  return users.findOne({}, { projection: { _id: 1 } }).then(res => {
+    return users.findOne({ _id: res._id }, { projection: { address: 1 }, explain: true });
+  });
+  // .then(log)
+  // .then(prettyExplain);
+};
+
+const linkActivityLog = db => () => {
+  const users = db.collection("usersWithArrOfRef");
+  const activities = db.collection("activityLogSimple");
+
+  const cursor = users.aggregate([{ $project: { activityLog: 1 } }, { $unwind: "$activityLog" }]);
+  return cursor.toArray().then((arr) => {
+    return Promise.all(
+      arr.map(res =>
+        activities.insertOne({
+          _id: res.activityLog,
+          date: new Date(),
+          type: Math.floor(Math.random() * 42),
+        })
+      )
+    );
+  });
 };

@@ -159,7 +159,7 @@ On pourrait être tenté d'embarquer ces rapports avec l'utilisateur, vu qu'on y
 
 _Un document utilisateur avec des rapports d'activités_
 
-Mais avec MongoDB, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite de 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation. À noter que cette limite est propre a MongoDB, par exemple, pour CosmosDB de Microsoft, c'est 2 Mo, mais pour CouchDB, c'est 4 Go. Il faut prendre en compte que le résultat d'une requête devra tenir dans la mémoire vive.
+Mais avec MongoDB, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite de 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation. À noter que cette limite est propre a MongoDB, par exemple, pour CosmosDB de Microsoft, c'est 2 Mo, mais pour CouchDB, c'est 4 Go. Il faut prendre en compte que le document devra tenir dans la mémoire vive.
 Pour notre cas, il serait possible de le gérer en simulant une capped collection - MongoDB propose des Capped Collection ayant une longueur maximale, en supprimant les anciens documents pour faire place aux nouveaux. Avec l'opérateur $slice, utilisé lors d'un $push, vous pouvez demander à ne garder que les N derniers sous documents.
 
 ```shell
@@ -182,8 +182,43 @@ db.users.update(
 
 Avec cette commande, nous ajoutons un nouveau journal d'activité en nous assurant de limiter leur nombre aux 500 derniers.
 
-Dans notre exemple, si l'on doit garder un nombre de rapport tel que le poids du document racine devient inaceptable, il faudra recourir à l'autre grande stratégie : utiliser des références plutôt qu'embarquer directement le document.
+Si l'on doit garder un nombre de rapport tel que le poids du document racine devenait inaceptable, il faudrait recourir à l'autre grande stratégie : utiliser des références plutôt qu'embarquer directement le document.
 Ainsi, nous rassemblons tous les rapports d'activités de chaque utilisateur dans une collection dédiée, et nous rajoutons un tableau de références dans le schéma de l'utilisateur. Les références de MongoDB utilisent 12 octets, ce qui est souvent bien inférieur au poids d'un sous-document. Avec cette stratégie, le schema de l'utilisateur pourra référencer un peu plus de 1 350 000 rapports !
+
+```json
+{
+	"_id" : ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+	"name" : "Koby Johnson",
+	"birthDate" : ISODate("1990-04-09T15:54:38Z"),
+	"activityLog" : [
+		ObjectId("5c405f1d94b5e322c292cc67"),
+		ObjectId("5c405f1d94b5e322c292cc68"),
+		ObjectId("5c405f1d94b5e322c292cc69")
+  ]
+}
+```
+_Un document utilisateur avec des rapports d'activités référencés_
+
+
+```json
+{
+	"_id": ObjectId("5c405f1d94b5e322c292cc67"),
+	"type": 18,
+  "date": ISODate("2018-04-09T15:54:38Z"),
+  "value": 54896324
+}
+```
+_Un rapport d'activité dans une collection distincte_
+
+Pour récupérer les derniers rapports d'un utilisateur, nous aurions juste à faire :
+
+```shell
+db.activityLogs.find({
+  _id: { $in: myUser.activityLog }
+})
+```
+
+
 Si toute fois ce n'est toujours pas suffisant, il reste un dernier recours avant de passer à GridFS : garder la référence côté rapport et non côté utilisateur. Et pour ne pas faire une collection scan (analyser l'ensemble de la collection pour répondre à une requête) lorsqu'on veut récupérer tous les rapports d'un utilisateur, on peut simplement construire un index sur le champ du rapport référençant l'utilisateur.
 Dans le cas où les documents ne sont pas embarqués, on peut dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des rapports d'activités, prenons le cas où notre application doit afficher en diagramme la répartition des types de rapport pour un utilisateur donné et où l'utilsateur a un tableau de référence de rapports. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un \$lookup), puis agréger les types en quantité.
 

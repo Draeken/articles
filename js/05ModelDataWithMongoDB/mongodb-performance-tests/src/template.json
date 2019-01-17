@@ -1,7 +1,7 @@
 [
   {
     "database": "perftests",
-    "collection": "users",
+    "collection": "usersEmbedded",
     "count": 1000,
     "content": {
       "name": { "type": "faker", "method": "Name" },
@@ -20,6 +20,26 @@
             "country": { "type": "faker", "method": "Country" },
             "city": { "type": "faker", "method": "City" }
           }
+        }
+      }
+    }
+  },
+  {
+    "database": "perftests",
+    "collection": "usersWithArrOfRef",
+    "count": 10,
+    "content": {
+      "name": { "type": "faker", "method": "Name" },
+      "birthDate": {
+        "type": "date",
+        "startDate": "1949-12-30T23:00:00.000Z",
+        "endDate": "2000-12-30T23:01:00.000Z"
+      },
+      "activityLog": {
+        "type": "array",
+        "size": 1000,
+        "arrayContent": {
+          "type": "objectId"
         }
       }
     }
