@@ -187,27 +187,28 @@ Ainsi, nous rassemblons tous les rapports d'activités de chaque utilisateur dan
 
 ```json
 {
-	"_id" : ObjectId("5c405f1dfbb0eafdb4f1aa25"),
-	"name" : "Koby Johnson",
-	"birthDate" : ISODate("1990-04-09T15:54:38Z"),
-	"activityLog" : [
-		ObjectId("5c405f1d94b5e322c292cc67"),
-		ObjectId("5c405f1d94b5e322c292cc68"),
-		ObjectId("5c405f1d94b5e322c292cc69")
+  "_id": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "name": "Koby Johnson",
+  "birthDate": ISODate("1990-04-09T15:54:38Z"),
+  "activityLog": [
+    ObjectId("5c405f1d94b5e322c292cc67"),
+    ObjectId("5c405f1d94b5e322c292cc68"),
+    ObjectId("5c405f1d94b5e322c292cc69")
   ]
 }
 ```
-_Un document utilisateur avec des rapports d'activités référencés_
 
+_Un document utilisateur avec des rapports d'activités référencés_
 
 ```json
 {
-	"_id": ObjectId("5c405f1d94b5e322c292cc67"),
-	"type": 18,
+  "_id": ObjectId("5c405f1d94b5e322c292cc67"),
+  "type": 18,
   "date": ISODate("2018-04-09T15:54:38Z"),
   "value": 54896324
 }
 ```
+
 _Un rapport d'activité dans une collection distincte_
 
 Pour récupérer les derniers rapports d'un utilisateur, nous aurions juste à faire :
@@ -218,12 +219,80 @@ db.activityLogs.find({
 })
 ```
 
-Cependant avec ce système, nous nous retrouvons avec une seule grosse collection de journaux d'activité, qui risque de prendre des proportions énormes rapidement. Bien sûr il est possible de poser une limite au nombre de document via les Capped-Collection, comme nous avons vu, ou bien mettre un index TTL. Les index TTL (Time To Live) permettent de supprimer automatiquement des documents d'une collection lorsqu'ils arrivent à expiration. Par exemple sur un document ayant un champ `lastModifiedDate`, on peut parametrer l'index TTL pour supprimer ce document lors que cette date est dépassée d'une heure. Dans notre exemple, le fait de tout mettre dans une même collection nous fait perdre en flexibilité car tous les documents seraient traités de la même manière. Si nous traitons différemment nos journaux en fonction de leur type ou priorité, on pourrait ranger chaque document dans une collection dédié à un type/priorité et avoir des propriétés différentes pour ces collections. Par exemple on aurait une collection `activityLogPrimary` qui n'a pa de limite, pour recevoir les journaux de première importance, et une autre collection `activityLogSecondary` avec un index TTL pour limiter le nomber de journaux secondaires stoqués. Il n'y a pas de limite au nombre de collection créé dans une base de donnée.
+Cependant avec ce système, nous nous retrouvons avec une seule grosse collection de journaux d'activité, qui risque de prendre des proportions énormes rapidement. Bien sûr il est possible de poser une limite au nombre de document via les Capped-Collection, comme nous avons vu, ou bien mettre un index TTL. Les index TTL (Time To Live) permettent de supprimer automatiquement des documents d'une collection lorsqu'ils arrivent à expiration. Par exemple sur un document ayant un champ `lastModifiedDate`, on peut parametrer l'index TTL pour supprimer ce document lors que cette date est dépassée d'une heure. Dans notre exemple, le fait de tout mettre dans une même collection nous fait perdre en flexibilité car tous les documents seraient traités de la même manière. Si nous traitons différemment nos journaux en fonction de leur type ou priorité, on pourrait ranger chaque document dans une collection dédié à un type/priorité et avoir des propriétés différentes pour ces collections. Par exemple on aurait une collection `activityLogPrimary` qui n'a pa de limite, pour recevoir les journaux de première importance, et une autre collection `activityLogSecondary` avec un index TTL pour limiter le nomber de journaux secondaires stoqués. Avec MongoDB, il n'y a pas de limite au nombre de collection créé, et cela n'affectera pas les performances à la baisse, bien au contraire : avoir des collections distinctes est très important lorsqu'on exécute des traitements par lot (batch) à haut volume.
 
-Si toute fois ce n'est toujours pas suffisant, il reste un dernier recours avant de passer à GridFS : garder la référence côté rapport et non côté utilisateur. Et pour ne pas faire une collection scan (analyser l'ensemble de la collection pour répondre à une requête) lorsqu'on veut récupérer tous les rapports d'un utilisateur, on peut simplement construire un index sur le champ du rapport référençant l'utilisateur.
-Dans le cas où les documents ne sont pas embarqués, on peut dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des rapports d'activités, prenons le cas où notre application doit afficher en diagramme la répartition des types de rapport pour un utilisateur donné et où l'utilsateur a un tableau de référence de rapports. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un \$lookup), puis agréger les types en quantité.
+Si toute fois ce n'est toujours pas suffisant, et que votre tableau de référence explose en taille, il reste un dernier recours avant de passer à GridFS : garder la référence côté journal d'activité et non côté utilisateur. Et pour ne pas faire une collection scan (analyser l'ensemble de la collection pour répondre à une requête) lorsqu'on veut récupérer tous les journaux d'un utilisateur, on peut simplement construire un index sur le champ du journal référençant l'utilisateur.
 
--- Comment savoir la taille d'un fichier embarqué estimer le nombre max de ce type de fichier embarquable ?
+```json
+{
+  "_id": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "name": "Koby Johnson",
+  "birthDate": ISODate("1990-04-09T15:54:38Z")
+}
+```
 
-NB:
+_Un document utilisateur devenu tout simple_
+
+```json
+{
+  "_id": ObjectId("5c405f1d94b5e322c292cc67"),
+  "user": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "type": 13,
+  "date": ISODate("2018-04-09T15:54:38Z"),
+  "value": 54896324
+}
+{
+  "_id": ObjectId("5c405f1d94b5e322c292cc69"),
+  "user": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "type": 18,
+  "date": ISODate("2018-04-09T17:54:38Z"),
+  "value": 2048
+}
+```
+
+_Des journaux d'activité référencant un utilisateur_
+
+La création d'un index se fait tout simplement (en vérité il y a beaucoup de façon d'indexer les données et couvrir tous les cas demanderait un article entier !).
+
+```shell
+db.activityLogs.createIndex({ user: 1 })
+```
+
+Quelque soit notre façon de lier les journaux aux utilisateurs, nous pouvons également optimiser la structure du document du journal qui jusqu'alors était plutôt naïve...Actuellement, pour un utilisateur nous avons un ensemble très important de petits journaux. Si nous récupérons souvent ces données en lot, par exemple pour la journée en cours pour ensuite faire de l'analyse, nous pourrions regrouper les journaux du jour en un seul document ! Cela a plusieurs avantages : on met en commun certains champs semblables à plusieurs journaux, ce qui signifie un index moins volumineux. Récupérer ce lot de document se fera plus rapidement, il n'y aura plus d'accès aléatoire au disque (les données seront stockées les unes à la suite des autres sur le disque). Pour notre exemple, il y a plusieurs de manière de faire, on peut par exemple regrouper les journaux pour la date du jour et par type :
+
+```json
+{
+  "_id": ObjectId("5c405f1d94b5e322c292cc67"),
+  "user": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "type": 13,
+  "date": ISODate("2018-04-09T00:00:00Z"),
+  "logs": [
+    { "time": 2345, "value": 2048 },
+    { "time": 12045, "value": 428 },
+    { "time": 42424, "value": 54896324 }
+  ]
+}
+```
+
+_Un document regroupant tous les logs du même type pour un utilisateur, pour un jour particulier_
+
+Dans le cas où les documents ne sont pas embarqués, on peut aussi dénormaliser certaines données fréquement recherchées pour éviter des lookup (le fait d'aller chercher le document dont on a seulement la référence). Dans notre exemple d'utilisateur ayant des journaux d'activités, prenons le cas où notre application doit afficher dans un diagramme la répartition des types de journaux pour un utilisateur donné et où l'utilsateur a un tableau de référence de journaux. Sans dénormalisation, il faudrait récupérer chaque document via sa référence (via un \$lookup), puis agréger les types en quantité. Pour mettre ça en place, plutôt que d'avoir juste un tableau de référence vers nos journaux, on pourrait avoir un document avec, en plus de la référence, une copie des champs du journal qui auront tendance à être fréquemment appelé. À nous de trouver l'équilibre entre la performance et la quantité de donnée embarquée.
+
+```json
+{
+  "_id": ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "name": "Koby Johnson",
+  "birthDate": ISODate("1990-04-09T15:54:38Z"),
+  "activityLog": [
+    { "ref": ObjectId("5c405f1d94b5e322c292cc67"), "type": 18 },
+    { "ref": ObjectId("5c405f1d94b5e322c292cc68"), "type": 13 },
+    { "ref": ObjectId("5c405f1d94b5e322c292cc69"), "type": 5 }
+  ]
+}
+```
+
+_Un document utilisateur dénormalisant les types des journaux d'activité_
+
+Bien sûr, pour que cela soit intéressant, il ne faut pas que les données dénormalisées soit sujettes à changement. Pour rester synchronisé, cela imposerait plusieurs requêtes à chaque mise à jour de donnée.
+
 MongoDB a mis à disposition un nouveau moteur de stockage, en passant de MMAPv1 à WiredTiger. Et avec ce nouveau moteur, il n'y a plus de mise à jour sur place de document. C'est à dire qu'avant, il fallait faire attention lors de notre modélisation à ce qu'un document ne grossisent pas trop souvent en taille, pour éviter des réallocation. Maintenant, à chaque mise à jour, il y a toujours une nouvelle réécriture. Au moins c'est plus simple.
