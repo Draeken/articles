@@ -294,5 +294,20 @@ Dans le cas où les documents ne sont pas embarqués, on peut aussi dénormalise
 _Un document utilisateur dénormalisant les types des journaux d'activité_
 
 Bien sûr, pour que cela soit intéressant, il ne faut pas que les données dénormalisées soit sujettes à changement. Pour rester synchronisé, cela imposerait plusieurs requêtes à chaque mise à jour de donnée.
+Dans notre exemple, pour changer le log de type 18 à type 15, il faudrait faire ceci :
+
+```shell
+db.activityLogs.update({
+  _id: ObjectId("5c405f1d94b5e322c292cc67")
+}, {
+  $set: { "type": 15 }
+})
+db.users.update({
+  _id: ObjectId("5c405f1dfbb0eafdb4f1aa25"),
+  "activityLog.ref": ObjectId("5c405f1d94b5e322c292cc67")
+}, {
+  $set: { "tags.$.type": 15 },
+})
+```
 
 MongoDB a mis à disposition un nouveau moteur de stockage, en passant de MMAPv1 à WiredTiger. Et avec ce nouveau moteur, il n'y a plus de mise à jour sur place de document. C'est à dire qu'avant, il fallait faire attention lors de notre modélisation à ce qu'un document ne grossisent pas trop souvent en taille, pour éviter des réallocation. Maintenant, à chaque mise à jour, il y a toujours une nouvelle réécriture. Au moins c'est plus simple.
