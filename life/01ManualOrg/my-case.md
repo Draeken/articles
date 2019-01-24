@@ -38,7 +38,9 @@ C'est pour ça que réfléchir en amont à comment son code sera découpé en pl
 - bonne entante, partage de valeur et direction (au début du moins).
 - investissement personnel, moins d'abandon ?
 - bonne efficacité
-## Cons
+### Cons
 - si on veut changer de projet, c'est compliqué - car on y est impliqué
 - plus difficile de gérer les conflits entre associés
 - difficile de trouver les bonnes personnes
+
+Les projets ambitieux nécessitent une équipe. Il serait trop long et démotivant d'acquérir toutes les connaissances nécéssaires pour réaliser quelque chose de qualité, et de se charger de tout. Dans l'idéal il faudrait travailler sur ces projets dans le cadre d'une entreprise, et réserver les plus petits projets au temps libre (à faire seul ou via Colony). En premier projet rénumérateur, la moins complexe pourrait être l'API derrière CakeTime. Il y a un marché avec de la concurrence sur lesquelles on pourrait se baser, en proposant une approche très différente.
