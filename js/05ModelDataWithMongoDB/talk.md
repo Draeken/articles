@@ -55,8 +55,33 @@ Les EmbededDocuments sont parti intégrante du document et...Peut on vraiment le
 
 En général, la question que l'on va se poser lorsqu'on modélise pour MongoDB, c'est: est-ce que j'utilise des références, ou est-ce que j'intègre directement ?
 Qu'est-ce que cela va changer ?
-> partie haute: schema de design: gauche: embarqué; droite: références
+> schema de design: gauche: embarqué; droite: références, avec exemple de one-to-one, one-to-many, many-to-many
 Avec les documents embarqués, on a des meilleures performances de lecture, car il n'y a pas d'opération supplémentaire pour récupérer la donnée référencée. En une seule requête on peut récupérer le document et tous ces sous-documents. Et cela permet également de mettre à jour des sous documents en une seule opération. Le désavantage de l'embarqué, c'est lorsqu'on veut accéder aux sous-documents sans passer par les documents parents. Cela duplique également la donnée dans le cas du many-to-many.
 Ce que recommande MongoDB, c'est d'embarquer les documents (dénormaliser) dès qu'il y a une relation d'inclusion (One to One ou One to Many).
 
 Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nous allons voir différentes possibilitées de modéliser du one-to-many.
+
+## Embarquer peu de document
+> slides with json schema, db commands and result; displayed in 3 moves
+
+## Embarquer un nombre important de document
+> slide with json format embedded : MongoDB -> normal file system: 16Mo; No limit with GridFS ; couchDB et CosmosDB
+> slide about capped collection: educational schema on the right, how to do on the left
+
+
+## Embarquer un tableau de référence
+> slide with schema with array of reference + collection (column) where actual docs are stored. DB command on the bottom
+
+## Garder la référence côté "Many"
+> slide with schema with simple user doc + collection (column) where actual docs are stored with link to users. DB command on the bottom
+
+## Optimisation : multiples collections
+> slides with giant collection of logs (naive) ; enhanced: capped-collection or TTL indexes ; on the right : explanation on TTL with example.
+> giant collection of logs (naive) ; enhanced: multiple collection with TTL/capped ; pros: no limit ; good performance for batch processing
+
+## Optimisation : regrouper les similaires
+> slide with a column of lot of small log document (naive); enhanced: one document wich includes others; pros: factorisation, performance for retrieving the whole.
+
+## Optimisation : dénormaliser les champs fréquents
+> slide with user referencing logs (naive) ; enhanced: denormalize
+> explain how to update ; on the left: transactions limits

@@ -161,7 +161,9 @@ On pourrait être tenté d'embarquer ces rapports avec l'utilisateur, vu qu'on y
 
 _Un document utilisateur embarquant des rapports d'activités_
 
-Mais avec MongoDB, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite de 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation. À noter que cette limite est propre a MongoDB, par exemple, pour CosmosDB de Microsoft, c'est 2 Mo, mais pour CouchDB, c'est 4 Go. Il faut prendre en compte que le document devra tenir dans la mémoire vive, lorsqu'on iterera sur les résultats d'une requête par exemple.
+Mais avec MongoDB, le document pourrait dépasser la limite des 16 Mo ! Il est possible de contourner cette limite de 16 Mo avec GridFS, qui va découper les documents en morceaux de 255 Ko et les enregistrer dans deux collections distinctes : une pour les metadata et l'autre pour les données binaires. Ça a bien sûr un coût en performance, et en général, mieux vaut changer sa modélisation. À noter que cette limite est propre a MongoDB, par exemple, pour CosmosDB de Microsoft, c'est 2 Mo, mais pour CouchDB, c'est 4 Go. Il faut prendre en compte que le document devra tenir dans la mémoire vive, lorsqu'on iterera sur les résultats d'une requête par exemple (sauf avec GridFS, où juste une partie sera en mémoire).
+
+
 Pour notre cas, il serait possible de le gérer en simulant une capped collection - MongoDB propose des Capped Collection ayant une longueur maximale, en supprimant les anciens documents pour faire place aux nouveaux. Avec l'opérateur $slice, utilisé lors d'un $push, vous pouvez demander à ne garder que les N derniers sous documents.
 
 ```shell
@@ -319,7 +321,7 @@ db.users.update({
   _id: ObjectId("myUserId"),
   "activityLog.ref": ObjectId("activityLogId_A")
 }, {
-  $set: { "tags.$.type": 15 },
+  $set: { "activityLog.$.type": 15 },
 })
 ```
 

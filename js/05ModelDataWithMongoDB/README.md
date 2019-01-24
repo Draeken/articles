@@ -7,6 +7,8 @@
 
 # Links
 
+design system: http://mongodb.design
+
 - Doc
   - [x] [Data Model Design](https://docs.mongodb.com/manual/core/data-model-design/)
   - [x] [Data Modeling Introduction](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
