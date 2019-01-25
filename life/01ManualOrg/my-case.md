@@ -44,3 +44,5 @@ C'est pour ça que réfléchir en amont à comment son code sera découpé en pl
 - difficile de trouver les bonnes personnes
 
 Les projets ambitieux nécessitent une équipe. Il serait trop long et démotivant d'acquérir toutes les connaissances nécéssaires pour réaliser quelque chose de qualité, et de se charger de tout. Dans l'idéal il faudrait travailler sur ces projets dans le cadre d'une entreprise, et réserver les plus petits projets au temps libre (à faire seul ou via Colony). En premier projet rénumérateur, la moins complexe pourrait être l'API derrière CakeTime. Il y a un marché avec de la concurrence sur lesquelles on pourrait se baser, en proposant une approche très différente.
+
+En attendant d'avoir le courage et les ressources pour se lancer, développer CakeTime avec un dummy RecipeAPI qui utilise un dummy GroceryShoppingAPI. Séparer les services permettra de plus simplement refactorer ensuite, et de ne pas être démotivé par le fouilli du monolith.
