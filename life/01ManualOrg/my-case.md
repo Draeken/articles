@@ -3,19 +3,22 @@ Je pense que la vie peut être beaucoup plus intéressante et enrichissante que 
 Différents chemins :
 - vivre des petits plaisirs - sorties, vacances, loisirs accessibles, JV, films (ordinaire)
 - créer de grandes choses (incroyable)
-Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères. Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens.
+- entre deux : avoir suffisament de revenus pour permettre de vivre de bonnes expériences entre amis
+Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères (mais plus facile à reproduire, donc plus fréquentes). Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens. -> Un homme debout : l'important n'est pas ce qu'on a accompli mais tout ce qu'on a pu ressentir et vivre.
 Quel cap définir : la personne que l'on souhaiterait être ou la vie que l'on souhaiterait mener ?
 Accepter la personne que l'on est, accepter notre attrait pour certaines activités.
 J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party. Quelles seraient les autres activités possibles et facile d'accès ?
 - Sport: ultimate, marathon, basket, tennis, natation ?
 - Faire tourner son business
-- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux).
+- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). -> Avoir le contrôle de son environement.
 
 Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
 Manger la même chose à chaque repas (Feed ?); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
 Socialiser uniquement pendant les pauses au boulot. Pas de social en semaine, à la maison.
 Voir combien de temps je peux tenir ou mettre une deadline ? _Don't break the chain_ -> À la manière de GitHub, avoir une frise pour chaque conditions à respecter. Mettre un objectif à 21 jours.
-Comment gérer les week-ends ? 1 week-end sur 2 avec une party 16h->soirée => plannifier ça sur G.Agenda pour être préparé à refuser des invitations. Samedi: resté concentré sur le projet jusqu'au départ. Dimanche: tâche ménagères, TODO, préparer la semaine.
+Comment gérer les week-ends ?
+1 week-end sur 2 avec une party 16h->soirée => plannifier ça sur G.Agenda pour être préparé à refuser des invitations. Samedi: resté concentré sur le projet jusqu'au départ. Dimanche: tâche ménagères, TODO, préparer la semaine.
+Tous les week-ends: sortir un jour (soit samedi pour une soirée pote, soit une balade tranquille).
 Préparer la veille faite dans les transports pendant les pauses du boulot.
 Comment gérer la nécessité de décompresser ? -> chaque vendredi soir: CheatTime jusqu'à minuit. A préparer en amont vendredi en journée.
 
