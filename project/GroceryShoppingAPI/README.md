@@ -3,4 +3,7 @@ Give a shopping list and a position, get a list of roadmap (like GMap results fo
 
 
 # Other project
-basket: app that give you the market where you will pay the least, worldwide, community driven
+- basket: app that give you the market where you will pay the least, worldwide, community driven
+- http://www.mesprovisions.com
+- http://anti-crise.fr
+- http://prixing.fr/
