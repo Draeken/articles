@@ -13,7 +13,7 @@ J'aime vivre des expériences intenses, notamment via les jeux multi compétitif
 - Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). -> Avoir le contrôle de son environement.
 
 Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
-Manger la même chose à chaque repas (Feed ?); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
+Manger la même chose à chaque repas (Feed ? - avoir des réserves de cheat meal); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
 Socialiser uniquement pendant les pauses au boulot. Pas de social en semaine, à la maison.
 Voir combien de temps je peux tenir ou mettre une deadline ? _Don't break the chain_ -> À la manière de GitHub, avoir une frise pour chaque conditions à respecter. Mettre un objectif à 21 jours.
 Comment gérer les week-ends ?

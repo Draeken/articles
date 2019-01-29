@@ -8,4 +8,4 @@ smart mirror
 croon or hum -> play music : https://beta.midomi.com/
 
 ## Support the project
-Ask some people if they would be interested in the project you are aiming to develop. Then pin these citation on the wall to show you that your work is desired.
+Ask some people if they would be interested in the project you are aiming to develop. Then pin these citation on the wall to show you that your work is desired. Hang on the wall papers about prototypes, intermediate result, wireframe...Have a list of projects to be displayed
