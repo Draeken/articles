@@ -10,7 +10,7 @@ Accepter la personne que l'on est, accepter notre attrait pour certaines activit
 J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party. Quelles seraient les autres activités possibles et facile d'accès ?
 - Sport: ultimate, marathon, basket, tennis, natation ?
 - Faire tourner son business
-- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). -> Avoir le contrôle de son environement.
+- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). Une sorte de rush/sprint sur une période déterminée. -> Avoir le contrôle de son environement.
 
 Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
 Manger la même chose à chaque repas (Feed ? - avoir des réserves de cheat meal); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
@@ -33,7 +33,7 @@ Concernant AutoSchedule :
 - manger dans la cuisine
 
 Il est plus facile de concevoir les choses lorsque le périmètre est bien découpé.
-Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable.
+Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable. Bien découper même si le périmètre de lancement est très réduit.
 C'est pour ça que réfléchir en amont à comment son code sera découpé en plusieurs projets aillant chacun leur indépendance est important.
 
 ## travailler avec une équipe ou chacun serait investi - en étant associé:
