@@ -56,6 +56,95 @@ Les EmbededDocuments sont parti intégrante du document et...Peut on vraiment le
 En général, la question que l'on va se poser lorsqu'on modélise pour MongoDB, c'est: est-ce que j'utilise des références, ou est-ce que j'intègre directement ?
 Qu'est-ce que cela va changer ?
 > schema de design: gauche: embarqué; droite: références, avec exemple de one-to-one, one-to-many, many-to-many
+> gauche: users [
+  {
+    orders: [{
+      id: 'orderId1',
+      ttc: 180.00,
+      name: 'My Order #1',
+      products: [{
+        id: 'productId1',
+        name: 'product1',
+        price: 80.0
+      }, {
+        id: 'productId2',
+        name: 'product2',
+        price: 100.0
+      }]
+    }, {
+      id: 'orderId2',
+      ttc: 235.28,
+      name: 'My Order #2',
+      products: [{
+        id: 'productId3',
+        name: 'product3',
+        price: 235.28
+      }]
+    }],
+    address: {
+      country: 'France',
+      city: 'Paris',
+      zipcode: '75016'
+    }
+  }
+]
+
+> gauche: products [
+  {
+    id: 'productId1',
+    name: 'product1',
+    price: 80.0
+  }, {
+    id: 'productId2',
+    name: 'product2',
+    price: 100.0
+  }, {
+    id: 'productId3',
+    name: 'product3',
+    price: 235.28
+  }
+]
+
+> droite: users [
+  {
+    orders: ['orderId1','orderId2'],
+    address: {
+      country: 'France',
+      city: 'Paris',
+      zipcode: '75016'
+    }
+  }
+]
+
+> droite: orders [
+  {
+    id: 'orderId1',
+    ttc: 180.00,
+    name: 'My Order #1',
+    products: ['productId1','productId2']
+  }, {
+    id: 'orderId2',
+    ttc: 235.28,
+    name: 'My Order #2',
+    products: ['productId3']
+  }
+]
+
+> droite: products [
+  {
+    id: 'productId1',
+    name: 'product1',
+    price: 80.0
+  }, {
+    id: 'productId2',
+    name: 'product2',
+    price: 100.0
+  }, {
+    id: 'productId3',
+    name: 'product3',
+    price: 235.28
+  }
+]
 Avec les documents embarqués, on a des meilleures performances de lecture, car il n'y a pas d'opération supplémentaire pour récupérer la donnée référencée. En une seule requête on peut récupérer le document et tous ces sous-documents. Et cela permet également de mettre à jour des sous documents en une seule opération. Le désavantage de l'embarqué, c'est lorsqu'on veut accéder aux sous-documents sans passer par les documents parents. Cela duplique également la donnée dans le cas du many-to-many.
 Ce que recommande MongoDB, c'est d'embarquer les documents (dénormaliser) dès qu'il y a une relation d'inclusion (One to One ou One to Many).
 
@@ -66,7 +155,7 @@ Ces recommandations sont générales et ne s'appliquent pas à tous les cas. Nou
 
 ## Embarquer un nombre important de document
 > slide with json format embedded : MongoDB -> normal file system: 16Mo; No limit with GridFS ; couchDB et CosmosDB
-> slide about capped collection: educational schema on the right, how to do on the left
+> slide about capped collection: educational schema on the right (how capped collection works), how to simulate one on the left
 
 
 ## Embarquer un tableau de référence
