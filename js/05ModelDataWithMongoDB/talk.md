@@ -3,7 +3,7 @@ Je vais vous présenter les bases NoSQL orientés document, et comment modélise
 ## L'essors du NoSQL et des document-based DB
 
 Pourquoi le NoSQL s'est développé ?
-Dans les années 2000, le SQL convenait très bien: on upgrade la machine proportionnellement à la quantité de données stoquées et a la fréquence des requêtes. Le business est stable et peut faire ses analyses grâce à une hierarchie bien ficelé.
+Dans les années 2000, le SQL convenait très bien: on upgrade la machine proportionnellement à la quantité de données stoquées et a la fréquence des requêtes. Le business est stable et peut faire ses analyses grâce à une hierarchie de donnée bien ficelé.
 
 > user -> emoji machine -> success
 > (2x)user -> (scaled up) emoji machine -> success
@@ -16,7 +16,7 @@ Bon, avec les nouveaux besoins, ça se complexifie assez vite et il faudra une b
 > (rescue dev team from businessman) -> money
 
 C'est la qu'on voit apparaitre le développement d'un nouveau type de base, favorisant la disponibilité à l'espace de stockage, permettant de scaler horizontalement et de garder de bonnes performances avec un nombre très important de données et de requêtes.
-De s'adapter rapidement aux changements business, en étant moins figé sur un schéma de base
+De s'adapter rapidement aux changements business, en étant moins figé sur un schéma de base immuable
 Et d'être plus accessible: plus simple a utiliser et aussi en terme de coût de licence, vu que beaucoup de NoSQL sont open-source.
 
 > (100x)user -> (20x)emoji machine -> success
