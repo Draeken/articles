@@ -14,5 +14,28 @@ SOAP puis REST. REST étant plus accessible pour le Web (SOAP avait été conçu
 
 ## Définition du schéma
 
-Lorsqu'on écrit le schéma de l'API, on peut indiquer qu'une ressource intègre une autre. Le schéma comprends toutes les ressources de l'API, ainsi que des types racines : Query, Mutation, Subscription, permettant de définir des méthodes pour rechercher/modifier les ressources.
+Lorsqu'on écrit le schéma de l'API, on peut indiquer qu'une ressource intègre une autre. Le schéma comprends toutes les ressources de l'API, ainsi que des types racines : Query, Mutation, Subscription, permettant de définir des méthodes pour respectivement rechercher/modifier les ressources, ou recevoir des notifications lors d'un changement.
 Comment refléter une relation Neo4J avec propriété dans un schema GraphQL ?
+
+## Intégration de GraphQL
+
+Il y a trois façon d'intégrer GraphQL :
+1. directement connecté à une BDD
+1. en interaction avec une couche qui servira d'interface entre l'API GraphQL et un système existant (plusieurs BDD, système complexe...)
+1. en hybride, directement connecté à une BDD et à une interface pour un autre système.
+
+Cette flexibilité est rendu possible grâce au système de resolver: chaque champ du schéma correspond à une fonction qui va s'occuper de récupérer la donnée lié. On pourrait se dire que si on veut récupérer tous les champs d'une ressource, cela fait autant d'appelle de fonction qu'il y a de champs. Et comment les performances peuvent rivaliser avec une fonction qui executerait un simple _select_ des champs requis.
+Pour éviter de récupérer plusieurs fois la même donnée, il y a DataLoader, mais ça ne résout qu'une partie du problème.
+Si ces champs font partis d'une ressource, elle peut avoir son _resolver_ qui va récupérer cette ressource. Lorsque GraphQL execute les _resolvers_ des attributs demandées pour cette ressource, celle-ci est déjà en mémoire, et il n'y a plus qu'à retourner les propriétés correspondantes. Chaque _resolver_ reçoit 4 arguments. Dans le premier : `root`, on récupère le résultat du _resolver_ racine. C'est grâce à `root` qu'on peut renvoyer les propriétés correspondantes. `args` permet de récupérer les arguments donné lors de la requête de ce champ. `context` est un objet partagé pour la requête en cours : les resolvers peuvent communiquer via cet objet partagé. Le dernier, `info` est une représentation _AST_ de la requête/mutation.
+En tout cas, ces fonctions sont écrites côté serveur, pour laisser au client un unique _endpoint_ qui analysera ses demandes. On transfers ainsi la complexité de la construction de la donnée au niveau du serveur.
+Au niveau du schéma, GraphQL permet d'éviter la redondance grâce au _fragment_ qui correspond à un sous ensemble de champs d'un type donné. On peut ensuite le réutiliser dans la définition de _query_.
+
+
+Pour protéger son API, plusieurs méthodes. Déjà, on peut voir [comment GitHub à procédé](https://developer.github.com/v4/guides/resource-limitations/).
+Les différentes voies pour limiter les requêtes sont :
+1. Timeout pour des requêtes trop longues
+1. Limiter la profondeur des requêtes
+1. Limiter la complexité de la requête (chaque champ a une complexité défini, celle de la requête est la somme des complexités)
+1. Imposer une limite par client via le _leaky bucket algorithm_, de temps serveur, ou de complexité.
+
+Côté front, des bibliothèques comme Relay ou Apollo permettent d'abstraire le bas niveau de la gestion de la donnée pour permerttre simplement de décrire la donnée souhaiter et de la traiter ensuite.
