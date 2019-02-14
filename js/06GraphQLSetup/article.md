@@ -36,6 +36,11 @@ Au niveau du schéma, GraphQL permet d'éviter la redondance grâce au _fragment
 
 Si l'on souhaite développer son API GraphQL en JS, il existe GraphQL.js, de Facebook. graph-tool s'appuie sur GrapQL.js et ajoute la possibilité de définir automatiquement ses resolvers. On perd cependant en flexibilité et si l'on souhaite modifier son schema au runtime par exemple, il sera necessaire de passer directement par graphql.js
 
+## La fusion de plusieurs API GraphQL (Schema stitching) ?
+
+Cela permet de n'avoir qu'un seul schéma à partir de plusieurs. Les types racines sont rassemblés. Si ces schémas sont liés, on peut expliciter ces liens à travers la définition d'un nouveau schéma, qui étendras les types existants pour leur rajouter des champs dont le type proviendra à l'origine d'un autre schéma. Les _resolvers_ de ces nouveaux champs pourront déléguer la recherche en indiquant le schéma d'origine et le nom du champ, ainsi que les arguments à donner.
+
+[source](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html)
 
 Pour protéger son API, plusieurs méthodes. Déjà, on peut voir [comment GitHub à procédé](https://developer.github.com/v4/guides/resource-limitations/).
 Les différentes voies pour limiter les requêtes sont :
