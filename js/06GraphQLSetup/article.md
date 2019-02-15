@@ -29,6 +29,9 @@ Il y a trois façon d'intégrer GraphQL :
 1. en hybride, directement connecté à une BDD et à une interface pour un autre système.
 
 Cette flexibilité est rendu possible grâce au système de resolver: chaque champ du schéma correspond à une fonction qui va s'occuper de récupérer la donnée lié. On pourrait se dire que si on veut récupérer tous les champs d'une ressource, cela fait autant d'appelle de fonction qu'il y a de champs. Et comment les performances peuvent rivaliser avec une fonction qui executerait un simple _select_ des champs requis.
+
+typeDef + resolvers = schema
+
 Pour éviter de récupérer plusieurs fois la même donnée, il y a DataLoader, mais ça ne résout qu'une partie du problème.
 Si ces champs font partis d'une ressource, elle peut avoir son _resolver_ qui va récupérer cette ressource. Lorsque GraphQL execute les _resolvers_ des attributs demandées pour cette ressource, celle-ci est déjà en mémoire, et il n'y a plus qu'à retourner les propriétés correspondantes. Chaque _resolver_ reçoit 4 arguments. Dans le premier : `root`, on récupère le résultat du _resolver_ racine. C'est grâce à `root` qu'on peut renvoyer les propriétés correspondantes. `args` permet de récupérer les arguments donné lors de la requête de ce champ. `context` est un objet partagé pour la requête en cours : les resolvers peuvent communiquer via cet objet partagé. Le dernier, `info` est une représentation _AST_ de la requête/mutation.
 En tout cas, ces fonctions sont écrites côté serveur, pour laisser au client un unique _endpoint_ qui analysera ses demandes. On transfers ainsi la complexité de la construction de la donnée au niveau du serveur.
@@ -38,7 +41,7 @@ Si l'on souhaite développer son API GraphQL en JS, il existe GraphQL.js, de Fac
 
 ## La fusion de plusieurs API GraphQL (Schema stitching) ?
 
-Cela permet de n'avoir qu'un seul schéma à partir de plusieurs. Les types racines sont rassemblés. Si ces schémas sont liés, on peut expliciter ces liens à travers la définition d'un nouveau schéma, qui étendras les types existants pour leur rajouter des champs dont le type proviendra à l'origine d'un autre schéma. Les _resolvers_ de ces nouveaux champs pourront déléguer la recherche en indiquant le schéma d'origine et le nom du champ, ainsi que les arguments à donner.
+Cela permet de n'avoir qu'un seul schéma à partir de plusieurs schémas exécutables. Les types racines sont rassemblés. Si ces schémas sont liés, on peut expliciter ces liens à travers la définition d'un nouveau schéma, qui étendras les types existants pour leur rajouter des champs dont le type proviendra à l'origine d'un autre schéma. Les _resolvers_ de ces nouveaux champs pourront déléguer la recherche en indiquant le schéma d'origine et le nom du champ, ainsi que les arguments à donner.
 
 [source](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html)
 
