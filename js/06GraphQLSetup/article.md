@@ -16,6 +16,10 @@ SOAP puis REST. REST étant plus accessible pour le Web (SOAP avait été conçu
 
 Avec GraphQL, tout est sur le même endpoint. La ou il y avait plusieurs requêtes REST, il n'y en a plus qu'une avec GraphQL. Le client demande ce qu'il souhaite comme donnée, ce qui diminue la dépendance avec le fournisseur. C'est pour ces raisons qu'on a vu beaucoup d'acteur du numérique migrer vers GraphQL (https://graphql.github.io/users/). Il n'y a plus le problème propre à REST qui n'était pas auto-documenté : à moins de gérer correctement les versions, un changement dans l'API pouvait entrainer des erreurs chez ses consommateurs. GraphQL repose sur un schéma convenu par les différentes parties qui une fois défini, permet à chacun de développer de son côté en ayant l'assurance d'une intégration réussie. Contrairement aux API REST, GraphQL ne favorise pas un protocole d'échange particulier. Cela peut être HTTP, TCP, WebSocket...
 
+## Features
+
+Il est possible de formaliser des formats de donnée personnalisé, tant que c'est sérialisable et compatible avec le protocole d'échange utilisé. GraphQL supporte par défaut les types String, Int, Float et Enum.
+
 ## Définition du schéma
 
 Lorsqu'on écrit le schéma de l'API, on peut indiquer qu'une ressource intègre une autre. Le schéma comprends toutes les ressources de l'API, ainsi que des types racines : Query, Mutation, Subscription, permettant de définir des méthodes pour respectivement rechercher/modifier les ressources, ou recevoir des notifications lors d'un changement.
@@ -35,7 +39,10 @@ typeDef + resolvers = schema
 Pour éviter de récupérer plusieurs fois la même donnée, il y a DataLoader, mais ça ne résout qu'une partie du problème.
 Si ces champs font partis d'une ressource, elle peut avoir son _resolver_ qui va récupérer cette ressource. Lorsque GraphQL execute les _resolvers_ des attributs demandées pour cette ressource, celle-ci est déjà en mémoire, et il n'y a plus qu'à retourner les propriétés correspondantes. Chaque _resolver_ reçoit 4 arguments. Dans le premier : `root`, on récupère le résultat du _resolver_ racine. C'est grâce à `root` qu'on peut renvoyer les propriétés correspondantes. `args` permet de récupérer les arguments donné lors de la requête de ce champ. `context` est un objet partagé pour la requête en cours : les resolvers peuvent communiquer via cet objet partagé. Le dernier, `info` est une représentation _AST_ de la requête/mutation.
 En tout cas, ces fonctions sont écrites côté serveur, pour laisser au client un unique _endpoint_ qui analysera ses demandes. On transfers ainsi la complexité de la construction de la donnée au niveau du serveur.
-Au niveau du schéma, GraphQL permet d'éviter la redondance grâce au _fragment_ qui correspond à un sous ensemble de champs d'un type donné. On peut ensuite le réutiliser dans la définition de _query_.
+Pour faciliter la création de requête, GraphQL met à disposition plusieurs outils :
+- Les variables : lorsqu'on utilise des fonctions paramétrées, plutôt que de mettre l'argument écrit en dure, on peut utiliser une variable, et fournir en plus de la requête un objet JSON contenant un dictionnaire de ces variables. Cela évite aussi d'avoir à construire la requête à l'exécution via une chaine d'interpolation qui incorporerait des données venant du client (potentielle faille de sécurité).
+- On peut éviter la redondance grâce au _fragment_ qui correspond à un sous ensemble de champs d'un type donné. On peut aussi transmettre des variables à travers un fragment.
+- Des directives, permettant d'inclure ou non un champ à partir d'une variable.
 
 Si l'on souhaite développer son API GraphQL en JS, il existe GraphQL.js, de Facebook. graph-tool s'appuie sur GrapQL.js et ajoute la possibilité de définir automatiquement ses resolvers. On perd cependant en flexibilité et si l'on souhaite modifier son schema au runtime par exemple, il sera necessaire de passer directement par graphql.js
 
