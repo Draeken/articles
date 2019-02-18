@@ -44,6 +44,17 @@ Pour faciliter la création de requête, GraphQL met à disposition plusieurs ou
 - On peut éviter la redondance grâce au _fragment_ qui correspond à un sous ensemble de champs d'un type donné. On peut aussi transmettre des variables à travers un fragment.
 - Des directives, permettant d'inclure ou non un champ à partir d'une variable.
 
+Une fonction de requête peut retourner une union de types. Dans ce cas, l'utilisateur pourrait avoir envie de décider quel champ retourner en fonction du type de l'élément. GraphQL a introduit une syntaxe particulière à cet effet :
+```
+... on MyTypeA {
+  fieldFromA
+}
+... on MyTypeB {
+  fieldFromB
+}
+```
+S'il n'y a pas de champ discriminant retourné, l'utilisateur peut demander le champ __typename, un champ méta disponible à n'importe quel endroit de la requête.
+
 Si l'on souhaite développer son API GraphQL en JS, il existe GraphQL.js, de Facebook. graph-tool s'appuie sur GrapQL.js et ajoute la possibilité de définir automatiquement ses resolvers. On perd cependant en flexibilité et si l'on souhaite modifier son schema au runtime par exemple, il sera necessaire de passer directement par graphql.js
 
 ## La fusion de plusieurs API GraphQL (Schema stitching) ?

@@ -36,6 +36,10 @@ Il est plus facile de concevoir les choses lorsque le périmètre est bien déco
 Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable. Bien découper même si le périmètre de lancement est très réduit.
 C'est pour ça que réfléchir en amont à comment son code sera découpé en plusieurs projets aillant chacun leur indépendance est important.
 
+## Le problème de l'optimum local
+
+Lorsqu'une activité nous plait, cela nous pousse à dégager du temps pour s'y consacrer davantage. Il peut s'agir d'un optimum local, c'est à dire qu'il y a sûrement mieux ailleurs. Le problème est qu'il existe une énorme quantité d'activité et cela prendrait trop de temps de toutes les tester. Devrait-on appliquer les méthodes d'heuristique pour trouver ce qui nous plait ? À l'évocation d'une activité, on devrait quand même avoir une vague idée de si cela peut nous plaire ou non...Il cependant éviter de se remettre en question à chaque instant sous peine de n'avancer dans aucun domaine. Il faut réussir à se donner une direction et à s'y tenir un moment (plusieurs années ? Un quinquennat ?), puis de faire un bilan.
+
 ## travailler avec une équipe ou chacun serait investi - en étant associé:
 ### Pros
 - bonne entante, partage de valeur et direction (au début du moins).
