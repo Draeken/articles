@@ -58,8 +58,8 @@ Il y a plusieurs niveaux d'abstraction : les objets de base :
 - Volume : des données persistée le temps de vie du Pod, accessible par les différents conteneurs du Pod.
 - Namespace (comme vu précedemment)
 Au dessus ça, il y a également des services d'une abstraction supérieur :
-- ReplicaSet : gère un lot de Pod replica
-- Deployment
-- StatefulSet
-- DaemonSet
-- Job
+- ReplicaSet : gère un lot de Pod replica similaire, en garantissant la disponibilité d'un nombre spécifique. En général on ne manipule pas directement de ReplicaSet, mais des Deployment, qui eux même gèrent les ReplicaSet. Si nous avons besoin de mise à jour d'orchestration personnalisé ou pas de mise à jour du tout, nous pouvons utiliser directement les ReplicaSet.
+- Deployment : Permet de déclarativement mettre à jour les Pods et ReplicaSets, cela gère plein de cas courants. Un deployment correspond à une version en ligne d'une app
+- StatefulSet : C'est le même principe qu'un Deployment, mais pour gérer les applications à état. eg: stockage persistant (BDD).
+- DaemonSet : permet de gérer un ou plusieurs pods sur une partie ou l'ensemble des noeuds applicatifs. Pratique pour gérer les logs par exemple ou des démons de surveillance.
+- Job: traitement par lot : un job s'occupe qu'un certain nombre de Pod soit exécuté et terminé de manière réussi. Cela gère donc des pods à exécution temporaire (ayant une fin).
