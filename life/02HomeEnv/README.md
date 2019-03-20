@@ -4,6 +4,25 @@ Then, your eyes will regularly meet your previous best realizations, and you wil
 ## Design your home
 Use Photoshop and project each surface: ground, walls, etc...
 
+North: Dark Blue, Black, Career, Water | no yellow
+  Corner between TV & wall & Bathroom
+North-Est: light Yellow/Red/Orange, Blue ? Skillz, Earth, | No green
+  entrance
+Est: Wood, Green, Health | no white
+  corner between entrance & kitchen wall
+South-Est: light green/violet | no white wood, aboundance, wealth
+  kitchen wall, kitchen
+South: Fire, Red, Fame/Social | no blue/black
+  kitchen corner with window
+South-West: Metal, Family, Love, Relationship, Pink/Light Brown ? | no green
+  main window
+  This is the place for bedroom. Head must not be behind a window. But it may be ok if the window is above the bedhead.
+  It's best if you can see the entrance door
+West: Metal, Creativity/Children, White/ Silver | no red/orange
+  Corner with radiator
+North-West: Metal, Helpfulness, Travel, White/Silver | no red orange
+  widest wall
+
 ## Decoration
 ### Peinture
 Préparation des murs:
