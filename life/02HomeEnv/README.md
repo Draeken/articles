@@ -23,6 +23,89 @@ West: Metal, Creativity/Children, White/ Silver | no red/orange
 North-West: Metal, Helpfulness, Travel, White/Silver | no red orange
   widest wall
 
+## Garde robe
+Éviter les vêtements nécessitant un entretien particulier
+Tenues quotidiennes adaptée au travail :
+- grand froid
+  - 4 maillot de corps (MdC - long - L)
+  - 10 chaussettes épaisses (C.E)
+  - 2 sous-pull (S.P - long - L, manche longue, épais, jolis - si on retire le pull à l'intérieur)
+  - 2 pull chaud à col long (P.C - étudier les couleurs)
+  - 2 collant en coton (Coll)
+  - 1 manteau polaire
+- froid: pareil que grand froid
+  - moins
+    - 10 chaussettes épaisses
+    - collant
+    - manteau polaire
+  - plus
+    - 10 chaussettes longues (C.L)
+    - manteau classique (Mante)
+- tempéré (automne/printemps)
+  - 4 maillot de corps (long - L)
+  - 2 pull légers (P.L - sans col)
+  - 10 chaussettes longues
+  - 2 vestes de costume
+  - veste en cuir si température plus fraiche
+- chaud
+  - 7 polos
+  - 10 chaussettes longues
+
+Tenues spéciales :
+- sobre/habillée
+  - pull chaud à col noir
+  - chemise noir/blanche/rouge
+- sportive (randonnée, etc)
+- décontractée / vacance / week-end (été)
+  - pantacourt / short
+  - 2 chemises (légère)
+
+|Grand Froid|Froid 	|Temp|Chaud|
+|:-:	|:-:	|:-:	|:-:	|
+|MdC 	|MdC 	|MdC	|   	|
+|C.E 	|C.E 	|    	|   	|
+|   	|   	|C.L 	|C.L 	|
+|S.P	|   	|   	|   	|
+|P.C 	|P.C 	|   	|   	|
+|   	|   	|P.L 	|   	|
+|Coll	|   	|   	|   	|
+|Polai|   	|   	|   	|
+|   	|Mante|   	|   	|
+|   	|   	|Veste|   	|
+|   	|   	|   	|Polo	|
+|   	|   	|   	|Décon|
+
+Grand-froid/Froid
+- MdC -> hauts
+- C.E -> chaussettes
+- S.P -> hauts
+- P.C -> hauts
+- Polai -> cintre, espace vertical
+- Mante -> cintre, espace vertical
+
+Froid/Tempéré
+- MdC -> hauts
+- C.L -> chaussettes
+- P.L -> hauts
+- P.C -> hauts
+- Veste -> cintre, espace vertical
+- Mante -> cintre, espace vertical
+
+Tempéré/Chaud
+- MdC -> hauts
+- C.L -> chaussettes
+- P.L -> hauts
+- Polo -> hauts
+- Veste -> cintre, espace vertical
+- Décontracté (chemise, short) -> cintre, espace vertical
+
+À part en été, pas de différence entre semaine & week-end.
+Toujours 3 catégories de Haut -> 4 avec la gestion du linge réutilisable
+3 niveaux d'accessiblité :
+1. directement accessible - à porté de main
+2. rangé (en hauteur / dans une valise)
+3. à la cave
+
 ## Decoration
 ### Peinture
 Préparation des murs:
