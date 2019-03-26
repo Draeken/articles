@@ -42,13 +42,13 @@ Tenues quotidiennes adaptée au travail :
     - 10 chaussettes longues (C.L)
     - manteau classique (Mante)
 - tempéré (automne/printemps)
-  - 4 maillot de corps (long - L)
+  - 4 sous-pull (long - L)
   - 2 pull légers (P.L - sans col)
   - 10 chaussettes longues
   - 2 vestes de costume
   - veste en cuir si température plus fraiche
 - chaud
-  - 7 polos
+  - 7 polos ?
   - 10 chaussettes longues
 
 Tenues spéciales :
@@ -59,13 +59,14 @@ Tenues spéciales :
 - décontractée / vacance / week-end (été)
   - pantacourt / short
   - 2 chemises (légère)
+  - t-shirt
 
 |Grand Froid|Froid 	|Temp|Chaud|
 |:-:	|:-:	|:-:	|:-:	|
-|MdC 	|MdC 	|MdC	|   	|
+|MdC 	|MdC 	|   	|   	|
 |C.E 	|C.E 	|    	|   	|
 |   	|   	|C.L 	|C.L 	|
-|S.P	|   	|   	|   	|
+|S.P	|S.P 	|S.P	|   	|
 |P.C 	|P.C 	|   	|   	|
 |   	|   	|P.L 	|   	|
 |Coll	|   	|   	|   	|
@@ -84,7 +85,7 @@ Grand-froid/Froid
 - Mante -> cintre, espace vertical
 
 Froid/Tempéré
-- MdC -> hauts
+- S.P -> hauts
 - C.L -> chaussettes
 - P.L -> hauts
 - P.C -> hauts
