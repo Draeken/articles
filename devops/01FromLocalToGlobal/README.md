@@ -67,4 +67,6 @@ Au dessus ça, il y a également des services d'une abstraction supérieur :
 
 CCM: Cloud Controller Manager, à l'opposé de KCM (Kubernetes Controller Manager), permet de faire la liaison avec les services Cloud AWS et GCP. CCM remplace une partie des composants de KCM en les héritant. Le controleur route n'est dispo que pour GCE (Google Compute Engine). Le CCM pour Azure est en cours de développement.
 
-Les containeurs dans Kubernetes peuvent référencer des images Docker qui ont été mise dans des répo privés. En utilisant que du matériel open sources, il n'y a pas d'intérêt de publier les images autre part que sur le Docker Hub.
+Les conteneurs dans Kubernetes peuvent référencer des images Docker qui ont été mise dans des répo privés. En utilisant que du matériel open sources, il n'y a pas d'intérêt de publier les images autre part que sur le Docker Hub.
+
+Lyfecycle hook : Les conteneurs peuvent réagir à des évenements de type postStart ou preStop, pour gérer le démarrage et l'arrêt du conteneur. Ces méthodes sont appelés au moins une fois par évènement, c'est à dire qu'il faut gérer le cas où le hook est appelé deux fois pour le même évènement (un cas rare). De plus le hook postStart n'est pas nécessairement appelé avant l'ENTRYPOINT du conteneur.
