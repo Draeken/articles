@@ -49,6 +49,7 @@ Tenues quotidiennes adaptée au travail :
   - veste en cuir si température plus fraiche
 - chaud
   - 7 polos ?
+  - 2 vestes de costume
   - 10 chaussettes longues
 
 Tenues spéciales :
@@ -72,7 +73,7 @@ Tenues spéciales :
 |Coll	|   	|   	|   	|
 |Polai|   	|   	|   	|
 |   	|Mante|   	|   	|
-|   	|   	|Veste|   	|
+|   	|   	|Veste|Veste|
 |   	|   	|   	|Polo	|
 |   	|   	|   	|Décon|
 
@@ -93,7 +94,7 @@ Froid/Tempéré
 - Mante -> cintre, espace vertical
 
 Tempéré/Chaud
-- MdC -> hauts
+- S.P -> hauts
 - C.L -> chaussettes
 - P.L -> hauts
 - Polo -> hauts
