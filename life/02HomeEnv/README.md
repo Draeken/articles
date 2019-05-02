@@ -2,7 +2,7 @@
 Then, your eyes will regularly meet your previous best realizations, and you will be motivated to pursue new (or enhance) realization. Realizations could be mixed up into a canvas, to have multiple aspect depicted. It could be across time, with photos of participants. Think about Da Vinci workshop or a Gehn's laboratory in Riven.
 
 ## Design your home
-Use Photoshop and project each surface: ground, walls, etc...
+Use Photoshop and project each surface: ground, walls, etc... & Blender & real paper work ?
 
 North: Dark Blue, Black, Career, Water | no yellow
   Corner between TV & wall & Bathroom
