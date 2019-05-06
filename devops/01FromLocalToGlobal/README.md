@@ -70,3 +70,9 @@ CCM: Cloud Controller Manager, à l'opposé de KCM (Kubernetes Controller Manage
 Les conteneurs dans Kubernetes peuvent référencer des images Docker qui ont été mise dans des répo privés. En utilisant que du matériel open sources, il n'y a pas d'intérêt de publier les images autre part que sur le Docker Hub.
 
 Lyfecycle hook : Les conteneurs peuvent réagir à des évenements de type postStart ou preStop, pour gérer le démarrage et l'arrêt du conteneur. Ces méthodes sont appelés au moins une fois par évènement, c'est à dire qu'il faut gérer le cas où le hook est appelé deux fois pour le même évènement (un cas rare). De plus le hook postStart n'est pas nécessairement appelé avant l'ENTRYPOINT du conteneur.
+
+## Docker
+
+Les container reprennent une partie des fonctionnalités de Linux, en particulier ces deux concepts importants :
+- les namespaces (2002), permettant de créer des groupes de process ayant chacun leur vision des ressources disponibles. Un groupe voit un jeu de ressource, l'autre groupe en voit un autre.
+- cgroups (2007): fonctionne de pair avec les namespaces : permet de contrôler, limiter, hierarchiser et surveiller les ressources utilisées par un groupe de process.

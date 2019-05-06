@@ -1,3 +1,19 @@
+# Le rôle de l'habitation
+- minimiser le temps aux tâches ménagères
+- rappeler nos priorités, nous supporter dans nos tâches
+- s'y sentir bien
+
+## Minimiser les tâches ménagères
+- lave vaisselle compacte
+- congélateur et préparer la bouffe en avance, permet d'avoir plus de réserve et passer moins de temps en course.
+- installer un minuteur dans la SdB, ou utiliser le chrono du tél ?
+
+## Rappeler nos priorités
+- visuel de nos convictions, pourquoi on a ces projets ?
+- timeline du parcours de notre vie
+- visuels de nos réalisations passées et en cours
+- Kanban magnétique, tableau (craie ou feutre) ?
+
 ## Dedicate a large space of your best realizations/moment accross time
 Then, your eyes will regularly meet your previous best realizations, and you will be motivated to pursue new (or enhance) realization. Realizations could be mixed up into a canvas, to have multiple aspect depicted. It could be across time, with photos of participants. Think about Da Vinci workshop or a Gehn's laboratory in Riven.
 
