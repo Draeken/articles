@@ -76,3 +76,5 @@ Lyfecycle hook : Les conteneurs peuvent réagir à des évenements de type postS
 Les container reprennent une partie des fonctionnalités de Linux, en particulier ces deux concepts importants :
 - les namespaces (2002), permettant de créer des groupes de process ayant chacun leur vision des ressources disponibles. Un groupe voit un jeu de ressource, l'autre groupe en voit un autre.
 - cgroups (2007): fonctionne de pair avec les namespaces : permet de contrôler, limiter, hierarchiser et surveiller les ressources utilisées par un groupe de process.
+
+Les images sont composés de layer, chacun étant composé de dossiers et fichiers. Chaque layer est immutable. Le seul moyen de le modifier est de le supprimer physiquement (cela leur permet d'être mis en cache, et d'être partagé comme base d'autre images ou d'autre container).
