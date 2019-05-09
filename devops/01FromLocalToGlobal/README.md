@@ -78,3 +78,26 @@ Les container reprennent une partie des fonctionnalités de Linux, en particulie
 - cgroups (2007): fonctionne de pair avec les namespaces : permet de contrôler, limiter, hierarchiser et surveiller les ressources utilisées par un groupe de process.
 
 Les images sont composés de layer, chacun étant composé de dossiers et fichiers. Chaque layer est immutable. Le seul moyen de le modifier est de le supprimer physiquement (cela leur permet d'être mis en cache, et d'être partagé comme base d'autre images ou d'autre container).
+
+Les commandes entrypoint et cmd :
+entrypoint permet de définir la commande et cmd les paramètres par défaut de cette commande, ex:
+````dockerfile
+ENTRYPOINT ["ping"]
+CMD ["8.8.8.8", "-c", "3"]
+````
+Lorsqu'on créé le container, cela va lancer ping 8.8.8.8 -c 3. On peut changer les paramètres de ping en les ajoutant à la fin de la commande de création du container.
+
+Possibilité d'utiliser un build aliasé pour réduire le poids de l'image, ex:
+````dockerfile
+FROM alpine:3.7 AS build
+RUN apk update && \
+apk add --update alpine-sdk
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
+RUN mkdir bin
+RUN gcc hello.c -o bin/hello
+FROM alpine:3.7
+COPY --from=build /app/bin/hello /app/hello
+CMD /app/hello
+````
