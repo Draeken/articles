@@ -2,6 +2,9 @@
 
 https://landing.google.com/sre/books/
 
+Développement :
+https://12factor.net/
+
 # Choisir la plateforme
 
 ## Cloud ServerLess
@@ -77,6 +80,9 @@ Les container reprennent une partie des fonctionnalités de Linux, en particulie
 - les namespaces (2002), permettant de créer des groupes de process ayant chacun leur vision des ressources disponibles. Un groupe voit un jeu de ressource, l'autre groupe en voit un autre.
 - cgroups (2007): fonctionne de pair avec les namespaces : permet de contrôler, limiter, hierarchiser et surveiller les ressources utilisées par un groupe de process.
 
+Il est possible de gérer la mémoire utilisée par les containers via les options -memory, --memory-reservation définissant une quantité max/min de mémoire utilisée pour le container. Si le host détecte un manque de mémoire (déclenche une exception OOM), il risque de kill le container.
+Il est également possible contrôler l'accès au swap d'un container (aucun accès, accès illimité, ou une quantité défini).
+
 Les images sont composés de layer, chacun étant composé de dossiers et fichiers. Chaque layer est immutable. Le seul moyen de le modifier est de le supprimer physiquement (cela leur permet d'être mis en cache, et d'être partagé comme base d'autre images ou d'autre container).
 
 Les commandes entrypoint et cmd :
@@ -87,7 +93,7 @@ CMD ["8.8.8.8", "-c", "3"]
 ````
 Lorsqu'on créé le container, cela va lancer ping 8.8.8.8 -c 3. On peut changer les paramètres de ping en les ajoutant à la fin de la commande de création du container.
 
-Possibilité d'utiliser un build aliasé pour réduire le poids de l'image, ex:
+Possibilité d'utiliser un multi-stage build aliasé pour réduire le poids de l'image (en gardant que le strict minimum), ex:
 ````dockerfile
 FROM alpine:3.7 AS build
 RUN apk update && \
@@ -101,3 +107,5 @@ FROM alpine:3.7
 COPY --from=build /app/bin/hello /app/hello
 CMD /app/hello
 ````
+Avant la technique du multi-stage build, pour garder une image légère, on avait deux dockerfiles: un avec tous les outils pour build l'app, pour les devs, et l'autre avec uniquement l'exécutable, pour la prod.
+en buildant l'image, on peut préciser quel stage viser, il pourrait par exemple avoir un stage "debug" ou "test", puis un stage final basé sur ceux la. Cela permet d'avoir un seul dockerfile pour builder des images différentes.
