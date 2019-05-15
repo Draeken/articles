@@ -93,6 +93,8 @@ CMD ["8.8.8.8", "-c", "3"]
 ````
 Lorsqu'on créé le container, cela va lancer ping 8.8.8.8 -c 3. On peut changer les paramètres de ping en les ajoutant à la fin de la commande de création du container.
 
+Lancer un container en mode détaché (-d), aura pour conséquence de ne pas être attaché à la console et de quitter dès que le process avec lequel il a été lancé se termine. Avec l'option --rm, le container sera supprimé en plus d'être stoppé.
+
 Possibilité d'utiliser un multi-stage build aliasé pour réduire le poids de l'image (en gardant que le strict minimum), ex:
 ````dockerfile
 FROM alpine:3.7 AS build
@@ -109,3 +111,18 @@ CMD /app/hello
 ````
 Avant la technique du multi-stage build, pour garder une image légère, on avait deux dockerfiles: un avec tous les outils pour build l'app, pour les devs, et l'autre avec uniquement l'exécutable, pour la prod.
 en buildant l'image, on peut préciser quel stage viser, il pourrait par exemple avoir un stage "debug" ou "test", puis un stage final basé sur ceux la. Cela permet d'avoir un seul dockerfile pour builder des images différentes.
+
+Lorsqu'on créé un volume, pour permettre de sauvegarder des modifications de données même après suppression du container, ou redémarrage, le dossier monté se situe dans le host. L'emplacement exact peut se trouver via docker inspect volume-name. D'autre drivers existes permettant de lié le volume à autre chose qu'un dossier local, comme par exemmple un emplacement dans le Cloud.
+Lorsqu'on exécute un container, on précise que l'on veut monter le volume a tel endroit. Dans le cas de volume monté sur plusieurs containers, pour éviter des accès concurrent au même fichier, on peut forcer un container à n'avoir accès qu'en lecture.
+
+Il est possible de monter des volumes sans avoir à les créer précemment. Par exemple :
+````shell
+docker container run -it -v $(pwd)/src:/app/src alpine:latest /bin/sh
+````
+Ce qui est pratique lorsqu'on est en cours de développement.
+
+La stratégie est la suivante :
+1. le Dockerfile copie le build local dans le chemin des assets du serveur de l'image.
+2. En cours de developpement, plutôt que de devoir stopper, supprimer, recréer l'image, relancer le container à chaque changement, on monte le volume comme ci-dessus.
+La cible du montage "remplacera" les fichiers copier lors de la création de l'image.
+Lorsqu'on déploie, l'image est recréée avec la dernière version du build.
