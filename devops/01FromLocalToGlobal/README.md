@@ -126,3 +126,5 @@ La stratégie est la suivante :
 2. En cours de developpement, plutôt que de devoir stopper, supprimer, recréer l'image, relancer le container à chaque changement, on monte le volume comme ci-dessus.
 La cible du montage "remplacera" les fichiers copier lors de la création de l'image.
 Lorsqu'on déploie, l'image est recréée avec la dernière version du build.
+
+Dans le cas ou notre image devra faire appel a un volume en prod, on peut définir ce volume dans le dockerfile, en indicant le chemin dans le container qui sera monté. Lors de la mise en route du container, les volumes seront automatiquement créé. On peut obtenir leurs infos (nom et location sur le host), via la commande `docker inspect {container-name}`.
