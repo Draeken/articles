@@ -128,3 +128,17 @@ La cible du montage "remplacera" les fichiers copier lors de la création de l'i
 Lorsqu'on déploie, l'image est recréée avec la dernière version du build.
 
 Dans le cas ou notre image devra faire appel a un volume en prod, on peut définir ce volume dans le dockerfile, en indicant le chemin dans le container qui sera monté. Lors de la mise en route du container, les volumes seront automatiquement créé. On peut obtenir leurs infos (nom et location sur le host), via la commande `docker inspect {container-name}`.
+
+## Best Practice Distributed System
+- diviser l'application monolithique en blocs indépendant : il est plus simple de résoudre un problème en le découpant en sous problèmes. Ces blocs pourront communiquer entre eux via une API clairement défini. Cela permettra aussi de plus simplement tester chaque bloc.
+- les blocs stateless (qui ne s'appuient pas sur de la donnée persistante) sont beaucoup plus simple à gerer : on peut les arrêter, les relancer sur une autre machine, et ils fonctionneront toujours. Le statefull devrait être limités au plus petit nombre de blocs pour faciliter la gestion globale.
+- service discovery : permet aux blocs qui veulent communiquer entre eux de connaitre la bonne adresse/port. Dans un système distribué, aucun bloc n'est fixe. Avoir un service qui garde cette information facilite les choses, au fur & à mesure que le nombre de blocs augmente.
+- load balancing : lorsqu'un bloc à plusieurs instances, le load-balancer est un service qui va s'assurer que chaque instance ait la même charge de travail que les autres.
+- health check : un service va vérifier la santé des différentes instances, vérifier s'ils répondent aux requêtes, auquel cas l'instance est recrée.
+- circuit breaker : lorsque deux services communiquent et que l'un tombe, pour éviter que l'autre tombe à force d'attendre les requêtes du premier tomber, on peut installer un circuit breaker, un service intermédiaire qui va surveiller la santé de chaque service qui y sont connectés et, si un service retourne plusieurs fois de suite des erreurs, retourner une erreur immédiatement (principe du fail fast), plutôt que d'attendre un time-out.
+- rolling update : pour faire en sorte que l'application reste en ligne lors d'une mise à jour d'un bloc, on procède en remplaçant seulement une instance de ce bloc, puis on surveille si tout va bien, et on remplace progresivement les autres instances.
+- pour mettre à jour une app entière, on déploie la nouvelle app a côté de l'ancienne. C'est le service de routing qui va diriger le flux vers le nouveau. Si tout va bien on pourra supprimer l'ancienne app. (Blue green deployment : on redirige tout d'un coup ; canary release : progressivement)
+- pour mettre à jour le schema d'une BDD, on procède en trois étapes :
+  - on installe un nouveau schéma rétro-compatible, et on surveille si tout va bien
+  - on installe le nouveau code (dépendant du nouveau schéma)
+  - on installe un schéma nettoyé sans rétro-compatibilité
