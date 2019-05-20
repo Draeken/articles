@@ -160,8 +160,21 @@ Dans le cas ou notre image devra faire appel a un volume en prod, on peut défin
   - on installe le nouveau code (dépendant du nouveau schéma)
   - on installe un schéma nettoyé sans rétro-compatibilité
 
-## Réseau
+## Problématiques Réseau
+Il existe 3 notions à connaitre :
+- le sandbox network : la ou vit le container : assure qu'il ne puisse pas être en contact avec l'extérieur autrement que par les endpoints connectés a ce sandbox network (aussi appelé network namespace)
+- network : permet à plusieurs sandbox network d'être relié entre elles
+- les endpoints : le point d'accès ou les échanges peuvent se faire
 
 Pour plus de sécurité, ne mettre les SandBoxed Network dans le même réseau uniquement dans le cas où ils doivent communiquer. Sinon, ils doivent être dans leurs réseaux distincts.
 
-Par défaut, en local, tous les containers rejoignent le réseau lié au bridge, qui est créé par docker au démarrage. Via la commande docker network inspect bridge, on peut voir la config IPAM (IP Adress Management), permettant de savoir le range d'IP des containers créés dans ce network.
+Par défaut, en local, tous les containers rejoignent le réseau lié au bridge, qui est créé par docker au démarrage. Via la commande `docker network inspect bridge`, on peut voir la config IPAM (IP Adress Management), permettant de savoir le range d'IP des containers créés dans ce network.
+
+Il est possible d'inclure un container dans le même network namespace qu'un autre container, à des fins de debug ou d'analyse. Les deux pourront communiquer directement via localhost (qui sera similaire aux deux), à la différence ou lorsque deux containers appartiennent au même réseau, c'est comme si c'était deux machines connectés au même réseau local.
+
+Comme les containers sont rattachés à un réseau virtuel, pour qu'ils puissent communiquer avec le monde extérieur, il est nécessaire de lier les ports entre le host et chaque container écoutant un port. Cela peut être fait :
+- automatiquement, dans ce cas, Docker choisira un port libre sur le host dans la gamme 32XXX
+  - on peut vérifier quel port du host est utilisé avec la commande `docker container port CONTAINER_NAME`
+  - `docker container inspect CONTAINER_NAME`
+  - `docker container ls`
+- spécifié avec l'option p (ou --publish) sous la forme host_port:container_port
