@@ -49,9 +49,9 @@ Un cluster kubernets est organisé en : un node master qui s'occupe d'orchestrer
 A nous de définir le nombre et la taille de ces noeuds. C'est à dire le nombre de CPU, le type de mémoire (SSD/HDD) et leurs quantités
 Un node est une VM Azure avec les composants nécessaire à l'intégration avec le node master :
 
-- kubelet qui reçoit les requêtes de l'orchestrateur maitre et plannifie leur execution sur ses conteneurs.
+- kubelet (primary node agent) qui reçoit les requêtes de l'orchestrateur maitre et plannifie leur execution sur ses conteneurs.
 - kube-proxy pour gérer le réseau virtuel
-- Moby, qui gère les conteneurs (spécial Azure)
+- Moby, qui gère les conteneurs (spécial Azure, sinon c'est containerd)
   Le tout est mis sur un système basé sur Ubuntu. Si on veut une config différente (moby, ou un os différent, ou d'autres packages), il faut hoster nous même notre kubernets via aks-engine (projet open source).
   Pour faire tourner une instance de l'app, Kubernets utilise un Pod (réplica), qui est lié à un conteneur. En avoir plusieurs permet de mettre à jour l'app sans période de deconnection.
   On utilise des Kubernets Deployment pour gérer la création des pods. Les soucis au niveau du pod ou du node sont automatiquement gérer. Cela se gère avec des fichiers YAML. On peut également utiliser Helm, qui permet de gérer cette complexité (facilement partageable, répo publique de config Helm (chart), ...). Par exemple [un chart pour Neo4j](https://github.com/helm/charts/tree/master/stable/neo4j). Il y a également une chart pour mongoDB (et plein d'autres).
@@ -65,7 +65,7 @@ Un node est une VM Azure avec les composants nécessaire à l'intégration avec 
   Le role de kubernets et de s'assurer qu'un cluster soit dans un état défini au préalable par l'utilisateur, à l'aide d'un certain nombre de leviers gérer automatiquement.
   Il y a plusieurs niveaux d'abstraction : les objets de base :
 - Pod (comme vu précedemment)
-- Service : un regroupement logique de Pod qui assure un accès résilient (tandis que les pods sont créé et détruits, avec des IP différentes)
+- Service : un regroupement logique de Pod qui assure un accès résilient (tandis que les pods sont créé et détruits, avec des IP différentes). La sélection des pods se fait via label.
 - Volume : des données persistée le temps de vie du Pod, accessible par les différents conteneurs du Pod.
 - Namespace (comme vu précedemment)
   Au dessus ça, il y a également des services d'une abstraction supérieur :
@@ -178,3 +178,13 @@ Comme les containers sont rattachés à un réseau virtuel, pour qu'ils puissent
   - `docker container inspect CONTAINER_NAME`
   - `docker container ls`
 - spécifié avec l'option p (ou --publish) sous la forme host_port:container_port
+
+## Orchestrator
+Les différentes tâches d'un orchestrateur sont :
+- maintenir l'état de l'app aussi proche que possible de l'état voulu
+- gérer les services globaux (daemon set) : faire en sorte qu'un service tourne par worker node
+- ainsi que les bests practices des systèmes distribués (load balancing, routing, service discovery, scaling, zero-downtime upgrade)
+
+Pour plus de sécurité, on pourra n'auriser que des images certifiées, avoir des accès a l'orchestrateur par rôle (dev, prod), automatiquement détruire les noeuds et les recréer.
+
+Les pods de Kubernetes peuvent abriter plusieurs containers. Ils partageront alors le même network namespace. Pour ce faire, lorsqu'un Pod est créé, le container Pause est créé aussi, pour réserver le network namespace. Chaque ajout de container dans ce pod utilise la fonctionnalité de Docker permettant de rattacher un container au network namespace d'un autre container.
