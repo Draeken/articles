@@ -165,3 +165,14 @@ Dans le cas ou notre image devra faire appel a un volume en prod, on peut défin
 Pour plus de sécurité, ne mettre les SandBoxed Network dans le même réseau uniquement dans le cas où ils doivent communiquer. Sinon, ils doivent être dans leurs réseaux distincts.
 
 Par défaut, en local, tous les containers rejoignent le réseau lié au bridge, qui est créé par docker au démarrage. Via la commande docker network inspect bridge, on peut voir la config IPAM (IP Adress Management), permettant de savoir le range d'IP des containers créés dans ce network.
+
+## Dev local
+
+Pour tester une idée en local, que choisir entre :
+
+- kubernetes - peut intégrer le load balancer, l'api-gateway, la BDD, l'auth ?
+  - via Microk8s (single node)
+  - installation standard (nécessite 32 Go de RAM ?)
+- serverless : avec le framework serverless, permet de migrer facilement sur du cloud.
+
+En local, pas besoin de load-balancer. Avec du serverless, il serait nécessaire de maintenir une api-gateway, BDD et auth séparement, puis de les reconfigurer pour chaque cloud provider (sûrement qu'un seul, je vais pas m'amuser à changer de cloud provider comme de chemise).
