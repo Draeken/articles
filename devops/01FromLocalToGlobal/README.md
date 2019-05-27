@@ -203,6 +203,16 @@ Pour tester une idée en local, que choisir entre :
 - kubernetes - peut intégrer le load balancer, l'api-gateway, la BDD, l'auth ?
   - via Microk8s (single node)
   - installation standard (nécessite 32 Go de RAM ?)
+  - aks-engine ?
 - serverless : avec le framework serverless, permet de migrer facilement sur du cloud.
 
 En local, pas besoin de load-balancer. Avec du serverless, il serait nécessaire de maintenir une api-gateway, BDD et auth séparement, puis de les reconfigurer pour chaque cloud provider (sûrement qu'un seul, je vais pas m'amuser à changer de cloud provider comme de chemise).
+Neo4J sur le Cloud : possibilité d'avoir une license Free (startup - hobbie ?) :
+https://community.neo4j.com/t/neo4j-community-edition-on-kubernetes/4955 ->
+- Neo4J community sur le cloud avec un seul node : nécessite une modification du chart :
+  - Remove the read replica statefulset
+  - Adjust the image on the core set to use the community image
+- Neo4J Enterprise with a Free License - see https://neo4j.com/licensing/
+MongoDB : license SSPL -> tout le code doit être open source pour utiliser si l'ont déploie un service utilisant MongoDB. Pas de license Key ou autre.
+
+Toute cette complexité devrait être gérée dans un cadre pro. Pour du perso, on peut se contenter de dev en local uniquement, au plus simple.
