@@ -148,6 +148,12 @@ La stratégie est la suivante :
 
 Dans le cas ou notre image devra faire appel a un volume en prod, on peut définir ce volume dans le dockerfile, en indicant le chemin dans le container qui sera monté. Lors de la mise en route du container, les volumes seront automatiquement créé. On peut obtenir leurs infos (nom et location sur le host), via la commande `docker inspect {container-name}`.
 
+## Docker Compose
+
+le YAML défini les différents services (le nom de l'image, volume, port) et les volumes utilisés. docker-compose permet de mettre en route ou d'arrêter tous ces services (up - down), de les lister (ls). L'option --scale serviceName=NbInstance permet de créer plusieurs instance d'un service (pour scaler plusieurs services, il suffit de mettre plusieurs fois l'option --scale). Il faut pour cela s'assurer que le port du service associé ne soit pas spécifié pour le host, au quel cas cela causerait un conflit (plusieurs containers qui veulent être bindé sur le même host port). l'option build permet de builder les images des services. Dans ce cas il faut préciser pour chaque service la clé "build" désignant le répèrtoire ou se trouve le dockerfile associé.
+
+https://docs.docker.com/develop/
+
 ## Best Practice Distributed System
 
 - diviser l'application monolithique en blocs indépendant : il est plus simple de résoudre un problème en le découpant en sous problèmes. Ces blocs pourront communiquer entre eux via une API clairement défini. Cela permettra aussi de plus simplement tester chaque bloc.
@@ -216,3 +222,5 @@ https://community.neo4j.com/t/neo4j-community-edition-on-kubernetes/4955 ->
 MongoDB : license SSPL -> tout le code doit être open source pour utiliser si l'ont déploie un service utilisant MongoDB. Pas de license Key ou autre.
 
 Toute cette complexité devrait être gérée dans un cadre pro. Pour du perso, on peut se contenter de dev en local uniquement, au plus simple.
+
+https://github.com/Kickball/awesome-selfhosted#self-hosting-solutions
