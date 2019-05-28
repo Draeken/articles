@@ -154,6 +154,29 @@ le YAML défini les différents services (le nom de l'image, volume, port) et le
 
 https://docs.docker.com/develop/
 
+```yml
+version: '3'
+services:
+  mongo:
+    image: mongo:3.2
+    volumes:
+      - mongo-data:/data/db
+    expose:
+      - "27017"
+  app:
+    image: my-app
+    ports:
+      - "1337"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo/messageApp
+volumes:
+  mongo-data:
+```
+
 ## Best Practice Distributed System
 
 - diviser l'application monolithique en blocs indépendant : il est plus simple de résoudre un problème en le découpant en sous problèmes. Ces blocs pourront communiquer entre eux via une API clairement défini. Cela permettra aussi de plus simplement tester chaque bloc.
