@@ -225,6 +225,39 @@ Pour plus de sécurité, on pourra n'auriser que des images certifiées, avoir d
 
 Les pods de Kubernetes peuvent abriter plusieurs containers. Ils partageront alors le même network namespace. Pour ce faire, lorsqu'un Pod est créé, le container Pause est créé aussi, pour réserver le network namespace. Chaque ajout de container dans ce pod utilise la fonctionnalité de Docker permettant de rattacher un container au network namespace d'un autre container.
 
+## Metaphore IRL
+
+Concernant des ressources comme lave-linge, lave-vaisselle, machine de sport :
+- soit on les centralise en un lieu (lavomatique, salle de sport)
+  - coût de se déplacer
+  - pas de contexte personnel
+- soit on les duplique dans chaque foyer
+  - coût de la duplication
+  - consomme du volume continuellement
+  - coût de remplacement en cas de système défectueux.
+
+Dans l'idéal, il existe la téléportation d'objet et cela demande très peu d'énergie :
+Pour un équilibre économie/confort :
+- beaucoup moins de duplication - pas de coût d'acquisition : le matériel se déplace d'un entrepot au foyer au moment ou le besoin existe, puis est renvoyé dans un autre foyer en besoin ou l'entrepot
+- coût calculé à l'utilisation
+- le volume n'est consommé que ponctuellement et un emplacement de lave-linge peut être réutilisé pour un emplacement de lave-vaisselle
+- lorsqu'il y a un problème, le remplacement pour l'utilisateur est transparent
+
+Autre possibilité avec la téléportation :
+- on téléporte l'utilisateur dans le lieu de mise en commun des ressources (lavomatique, salle de sport)
+  - pas de contexte perso (-)
+  - pas de coût d'installation du matériel (+)
+- le matériel est dupliqué dans chaque foyé :
+  - pas de coût d'installation du matériel (+)
+  - volume consommé en permanence (-)
+  - coût d'acquisition mais moins à l'usage
+
+Tout centraliser dans un lieu correspond pour nous à héberger sur des serveurs tiers, dans un datacenter.
+Dupliquer dans chaque foyer correspond à avoir ses propres racks de serveurs.
+Maintenant avec la téléportation, on entre dans le monde du cloud & du virtuel :
+l'équilibre économie/confort : serverless : la ressource n'est convoquée que lors du besoin, sinon elle est utilisée pour d'autres. Tout est transparent pour l'utilisateur. Pratique si les besoins arrivent ponctuellement seulement.
+duplication : on instancie des VM / containers dans le Cloud, la consommation est continue, même si le nombre d'instance évolue pour suivre la demande. C'est bien lorsqu'il y a toujours un certain niveau de demande.
+
 ## Dev local
 
 Pour tester une idée en local, que choisir entre :
