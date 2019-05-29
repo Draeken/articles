@@ -8,13 +8,20 @@ Différents chemins :
 - vivre des petits plaisirs - sorties, vacances, loisirs accessibles, JV, films (ordinaire)
 - créer de grandes choses (incroyable)
 - entre deux : avoir suffisament de revenus pour permettre de vivre de bonnes expériences entre amis
-Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères (mais plus facile à reproduire, donc plus fréquentes). Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens. -> Un homme debout : l'important n'est pas ce qu'on a accompli mais tout ce qu'on a pu ressentir et vivre.
+Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères (mais plus facile à reproduire, donc plus fréquentes). Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens. -> Un homme debout : l'important n'est pas ce qu'on a accompli mais tout ce qu'on a pu ressentir et vivre. Il n'y a pas besoin de bâtir de grandes choses pour ressentir intensément la vie. On peut ressentir des choses incroyable à tous les niveaux peu importe la vie qu'on mène (a moins d'être isolé dans une cellule). Les seules bonnes raisons de se fatiguer à bâtir de grande choses sont :
+- pour le plaisir
+- parce qu'on en a intrinséquement envie
+- ça nous apporte joie & bonheur car on vit un personnage qui est en phase avec nous - pas un personnage bâti sur un château de carte.
+
 Quel cap définir : -la personne que l'on souhaiterait être- ou [la vie que l'on souhaiterait mener] ?
+D'après Franck Lopvet : se poser la question de la personne que l'on souhaite être à chaque "décision" à prendre. Ne pas imposer de règle que l'on devrait suivre tout le temps. C'est à chaque moment qu'il faut se poser la question. Cela peut paraitre couteux en énergie, mais en fait, cette question se répond plutôt rapidement, car elle se répond avec nos tripes.
 Accepter la personne que l'on est, accepter notre attrait pour certaines activités.
-J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party. Quelles seraient les autres activités possibles et facile d'accès ?
+J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party (un peu moins maintenant - c'est répétitif ou voir carrément pas intéressant). Quelles seraient les autres activités possibles et facile d'accès ?
 - Sport: ultimate, marathon, basket, tennis, natation ?
 - Faire tourner son business
-- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). Une sorte de rush/sprint sur une période déterminée. -> Avoir le contrôle de son environement. Très difficile à mener en étant tout seul.
+- Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). Une sorte de rush/sprint sur une période déterminée. -> Avoir le contrôle de son environement. Très difficile à mener en étant tout seul. Eventuellement plus simple dans des WeWorks - lieux de co-working.
+
+Mon objectif : ça serait être en relation avec des gens ambitieux (petite équipe) et avec qui je partagerais des projets qui ont du sens. Et pouvoir contribuer à développer les systèmes pour faciliter la vie / favoriser le développement d'idées en réalisations - si ces projets n'existent pas déjà. Sinon, créer pour le plaisir - mais surtout pour voir ses créations être utilisées et appréciées (quoi de plus gratifiant ?) ; ou jouer en formant une équipe ou chacun se connait bien. L'esprit de cammaraderie, d'être au même niveau, c'est quelque chose de génial.
 
 Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
 Manger la même chose à chaque repas (Feed ? - avoir des réserves de cheat meal); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
@@ -60,3 +67,7 @@ En attendant d'avoir le courage et les ressources pour se lancer, développer Ca
 
 ## Sacrifices
 Le temps dont on dispose ne nous permet pas de faire tout ce que l'on souhaterait faire. Il faut bien réfléchir aux implication en terme de temps à ce qu'on plannifie de faire. Phase de recherche & Phase de développement ? Toujours consacré de la recherche quand on peut. En mangeant, regarder une playlist pré-établie. Dans les transports, lire une sélection d'articles ou d'ebook. En phase de développement, se coucher le plus tôt possible pour se lever tôt et travailler une heure. Le samedi, le garder pour soi 2 ou 3x par mois, et en cas de sortie, si toujours pas dîné passé 20h30, rentrer chez soi.
+
+## La Boite
+
+La boite peut elle être un cadre de travail ou d'échange permettant de réaliser mes objectifs ?
