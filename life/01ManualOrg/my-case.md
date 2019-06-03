@@ -71,3 +71,25 @@ Le temps dont on dispose ne nous permet pas de faire tout ce que l'on souhaterai
 ## La Boite
 
 La boite peut elle être un cadre de travail ou d'échange permettant de réaliser mes objectifs ?
+- pousser à faire des présentations -> bonne manière d'apprendre
+- trouver un esprit de cammaraderie pour la réalisation de projets ?
+  - c'est ce qu'on retrouve en étant chez le client.
+    - cons: ce ne sont pas nos projets, on ne récupère qu'une petite fraction du fruit de notre travail -> pas assez motivant, engageant.
+    - pros: pas de débordement sur le temps libre
+  - réaliser nos propres projets
+    - demande aux collaborateurs de s'investir
+    - sur temps libre
+    - chacun a + de poids
+- être en relation avec des gens ambitieux / compétent
+
+Les collaborateurs ne sont la que pour une petite durée (entre quelques mois et 3 ans). Ils viennent pour améliorer leur expertise, faire leurs premières années.
+- projets chez des clients, axé sur la stack technique plutôt que le secteur d'activité. Permet aux collaborateurs d'étudier différentes stacks dans un cadre pro
+- un jour par mois de formation : former & être formé + workshop. -> permet d'aiguiser son apprentissage continuellement.
+- être reconnu en tant qu'expert : publication d'articles
+- rejoindre des projets open source en dehors du cadre de l'entreprise
+- rejoindre / organiser des meetups publics (conviviaux ou d'enseignement)
+- mettre en place des objectifs dès le début ? Plusieurs branches : expert technique ; management ; entrepreneur (regroupe technique & management)
+  - options: reconnaissance publique : articles
+
+Pourquoi faire un talk demande t-il tant d'efforts ?
+Pourquoi le projet commun d'extension vs-code s'est-il soldé par un echec ?
