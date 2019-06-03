@@ -8,6 +8,9 @@ https://12factor.net/
 Tooling & Env config:
 https://medium.com/@mo_keefe/a-kubernetes-development-workflow-for-macos-8c41669a4518
 
+Free resources :
+https://github.com/ripienaar/free-for-dev
+
 # Choisir la plateforme
 
 ## Cloud ServerLess
