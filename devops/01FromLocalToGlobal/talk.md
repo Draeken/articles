@@ -4,6 +4,7 @@
 - en local
   - sur son PC
   - sur un p'tit serveur
+- shared hosting
 - le cloud
   - VM
   - solution dédié

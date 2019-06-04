@@ -1,15 +1,14 @@
 # Comment passer d'un projet local à un produit global ?
 
-https://landing.google.com/sre/books/
+[Google SRE](https://landing.google.com/sre/books/)
 
-Développement :
-https://12factor.net/
+[Développement 12 factor](https://12factor.net/)
 
-Tooling & Env config:
-https://medium.com/@mo_keefe/a-kubernetes-development-workflow-for-macos-8c41669a4518
+[Tooling & Env config](https://medium.com/@mo_keefe/a-kubernetes-development-workflow-for-macos-8c41669a4518)
 
-Free resources :
-https://github.com/ripienaar/free-for-dev
+[Free Dev Resources](https://github.com/ripienaar/free-for-dev)
+
+[The Art of Command Line](https://github.com/jlevy/the-art-of-command-line?utm_campaign=explore-email&utm_medium=email&utm_source=newsletter&utm_term=weekly)
 
 # Choisir la plateforme
 
