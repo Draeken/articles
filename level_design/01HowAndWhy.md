@@ -13,3 +13,7 @@ Before starting, check the feasibility by comparing key points:
 - Theme: atmosphere, architecture, realist or not
 
 Theme & Gameplay are the most flexible and you will want to iterate by changing them until it's clear how it will look and play.
+
+See the level as a product on the market, to stand out and be noticed.
+Use the 80 - 20 rule: complexity != success. Portal game use less than 50 textures!
+Don't make original choice only for the purpose of originality, if they aren't perfectly suited with the 7 key points (theme/atmosphere, gameplay, etc). Features that try to make the level standing out must be build on a solid base relying on the 7 key points.
