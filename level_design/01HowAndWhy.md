@@ -31,3 +31,9 @@ Concerning singleplayer:
 - don't make it predictable
 - landmark: use it to help the player know where he is, to remember the place
 - interactivity: every bit of interactivity helps removing the static world feeling.
+- pickups can give hint of direction to take
+- preview cool part of the level that will appears at the end (climax) right at the start, to pique their interest and hook them.
+
+The player should feel the coldness of the place, the anger in the character,
+the pain of the loss, the darkness of the labyrinth, the warmth of the sun on the skin, the sea
+spray in their face, and the smell of the sewers.
