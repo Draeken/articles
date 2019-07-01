@@ -37,3 +37,12 @@ Concerning singleplayer:
 The player should feel the coldness of the place, the anger in the character,
 the pain of the loss, the darkness of the labyrinth, the warmth of the sun on the skin, the sea
 spray in their face, and the smell of the sewers.
+
+Geometry:
+Stick to a style, theme, and the same level of detail at all timee, to avoid cluttered architecture.
+Designers often build levels with real-life sizes in mind: a door is X wide, an object is X tall,
+a wall is X thick, etc. Depending on the gameplay, field of view, and player movement, this
+may not actually work well, especially if the gameplay is fast and furious. In general, it’s
+usually better to overscale a structure than to underscale it.
+
+Sky should be lit: if the sun comes from South, Sky texture should reflect this. And it should live: bird, airplane, light rays, particles, clouds
