@@ -45,4 +45,9 @@ a wall is X thick, etc. Depending on the gameplay, field of view, and player mov
 may not actually work well, especially if the gameplay is fast and furious. In general, it’s
 usually better to overscale a structure than to underscale it.
 
-Sky should be lit: if the sun comes from South, Sky texture should reflect this. And it should live: bird, airplane, light rays, particles, clouds
+Sky should be lit: if the sun comes from South, Sky texture should reflect this. And it should live: bird, airplane, light rays, particles, clouds.
+
+Concerning texturing & materials: be consistant, in resolution, scale (or pixel per poly)... Pick some subtles colors and stick to them when creating/choosing a texture. This improve the overall composition. Colors should comply to theme & composition. See Color Theory for more information :) Post processing & color correction are tools that can help achieve that.
+Think about how the level will be lit before picking textures: bright and white textures can be lit easily, but not dark or color-satured ones.
+
+Lighting is just as import as geometry
