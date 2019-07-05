@@ -51,3 +51,8 @@ Concerning texturing & materials: be consistant, in resolution, scale (or pixel 
 Think about how the level will be lit before picking textures: bright and white textures can be lit easily, but not dark or color-satured ones.
 
 Lighting is just as import as geometry
+
+If there are multiple identical light sources in a row, such as the lamps in a corridor above, it can help to give some of the lights a slightly different color or brightness to add additional variation.
+
+Cautious with pure white (eg: white light, white texture) and black spots. There are often boring and doesn't support well atmosphere/theme.
+In real life, light bounce and carry surface color - radiosity. Lots of current game doesn't support radiosity and we must fake it through manually set the light color, depending on nearby textures's color.
