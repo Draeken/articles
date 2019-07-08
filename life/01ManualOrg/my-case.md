@@ -24,12 +24,15 @@ J'aime vivre des expériences intenses, notamment via les jeux multi compétitif
 Mon objectif : Me retrouver dans un esprit de cammaraderie, d'avoir les mêmes ambitions où objectifs, c'est quelque chose de génial. Que ça soit être en relation avec des gens ambitieux (petite équipe) et avec qui je partagerais des projets qui ont du sens - développer des systèmes pour faciliter la vie, l'apprentissage / favoriser le développement d'idées en réalisations - si ces projets n'existent pas déjà. Sinon, créer pour le plaisir - mais surtout pour voir ses créations être utilisées et appréciées (quoi de plus gratifiant ?) ; ou retrouver cet esprit de cammaraderie dans le jeu - qui mette suffisament le groupe à l'épreuve - ou qui soit basé sur la cohésion du groupe.
 
 Top 10 my goals:
-1. Work on a software company around AutoSchedule :)
-2. Be fluent in English
-3. Create quality maps for popular games, eventualy in colaboration
-4. Easily connect to new people, be surounded by motivated people for each hobby
-5. Learn other languages (Japanese, Espagnol, Mandarin)
-6. Master in SSBU!
+- Develop home: see home env
+- Work on a software company around AutoSchedule :)
+  - Self-confidence in my capabilities
+  - Be comfortable with speech, oral and communication
+  - Be fluent in English
+  - Easily connect to new people, be surounded by motivated people for each hobby
+  - Learn other languages
+- Create quality maps for popular games, eventualy in colaboration
+- Master in SSBU!
 
 Mesurer son temps. Le dimanche, on pourra revoir les résultats et décider quoi améliorer.
 Manger la même chose à chaque repas (Feed ? - avoir des réserves de cheat meal); Changer les paramètres de C&B pour diminuer le temps de préparation - ajouter une entrée pour que ça soit plus équilibré. Manger dans la cuisine ou avec de la musique pour se détendre.
