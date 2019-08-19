@@ -14,6 +14,7 @@
     - HoC,
     - render props,
     - props function
+    - Hooks
   - Base class with PureComponent: handling theme and default props with emotion
   - Make a responsive theme
   - explain technical choice
