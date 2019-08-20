@@ -1,3 +1,6 @@
 ## Why developping our own UI ?
 
 When I first develop my web app using react, I didn't use any UI library. I didn't want to boilerplate the project. My development goal was a clean and thin project. Back in time I was learning React, and it's a good idea not to add complexity. Eventually, I got a working app without any style, using only HTML vanilla inputs, and I learned the basics of React.
+Then I wanted an improved version which I could enjoy using. This would force me to study and apply UX/UI fields, and learn React in-depth. To achieve the improved version, I first start to use material-ui, a library for React featuring lots of components using Google Material design. It went well, but I wasn't satisfied with the customisation and JSS + I wasn't learning that much.
+
+When you use UI libraries, all the complex stuff is already here and your job is only to compose the components, tweak around, use specific fix to these libraries, etc... This way you learn how to use this library but not how it works internaly. And you know it's often a better option to learn the language first rather than framework. The worth thing to do for a JS newbie would be to first start to build a web app using a specific UI library built for a specific framework.
