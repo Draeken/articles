@@ -2,6 +2,7 @@
 - Why developping our own UI ?
   - my story
   - to learn
+  - branding
   - control technical stack
   - reduce boilerplate or bundle size
 - Design choice
