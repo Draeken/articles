@@ -6,6 +6,7 @@
   - control technical stack
   - reduce boilerplate or bundle size
 - Design choice
+  - why using custom component rather than vanilla inputs
   - How to handle feature addition ?
   - How to handle user customization ?
   - What to support ? device - old browser
