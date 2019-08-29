@@ -32,3 +32,23 @@ About Custom Elements
 One goal I had when I started designing the lib was to keep it thin & light. Relying on ES6 module & Webpack, only imported functions are bundled, so I didn't wanted to exports large multi-features generic components that supports a bunch of edge-case. What is the strategy when it comes to supporting new features? How to enable composition of features & components? For example: the Button. One may want to have a button with ripple effect, the other one without, or with elevation, icons, etc. Of course if I include a simple button with none of the above, I don't want to include the code handling ripple, elevation & co in my bundle. A simple solution could be to create differents button with only the required features, depending on the current needs. As it's a combinatory of feature, the number of specific components to support in lib-land will be too high. A good choice would be to provide the tools for the user to compose it's own component: a simple button with extra elevation & ripple for example. Is it possible to do something as simple as `myButtonWithRipple = pipe(button, rippleEffect)`? How the rippleEffect could know how to apply his effect on the button? And for more complicated components like a date picker? It must be more specific on which part of the component it has to have the effect on. A solution I used for my lib was: defining features/effects as a prop object. By prop object, I mean an object that will be spread on a target component to apply specific values to specific properties belonging to this component. By default all my custom component properties inherit from HTML Div attributes. Then, it applies unused properties on its main div. Internaly, custom props are merged with props defined in the component so there is no conflicts. It makes sense for small or simple components: the main div is generally the one to customize if you want special effects like ripple or elevation. For complex component, a solution would be to break it down into multiple components, and allow user to change the inner components as long as they implements some properties needed for the host, complex component. Specifiying inner components would allow user to customize them like the small one. Uber design system (base) address component customization using a similar solution: the Overrides pattern. You can customize props, style & the whole component through the override prop. Each internal component has its identifier in this prop, even the root component. In my case, as every components inherit from Div attributes, it's not useful to add root in the override prop. Styles can be customized through theme, which is a React context. For complex components, it doesn't let user granularly customize similar sub-components. For example if you have a component with two buttons, providing an overrided theme will affect both buttons. The only way to have a finer granularity is to override the button component itself (that means that both button should have an unique identifier in an override prop). A good way to test the robustness of this design is to try to handle edge case, feature addition, custom effects on an existing simple component.
 
 ## Development with React
+
+There are multiple approach to design modular components in React. The first I tried was to build in a functional fashion all the way up. This way, you stop writing JSX, but you compose functions.
+
+For simple component creation:
+````tsx
+const divElem = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />;
+const addAfter = (elem: Node | string) => (props: any) => ({...props, children: <>{props.children}{elem}</>});
+const addClass = (...newClass: string[]) => (props: any) => ({...props, className: cx([props.className, ...newClass])});
+
+export const MyBytton = pipe(
+  addAfter('Button'),
+  addClass(
+    borderRadius(4),
+    textTransform('uppercase')
+  ),
+  divElem
+)({});
+````
+
+Then all state is kept in an App State, all state logic is handled by a reducer and render logic is handled by dedicated generic functions. Programming this way is cumbersome, can be hard to understand how the data flow is coordinated and hasn't a good support from TypeScript. Functional fashion is still a very good thing, reason react is cool but I wanted something more flexible.
