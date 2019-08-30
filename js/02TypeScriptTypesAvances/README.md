@@ -27,6 +27,9 @@ Gérer un type générique et les valeurs possibles des propriétés de ce type
 - keyof T['propertyName']
 - type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
+`as const` is a simple way to make an array tuple.
+
+
 version immutable-js de TS -> tslint avec règles custom, usage de readonly/const & ReadonlyArray
 Reprendre la doc sur les type guard ? les modificateur d'interface (readonly, optional) ?
 

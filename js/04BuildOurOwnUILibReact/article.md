@@ -41,7 +41,7 @@ const divElem = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props}
 const addAfter = (elem: Node | string) => (props: any) => ({...props, children: <>{props.children}{elem}</>});
 const addClass = (...newClass: string[]) => (props: any) => ({...props, className: cx([props.className, ...newClass])});
 
-export const MyBytton = pipe(
+export const MyBytton = compose(
   addAfter('Button'),
   addClass(
     borderRadius(4),
@@ -52,3 +52,7 @@ export const MyBytton = pipe(
 ````
 
 Then all state is kept in an App State, all state logic is handled by a reducer and render logic is handled by dedicated generic functions. Programming this way is cumbersome, can be hard to understand how the data flow is coordinated and hasn't a good support from TypeScript. Functional fashion is still a very good thing, reason react is cool but I wanted something more flexible.
+High Order Component can be composed in the same way, but each time it wraps the initial component by another one. I don't like this idea.
+Render props can be elegant for handling conditional rendering. For me, the arrival of hooks change everything. Instead of writing PureComponents, you can write simple function, without overhead, skipping deep component tree nesting, and still benefit from "pure" perf using React.memo.
+
+When I used Material-UI, I found the theme mechanism appealing. One config, in one place, to affect the styling of every used components. Easy to configure as it's just a key-value structure. When it's dynamically edited, changes are immediatly reflected. And it's a great way for component designer to be consistent, storing styling values and reusing them across components. Using a theme can be a great help when you tackle responsivness, or ambiant-awareness : the theme is dynamically build in respond to context.
