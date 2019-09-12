@@ -29,6 +29,19 @@ Gérer un type générique et les valeurs possibles des propriétés de ce type
 
 `as const` is a simple way to make an array tuple.
 
+when you have a interface like
+interface Test {
+  foo: {
+    bar: string;
+  },
+  baz: {
+    boo: number;
+  }
+}
+
+it's possible to do:
+const foo: Test['foo'] = { bar: 'baz' };
+
 
 version immutable-js de TS -> tslint avec règles custom, usage de readonly/const & ReadonlyArray
 Reprendre la doc sur les type guard ? les modificateur d'interface (readonly, optional) ?
