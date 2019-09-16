@@ -23,3 +23,23 @@ This design system applies to all tools product helping user managing their time
 Mainly B&W. Subtle colors can be used sparcingly
 Gradient
 Subtle glow
+
+## Font
+
+Titles & Body: thin sans-serif
+
+## Space
+
+To help clarity, have lots of space
+
+## Shapes
+
+Robust shapes without rounded corners, circles (sparcingly)
+
+## Animations
+
+fast, 1-time (2-time is retro-futurist)
+
+# Atoms
+
+Focus on feature, user action but not entire screen. Then, see what composants are necessary.
