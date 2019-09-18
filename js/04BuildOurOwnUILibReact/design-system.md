@@ -46,3 +46,29 @@ Focus on feature, user action but not entire screen. Then, see what composants a
 
 Grid system: for each focusable component, we define a set of component to be displayed, and the system automatically place them.
 Elements of first importance are centered. Related elements are placed nearby. Elements of second impportance are on the edges, far from center.
+
+# Base Cases
+
+Component grouping:
+On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
+All of these are "side" or "helper". Grouping is done depending on:
+ - semantic / hierarchy
+ - requested size.
+ - similarity
+
+# Grid Example
+
+Google Keep:
+ - list of cards
+ - widget to create a new card
+ - focus on a card to edit / view
+ - filter cards
+
+ Main grid:
+ Main: [listOfCards, widgetCreateNewCard]
+ Side: [filterCards ]
+
+ listOfCards space request: max.
+ widgetCreateNewCard: 1x8
+
+ filterCards: (appBar): 1x5
