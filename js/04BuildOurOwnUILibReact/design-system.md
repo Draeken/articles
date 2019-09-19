@@ -49,6 +49,18 @@ Elements of first importance are centered. Related elements are placed nearby. E
 
 # Base Cases
 
+## Home screen:
+### CASE 1: There is few main components
+If device screen width allow to have all the main components be displayed side by side with their comfortable size without horizontal scroll, do it.
+Eg: role splitter with schedule & report
+but not: Google Keep with Notes & Archived notes: it may be on a different screen, it's just a filter.
+### CASE 2: There is a lot of main components
+If it's not possible to fit all main components side by side, display a grid of components in a tile style.
+Allow multiple components to be displayed side by side by:
+- select multiple tiles: combination of keys pressed ; key pressed + click ; long press
+- after focus on one tile, have a button to unfocus and add a component?
+  - if allowing multiple focus how to handle assistive components like toolbar? which component does it reflect?
+
 Component grouping:
 On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
 All of these are "side" or "helper". Grouping is done depending on:
