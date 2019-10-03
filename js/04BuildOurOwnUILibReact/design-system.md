@@ -38,14 +38,28 @@ Robust shapes without rounded corners, circles (sparcingly)
 
 ## Animations
 
-fast, 1-time (2-time is retro-futurist)
+fast, 1-time (2-time is retro-futurist). When focusing on a new component, it moves and expand to the center, if it was displayed in the previous screen. Same thing applies for related elements. Previous elements not needed anymore are disarded by being pushed away.
+ - step-in: move from bottom to base, scale from min to base
+ - step-out: move from base to edge, fade out
+reverse the direction when unfocus (or when returning to a previous state).
+When some components are already on screen but have to be replaced, how to easily avoid crossed path?
+Only move the focused component. Side components follow the step-in/step-out process
 
 # Atomic Design
 
 Focus on feature, user action but not entire screen. Then, see what composants are necessary. Atoms are responsive & adaptative. It may includes all necessary information to respond to every cases. Round trip between component detail & whole composition to check if it works well.
 
+# Layout
+
 Grid system: for each focusable component, we define a set of component to be displayed, and the system automatically place them.
 Elements of first importance are centered. Related elements are placed nearby. Elements of second impportance are on the edges, far from center.
+Grid system assure the good composition of each screen, by adjusting position of each components (main & side), to maintain the whole balanced.
+Fixed elements? AppBar, Drawer, NavigationBar, BottomBar? Could be placed like other secondary elements
+Elements where visibility change (reduced AppBar upon scrolling)? Another layer ?
+Drawer:
+- big screen size: always displayed
+- medium screen size: toggle, push content
+- small screen size: toggle, but is placed in front of content
 
 # Base Cases
 
