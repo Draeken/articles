@@ -61,6 +61,8 @@ Drawer:
 - medium screen size: toggle, push content
 - small screen size: toggle, but is placed in front of content
 
+grid system tackle component display and decide if it's on screen or reduced. Side components could serve as container for other reduced components. In this case grid system is the orchestrator which know which side component use.
+
 # Base Cases
 
 ## Home screen:
