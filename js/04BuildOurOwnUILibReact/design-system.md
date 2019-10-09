@@ -63,9 +63,46 @@ Drawer:
 
 grid system tackle component display and decide if it's on screen or reduced. Side components could serve as container for other reduced components. In this case grid system is the orchestrator which know which side component use.
 
-# Base Cases
+Components are linked together semantically: when user focus on a component, he might want additional, helping components, based on what user want to achieve. It's different from workspaces which are just colections of components for a specific context (eg: video edition or animation or image creation).
 
+there could be different level of focus:
+- "permanent" that change the whole layout
+- "temporal" that put the component to the top with a scrim.
+"temporal" focus could have options:
+- can't be dismissed (force action / selection)
+- suited for list of focusable elements: allow user to change focus instantly without doing the unfocus + focus on other element
+
+Till there is space available (without scrolling), a focus shouldn't discard current workspace.
+eg: there is component A, B, C
+user focus on A. It spawns D and E.
+If there is space available to display ABCDE without scrolling, go for it. If not, display ADE.
+ABCDE is displayed.
+user focus on D. It spawns F and G.
+If there is space available to display ABCDEFG without scrolling, go for it. If not, try to display ADEFG. and in last case, DFG.
+focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
+
+# Examples
+
+## Bank app
+
+On connection, display enough main components to fill the viewport.
+- account monitoring
+- money transfert
+- contract operations
+user can focus on one component and display informative / assistive components, possibly with specific context.
+- user focus on account monitoring
+- user choose the context: (temporal focus on context selection component)
+  - check operations
+  - monitor budget
+  - search operation
+user choose "check operations". The interface display components helping him checking.
+
+# Components
 ## Home screen:
+What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
+If there is too much scrolling, could replace components with tiles that are a shortcut for component focus.
+## main component display:
+In
 ### CASE 1: There is few main components
 If device screen width allow to have all the main components be displayed side by side with their comfortable size without horizontal scroll, do it.
 Eg: role splitter with schedule & report
