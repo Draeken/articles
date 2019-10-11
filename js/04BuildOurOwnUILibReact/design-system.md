@@ -63,7 +63,7 @@ Drawer:
 
 grid system tackle component display and decide if it's on screen or reduced. Side components could serve as container for other reduced components. In this case grid system is the orchestrator which know which side component use.
 
-Components are linked together semantically: when user focus on a component, he might want additional, helping components, based on what user want to achieve. It's different from workspaces which are just colections of components for a specific context (eg: video edition or animation or image creation).
+Components are linked together semantically: when user focus on a component, he might want additional, helping components, based on what user want to achieve. It's different from workspaces which are just colections of components for a specific context (eg: video edition or animation or image creation). If spawning helping components result in too much scrolling, it could ask user a context (what he intends to do), to restrict the number of components displayed.
 
 there could be different level of focus:
 - "permanent" that change the whole layout
@@ -85,7 +85,7 @@ focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer
 
 ## Bank app
 
-On connection, display enough main components to fill the viewport.
+On connection, display all main components (or tiles if too much scrolling)
 - account monitoring
 - money transfert
 - contract operations
