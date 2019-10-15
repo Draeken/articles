@@ -5,10 +5,10 @@ Je pense que la vie peut être beaucoup plus intéressante et enrichissante que 
   -> devenir thérapeute mémoire cellulaire ? NOP
 
 Différents chemins :
-- vivre des petits plaisirs - sorties, vacances, loisirs accessibles, JV, films (ordinaire)
-- créer de grandes choses (incroyable)
+- vivre des petits plaisirs - sorties, vacances, loisirs accessibles, JV, films (ordinaire) : bonheur hédonique
+- créer de grandes choses (incroyable), gratification en dent de scie (il peut falloir un long moment avant de "réussir")
 - entre deux : avoir suffisament de revenus pour permettre de vivre de bonnes expériences entre amis
-Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères (mais plus facile à reproduire, donc plus fréquentes). Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens. -> Un homme debout : l'important n'est pas ce qu'on a accompli mais tout ce qu'on a pu ressentir et vivre. Il n'y a pas besoin de bâtir de grandes choses pour ressentir intensément la vie. On peut ressentir des choses incroyable à tous les niveaux peu importe la vie qu'on mène (a moins d'être isolé dans une cellule). Les seules bonnes raisons de se fatiguer à bâtir de grande choses sont :
+Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre en grand si l'on s'y met sérieusement. L'avantage est que les choses sont plus faciles, mais moins intenses, et éventuellement plus éphémères (mais plus facile à reproduire, donc plus fréquentes - et c'est ce qui compte pour le cerveau : la fréquence plus que l'intensité). Le risque lorsqu'on se contente des petits plaisirs est également de finir par être lassé de tout, ou de trouver que notre vie manque de sens. -> Un homme debout : l'important n'est pas ce qu'on a accompli mais tout ce qu'on a pu ressentir et vivre. Il n'y a pas besoin de bâtir de grandes choses pour ressentir intensément la vie. On peut ressentir des choses incroyable à tous les niveaux peu importe la vie qu'on mène (a moins d'être isolé dans une cellule). Les seules bonnes raisons de se fatiguer à bâtir de grande choses sont :
 - pour le plaisir
 - parce qu'on en a intrinséquement envie
 - ça nous apporte joie & bonheur car on vit un personnage qui est en phase avec nous - pas un personnage bâti sur un château de carte.
@@ -21,7 +21,7 @@ J'aime vivre des expériences intenses, notamment via les jeux multi compétitif
 - Faire tourner son business
 - Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). Une sorte de rush/sprint sur une période déterminée. -> Avoir le contrôle de son environement. Très difficile à mener en étant tout seul. Eventuellement plus simple dans des WeWorks - lieux de co-working.
 
-Mon objectif : Me retrouver dans un esprit de cammaraderie, d'avoir les mêmes ambitions où objectifs, c'est quelque chose de génial. Que ça soit être en relation avec des gens ambitieux (petite équipe) et avec qui je partagerais des projets qui ont du sens - développer des systèmes pour faciliter la vie, l'apprentissage / favoriser le développement d'idées en réalisations - si ces projets n'existent pas déjà. Sinon, créer pour le plaisir - mais surtout pour voir ses créations être utilisées et appréciées (quoi de plus gratifiant ?) ; ou retrouver cet esprit de cammaraderie dans le jeu - qui mette suffisament le groupe à l'épreuve - ou qui soit basé sur la cohésion du groupe.
+Mon objectif : Me retrouver dans un esprit de cammaraderie, d'avoir les mêmes ambitions où objectifs - ostracisé car se mouvant en extrêmistan (cf: cygne noir), c'est quelque chose de génial. Que ça soit être en relation avec des gens ambitieux (petite équipe) et avec qui je partagerais des projets qui ont du sens - développer des systèmes pour faciliter la vie, l'apprentissage / favoriser le développement d'idées en réalisations - si ces projets n'existent pas déjà. Sinon, créer pour le plaisir - mais surtout pour voir ses créations être utilisées et appréciées (quoi de plus gratifiant ?) ; ou retrouver cet esprit de cammaraderie dans le jeu - qui mette suffisament le groupe à l'épreuve - ou qui soit basé sur la cohésion du groupe.
 
 Top 10 my goals:
 - Develop home: see home env

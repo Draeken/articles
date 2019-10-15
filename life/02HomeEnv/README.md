@@ -145,9 +145,34 @@ Contre la pollution intérieur :
 
 ## Smart Home
 Dawn simulator -> smart light bulb with program to control it -> RhasberryPie as as home server ? Wifi always on ? :(
-put plastic rub around light bulb to project things. (https://www.wikihow.com/Print-Transparencies)
+--put plastic rub around light bulb to project things. (https://www.wikihow.com/Print-Transparencies)--
 smart mirror
 croon or hum -> play music : https://beta.midomi.com/
 
 ## Support the project
 Ask some people if they would be interested in the project you are aiming to develop. Then pin these citation on the wall to show you that your work is desired. Hang on the wall papers about prototypes, intermediate result, wireframe...Have a list of projects to be displayed
+
+## Kitchen
+
+Gestion des couverts : avoir un ensemble de couvert numéroté. Un ensemble :
+- fourchette
+- couteau
+- couteau à viande ?
+- baguettes
+- cuillère à café
+- cuilère à soupe
+- cuillère à soupe chinoise
+
+Numéroter les ensembles aide à en récupérer le bon nombre lors du service.
+
+1. avoir un pot évasé et cylindrique, avec sur ses faces des logements pour chaque couvert. Un ensemble est disposé verticalement sur une face du pot. Le pot tourne sur lui même pour accéder aux faces arrières. Il sert également de contenant pour d'autres types de couvert (couvert de service) ou d'ustensiles.
+Pros: permet de concentrer un nombre important de couverts dans un petit espace
+Cons: à une largeur non négligeable. Doit être posé sur une surface plane horizontale
+
+2. disposer les ensembles dans des logements verticaux (comme pour le pot), sur une surface plane verticale, adosser au mur. Possibilité de "cacher" une partie non utilisée du mur par des panneaux verticaux sur glissière/rail
+- mur: longueur 2N avec les logements pour les couverts.
+- panneau 1 de longueur N, avec d'autres logements (ou surface magnétique pour simplement collé les ustensiles)
+- panneau 2 de longueur N
+
+Pros: pas d'encombrement sur une surface plane horizontale, permet d'avoir plusieurs panneaux (layer) les uns devant les autres, permettant de troquer un peu de largeur pour une bonne surface de rangement vertical.
+Cons: étalement sur la longueur
