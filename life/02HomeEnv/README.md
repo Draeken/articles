@@ -175,4 +175,6 @@ Cons: à une largeur non négligeable. Doit être posé sur une surface plane ho
 - panneau 2 de longueur N
 
 Pros: pas d'encombrement sur une surface plane horizontale, permet d'avoir plusieurs panneaux (layer) les uns devant les autres, permettant de troquer un peu de largeur pour une bonne surface de rangement vertical.
-Cons: étalement sur la longueur
+Cons: étalement sur la longueur.
+
+L'espace libéré dans le tiroir permettra d'y ranger des boites à épices, que l'on viendrait utiliser à l'aide des cuillères-doseuses.
