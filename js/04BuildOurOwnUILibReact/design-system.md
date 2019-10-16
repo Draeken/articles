@@ -38,7 +38,7 @@ Robust shapes without rounded corners, circles (sparcingly)
 
 ## Animations
 
-fast, 1-time (2-time is retro-futurist). When focusing on a new component, it moves and expand to the center, if it was displayed in the previous screen. Same thing applies for related elements. Previous elements not needed anymore are disarded by being pushed away.
+fast, 1-time (2-time is retro-futurist). When focusing on a new component, it moves and expand to the center, if it was displayed in the previous screen. Same thing applies for related elements. Previous elements not needed anymore are discarded by being pushed away.
  - step-in: move from bottom to base, scale from min to base
  - step-out: move from base to edge, fade out
 reverse the direction when unfocus (or when returning to a previous state).
@@ -81,6 +81,8 @@ user focus on D. It spawns F and G.
 If there is space available to display ABCDEFG without scrolling, go for it. If not, try to display ADEFG. and in last case, DFG.
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
+Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?). Handle "single main component" differently that when there is many?
+
 # Examples
 
 ## Bank app
@@ -101,18 +103,11 @@ user choose "check operations". The interface display components helping him che
 ## Home screen:
 What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
 If there is too much scrolling, could replace components with tiles that are a shortcut for component focus.
-## main component display:
+## Main component display:
 In
-### CASE 1: There is few main components
-If device screen width allow to have all the main components be displayed side by side with their comfortable size without horizontal scroll, do it.
-Eg: role splitter with schedule & report
-but not: Google Keep with Notes & Archived notes: it may be on a different screen, it's just a filter.
-### CASE 2: There is a lot of main components
-If it's not possible to fit all main components side by side, display a grid of components in a tile style.
-Allow multiple components to be displayed side by side by:
-- select multiple tiles: combination of keys pressed ; key pressed + click ; long press
-- after focus on one tile, have a button to unfocus and add a component?
-  - if allowing multiple focus how to handle assistive components like toolbar? which component does it reflect?
+## Parameters & settings
+secondary elements. Is located on appBar or similar container.
+All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)
 
 Component grouping:
 On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
