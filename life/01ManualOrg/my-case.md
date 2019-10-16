@@ -43,6 +43,7 @@ Comment gérer les week-ends ?
 Tous les week-ends: sortir un jour (soit samedi pour une soirée pote, soit une balade tranquille).
 Préparer la veille faite dans les transports pendant les pauses du boulot.
 Comment gérer la nécessité de décompresser ? -> chaque vendredi soir: CheatTime jusqu'à minuit. A préparer en amont vendredi en journée.
+On peut également profiter des occasions ou l'on sait qu'on passera du temps de qualité avec ses amis lorsque ceux-ci sont disponibles, et plannifier assiduement, poser des objectifs préçis pour quand ceux-ci ne le sont pas.
 Essayer de ne pas bosser de chez soi, perçu comme un lieu de détente. Difficile en pratique quand on fait des maps :o Faire en sorte que le projet soit la chose la plus excitante à faire en tout temps. Pas simple non plus.
 https://guzey.com/productivity/
 
@@ -106,3 +107,18 @@ Les collaborateurs ne sont la que pour une petite durée (entre quelques mois et
 
 Pourquoi faire un talk demande t-il tant d'efforts ?
 Pourquoi le projet commun d'extension vs-code s'est-il soldé par un echec ?
+
+## Sundry - Miscellaneous
+
+Rétrospectivement:
+Le soir, que préfères tu entre:
+- une partie de JV avec ta copine
+- progresser dans une map
+---
+- regarder un film avec ta copine
+- avancer dans un projet perso
+---
+- se divertir
+- apprendre
+
+Ça dépend du moment. Il est possible d'équilibrer tout ça en se posant la question de ce que l'on souhaite le soir même, en s'aidant d'une liste exhaustive des différentes possibilitées. Il est quand même difficile de s'imaginer choisir une activité ne rapportant pas de gratification après la fin de celle-ci. eg: apprendre à modeler avec Blender : a moins de reprendre un tuto en cours, il faut du courage pour s'y mettre un soir sachant qu'on aura peu de temps.
