@@ -81,9 +81,21 @@ user focus on D. It spawns F and G.
 If there is space available to display ABCDEFG without scrolling, go for it. If not, try to display ADEFG. and in last case, DFG.
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
-Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?). Handle "single main component" differently that when there is many?
+Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?). Handle "single main component" differently that when there is many? The point would be to have a component as a context for the children.
+Interface should promote feature discoverability and easy access.
 
 # Examples
+
+## Steam
+main components:
+- store
+- library
+- community
+
+all these components need maximal view: the more they have available space, the more it's comfortable to use them. When focusing on one of them, discard others. It could be automatically determined by its content if a component apply to this rule (typically list or grid of elements: depending on the number of items: small amount = doesn't need a lot of space).
+Unfocused, these components are in their lightest and simplest form.
+
+Focus on store: still display the light form but have satelites components (assistive), to help browse the catalog.
 
 ## Bank app
 
@@ -106,8 +118,9 @@ If there is too much scrolling, could replace components with tiles that are a s
 ## Main component display:
 In
 ## Parameters & settings
-secondary elements. Is located on appBar or similar container.
-All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)
+Settings are associated with components (or global app, wich is the root component). Display them on component focus.
+secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component.
+~~All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)~~
 
 Component grouping:
 On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
