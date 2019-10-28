@@ -13,10 +13,10 @@ This design system applies to all tools product helping user managing their time
 
 ## Theme
 
- - Neutral
- - Emotionless
- - Robustness
- - Fiability
+- Neutral
+- Emotionless
+- Robustness
+- Fiability
 
 ## Color
 
@@ -39,11 +39,12 @@ Robust shapes without rounded corners, circles (sparcingly)
 ## Animations
 
 fast, 1-time (2-time is retro-futurist). When focusing on a new component, it moves and expand to the center, if it was displayed in the previous screen. Same thing applies for related elements. Previous elements not needed anymore are discarded by being pushed away.
- - step-in: move from bottom to base, scale from min to base
- - step-out: move from base to edge, fade out
-reverse the direction when unfocus (or when returning to a previous state).
-When some components are already on screen but have to be replaced, how to easily avoid crossed path?
-Only move the focused component. Side components follow the step-in/step-out process
+
+- step-in: move from bottom to base, scale from min to base
+- step-out: move from base to edge, fade out
+  reverse the direction when unfocus (or when returning to a previous state).
+  When some components are already on screen but have to be replaced, how to easily avoid crossed path?
+  Only move the focused component. Side components follow the step-in/step-out process
 
 # Atomic Design
 
@@ -57,6 +58,7 @@ Grid system assure the good composition of each screen, by adjusting position of
 Fixed elements? AppBar, Drawer, NavigationBar, BottomBar? Could be placed like other secondary elements
 Elements where visibility change (reduced AppBar upon scrolling)? Another layer ?
 Drawer:
+
 - big screen size: always displayed
 - medium screen size: toggle, push content
 - small screen size: toggle, but is placed in front of content
@@ -66,9 +68,10 @@ grid system tackle component display and decide if it's on screen or reduced. Si
 Components are linked together semantically: when user focus on a component, he might want additional, helping components, based on what user want to achieve. It's different from workspaces which are just colections of components for a specific context (eg: video edition or animation or image creation). If spawning helping components result in too much scrolling, it could ask user a context (what he intends to do), to restrict the number of components displayed.
 
 there could be different level of focus:
+
 - "permanent" that change the whole layout
 - "temporal" that put the component to the top with a scrim.
-"temporal" focus could have options:
+  "temporal" focus could have options:
 - can't be dismissed (force action / selection)
 - suited for list of focusable elements: allow user to change focus instantly without doing the unfocus + focus on other element
 
@@ -79,6 +82,7 @@ If there is space available to display ABCDE without scrolling, go for it. If no
 ABCDE is displayed.
 user focus on D. It spawns F and G.
 If there is space available to display ABCDEFG without scrolling, go for it. If not, try to display ADEFG. and in last case, DFG.
+Could possibly decide on how much available memory there is. (performance.memory only available on Chrome)
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
 Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar?
@@ -88,11 +92,12 @@ Is it viable to have a fractal layout system? It means have different level of f
 See the interface like a tree of focusable elements with shortcut to go through branches
 Interface should promote feature discoverability and easy access.
 
-
 # Examples
 
 ## Steam
+
 main components:
+
 - store
 - library
 - community
@@ -105,19 +110,22 @@ Focus on store: still display the light form but have satelites components (assi
 ## Bank app
 
 On connection, display all main components (or tiles if too much scrolling)
+
 - account monitoring
 - money transfert
 - contract operations
-user can focus on one component and display informative / assistive components, possibly with specific context.
+  user can focus on one component and display informative / assistive components, possibly with specific context.
 - user focus on account monitoring
 - user choose the context: (temporal focus on context selection component)
   - check operations
   - monitor budget
   - search operation
-user choose "check operations". The interface display components helping him checking.
+    user choose "check operations". The interface display components helping him checking.
 
 # Components
+
 ## Home screen:
+
 What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
 If there is too much scrolling, could replace components with tiles that are a shortcut for component focus.
 ## Main component display:
@@ -130,23 +138,25 @@ secondary elements. (lower priority than assistive components which help taking 
 Component grouping:
 On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
 All of these are "side" or "helper". Grouping is done depending on:
- - semantic / hierarchy
- - requested size.
- - similarity
+
+- semantic / hierarchy
+- requested size.
+- similarity
 
 # Grid Example
 
 Google Keep:
- - list of cards
- - widget to create a new card
- - focus on a card to edit / view
- - filter cards
 
- Main grid:
- Main: [listOfCards, widgetCreateNewCard]
- Side: [filterCards ]
+- list of cards
+- widget to create a new card
+- focus on a card to edit / view
+- filter cards
 
- listOfCards space request: max.
- widgetCreateNewCard: 1x8
+Main grid:
+Main: [listOfCards, widgetCreateNewCard]
+Side: [filterCards ]
 
- filterCards: (appBar): 1x5
+listOfCards space request: max.
+widgetCreateNewCard: 1x8
+
+filterCards: (appBar): 1x5
