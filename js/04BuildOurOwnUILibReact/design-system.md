@@ -86,9 +86,9 @@ Could possibly decide on how much available memory there is. (performance.memory
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
 Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar?
-Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in.
+Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components.
 
-Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?). Handle "single main component" differently that when there is many? The point would be to have a component as a context for the children. In this case, reuse the same NavBar but change its content (title, icons, etc).
+Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?) Yes, we can have multiple level of focus but not deep level of containerization : assistive components are always displayed on "root" component. Handle "single main component" differently that when there is many? The point would be to have a component as a context for the children. In this case, reuse the same NavBar but change its content (title, icons, etc).
 See the interface like a tree of focusable elements with shortcut to go through branches
 Interface should promote feature discoverability and easy access.
 
