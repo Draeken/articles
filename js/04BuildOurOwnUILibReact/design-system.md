@@ -107,6 +107,16 @@ Unfocused, these components are in their lightest and simplest form.
 
 Focus on store: still display the light form but have satelites components (assistive), to help browse the catalog.
 
+User can also focus directly on a game from app focus. It means that user can bypass store focus.
+Question:
+  1. game focus in a list context (store is a list of games)
+  2. game focus in a standalone context (it may requiere lots of asssistive components)
+
+choice 1 favors an easy browsing / swiping of games, giving just enough information on each game to let the user judge. User can preview what will come next and decide to fastly skip the item.
+choice 2 favors a thorough game presentation.
+
+Steam had already implemented the 1st choice, but combined with 2nd: it displays the whole game presentation with 2 choices "interested" or "not interested". It's the same swiping process than dating app.
+
 ## Bank app
 
 On connection, display all main components (or tiles if too much scrolling)
