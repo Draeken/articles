@@ -99,6 +99,8 @@ try to display:
 When user unfocus B2, restore ABC.
 Keeping B allow user to fastly change focus on another sibling. This prevent the behavior of "open every interesting child in a new tab, then, browse tabs" which is kind of messy.
 
+User could possibly focus a component through a link to it. Then, instead of keeping the parent component in priority, keep the link's parent component in priority - always keep in priority the focus's source component.
+
 Could possibly decide on how much available memory there is. (performance.memory only available on Chrome)
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
@@ -107,6 +109,8 @@ Consider having interface dynamic to each user: designer could find a good compo
 
 Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar?
 Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components.
+
+There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
 
 # Examples
 
@@ -123,7 +127,9 @@ Unfocused, these components are in their lightest and simplest form.
 
 On Store page, game are displayed similar to main components when there are too many of them: with a tile shape. It follow the same mechanisms.
 
-How to know if it have to belongs to assistive components or inside focused components (especially when focused component was a tile - maybe make it relates with how to desgin the component if it wasn't a tile)
+How to know if it have to belongs to assistive components or inside focused components (especially when focused component was a tile - maybe make it relates with how to desgin the component if it wasn't a tile). Example for game:
+game tille displayed in store component, focus on it.
+How the game component should have been rendered?
 
 Focus on store: still display the light form but have satelites components (assistive), to help browse the catalog.
 
@@ -138,6 +144,37 @@ choice 2 favors a thorough game presentation.
 In both case, app should know from where the user focus on a game (it may be store, library or community), and keep that component displayed if possible.
 
 Steam had already implemented the 1st choice, but combined with 2nd: it displays the whole game presentation with 2 choices "interested" or "not interested". It's the same swiping process than dating app.
+
+### Mobile Layout
+Difficulty: steam has many different screens, but not of the same importance. How to let the user easily access the most used ones and still allow easy feature discoverability & easy access to what user want? Android parameters has a search bar for quick access to specific settings.
+
+Create a graph of components relations
+Steam category (regroup multiple screens & components):
+- store
+- currator
+- wishlist
+- your profile
+- your library
+- your inventory
+- steamguard
+- frind list
+- friend profile
+- activity feed
+- community
+- broadcast
+- market
+- chat
+- groups
+- badges
+- support
+- settings
+
+Nodes with lots of connection could be displayed in priority. aggregate could be grouped
+
+- Bottom bar:
+  - Store
+  - Community
+  - Profile
 
 ## Bank app
 
