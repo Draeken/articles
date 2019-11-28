@@ -44,7 +44,8 @@ fast, 1-time (2-time is retro-futurist). When focusing on a new component, it mo
 - step-out: move from base to edge, fade out
   reverse the direction when unfocus (or when returning to a previous state).
   When some components are already on screen but have to be replaced, how to easily avoid crossed path?
-  Only move the focused component. Side components follow the step-in/step-out process
+  1. Only move the focused component. Side components follow the step-in/step-out process
+  2. move them even with crossed path (but try to avoid them) (like GKeep when reorganizing). It will helps user identify already known components.
 
 # Atomic Design
 
@@ -105,12 +106,14 @@ Could possibly decide on how much available memory there is. (performance.memory
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
 Focus should be used in last resort: ideally, every daily workflow/main use case could be done without focusing. This prevent losing time on context switching.
-Consider having interface dynamic to each user: designer could find a good composition that satisfy most of the user (the default composition), then, it adapts to each user.
+Consider having interface dynamic to each user: designer could find a good composition that satisfy most of the user (the default composition), then, it adapts to each user - usage statistic, most viewed or used components.
 
 Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar?
 Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components.
 
 There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
+
+How to handle assistive components on mobile?
 
 # Examples
 
