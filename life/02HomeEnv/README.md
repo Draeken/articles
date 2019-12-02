@@ -178,3 +178,40 @@ Pros: pas d'encombrement sur une surface plane horizontale, permet d'avoir plusi
 Cons: étalement sur la longueur.
 
 L'espace libéré dans le tiroir permettra d'y ranger des boites à épices, que l'on viendrait utiliser à l'aide des cuillères-doseuses.
+
+# Planification
+- 17 jours consacrés à la maison avant la fin de l'année.
+segmentation des journées: se calquer sur les journées de travail.
+arrêt des travaux physiques à 17h30 ; utiliser les matinées & soirées pour:
+- commander le matériel nécessaire
+- planifier le lendemain
+
+## travaux électrique :
+- inverser phase / neutre de l'interrupteur existant et vérifier le bon fonctionnement
+- déplacer les meubles vers le mur cuisine
+- retirer la plinthe
+- tracer au crayon les repères du prochain interrupteur
+- scie cloche + meuleuse avec disque universel (utiliser l'aspirateur d'atelier comme ralonge)
+- ciseau de maçon pour retirer le bordel
+- préparation du plâtre, mettre le boitier d'encastrement
+- mettre les câbles électriques dans la borne ICTA
+- raccorder les câbles à l'existant
+- mettre en place le nouveau interrupteur
+- mettre des clous pour maintenir la gaine dans la saignée
+- plâtrer
+- raccorder des nouveaux câbles de la prise en vue d'un plafonnier ?
+
+## Murs
+- décaper le reste de peinture, puis poncer pour n'avoir que du platre, puis passer au mur suivant
+- retirer le cache cable autour de la porte
+- préparer l'enduit de rebouchage avec la poudre de marbre
+- appliquer sur les 3 murs
+- laisser sécher ?
+- badigeon avec la 3eme couche teintée
+
+## TV
+- accrocher la TV au mur, utiliser deux caches câbles pour l'alimentation et les connectiques (pré connecter avec des câbles HDMI)
+- faire le meuble multimédia
+  - niveau intermédiaire
+  - pieds de meuble à coller de 2cm de haut ?
+  - vernir le bois
