@@ -114,10 +114,20 @@ Main components displayed on home screen should be very "simple" for the sake of
 There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
 
 How to handle assistive components on mobile?
-Issue: impossible to display main + each assistive component on the small screen.
+Issue: impossible to display main + each assistive component on small screen.
 component container with assistives. Could be grill of small cards to choose which main component to focus, then having a bottom bar for assistive and "back" to choose another main component. (instead of back, it could be a breadcrumb: home > main comp 1 > comp 2, with icons instead of comp title).
 
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
+
+# Navigation
+## Keyboard
+
+between main components/assistive elements: tab.
+between items in container: tab
+between container & main component: arrows
+focus on component: enter
+keyboard shortcut for focusing any component in the app (like when you want to open a file on IDE)
+
 
 # Examples
 
