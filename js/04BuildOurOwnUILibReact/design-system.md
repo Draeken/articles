@@ -128,7 +128,6 @@ between container & main component: arrows
 focus on component: enter
 keyboard shortcut for focusing any component in the app (like when you want to open a file on IDE)
 
-
 # Examples
 
 ## Steam
@@ -195,6 +194,11 @@ Nodes with lots of connection could be displayed in priority. aggregate could be
 
 ## Bank app
 
+Declaration of loss: could be relative to a specific account and then be an assistive element of the account component.
+But it's better to have a "Help & Support" component with this inside.
+Assistive components should only assist the user to his goal, and the goal is determined by the main component.
+Declaration of loss is an action and not an help for account monitoring.
+
 On connection, display all main components (or tiles if too much scrolling)
 
 - account monitoring
@@ -207,6 +211,8 @@ On connection, display all main components (or tiles if too much scrolling)
   - monitor budget
   - search operation
     user choose "check operations". The interface display components helping him checking.
+
+assistive components are grouped in bottom bar, so there is no "context" to choose from
 
 # Components
 
