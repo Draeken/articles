@@ -93,6 +93,8 @@ B has a components B1, B2, B3 (in a tile format)
 user focus on B2. It spawns B2Focused and D.
 try to display:
 
+folder structure: for each newly opened folder, it's a new focus context. Place previous folder context on the side.
+
 - A.B.B2Focused.C.D
 - B.B2Focused.D (skip A and C; keep B)
 - B2Focused.D
