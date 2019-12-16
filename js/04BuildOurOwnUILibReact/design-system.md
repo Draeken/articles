@@ -76,6 +76,8 @@ there could be different level of focus:
 - can't be dismissed (force action / selection)
 - suited for list of focusable elements: allow user to change focus instantly without doing the unfocus + focus on other element
 
+Focus on a item from a list: it should keep assistive elements from the list and add assistive from the focused item. eg: comparator components that is always available through the different focus on item. Comparator could be aware of the current focus and have a "tap to add currently focused game to comparator" suggestion. Comparator component could be focused as of every other assistive components, where it makes sense.
+
 Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?) Yes, we can have multiple level of focus but not deep level of containerization : assistive components are always displayed on "root" component. Handle "single main component" differently that when there is many? The point would be to have a component as a context for the children. In this case, reuse the same NavBar but change its content (title, icons, etc).
 See the interface like a tree of focusable elements with shortcut to go through branches
 Interface should promote feature discoverability and easy access.
@@ -129,6 +131,34 @@ between items in container: tab
 between container & main component: arrows
 focus on component: enter
 keyboard shortcut for focusing any component in the app (like when you want to open a file on IDE)
+
+# Components
+
+There are small component - button, dropdown, input, and complexe one which contains many small components - assistive or main components.
+How to design them? Could the grid system be useful?
+Differences with root:
+- root have predetermined size - app size - determined by outside, components have size determined by inside (what they need).
+- root layout is dynamically computed from space available & components needs, small components should be rather static. Assistive can be dynamic.
+Design process could be easier to found after reviewing some components proposal
+## Home screen:
+
+What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
+If there is too much scrolling, could replace components with tiles that are a shortcut for component focus.
+## Main component display:
+In
+## Parameters & settings
+Settings are associated with components (or global app, wich is the root component). Display them on component focus.
+secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component.
+~~All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)~~
+
+Component grouping:
+On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
+All of these are "side" or "helper". Grouping is done depending on:
+
+- semantic / hierarchy
+- requested size.
+- similarity
+
 
 # Examples
 
@@ -216,30 +246,7 @@ On connection, display all main components (or tiles if too much scrolling)
 
 assistive components are grouped in bottom bar, so there is no "context" to choose from
 
-# Components
-
-## Home screen:
-
-What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
-If there is too much scrolling, could replace components with tiles that are a shortcut for component focus.
-## Main component display:
-In
-## Parameters & settings
-Settings are associated with components (or global app, wich is the root component). Display them on component focus.
-secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component.
-~~All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)~~
-
-Component grouping:
-On which factor regroup search, filter, settings, account, notifications, navigation, logo or product name
-All of these are "side" or "helper". Grouping is done depending on:
-
-- semantic / hierarchy
-- requested size.
-- similarity
-
-# Grid Example
-
-Google Keep:
+## Google Keep:
 
 - list of cards
 - widget to create a new card
