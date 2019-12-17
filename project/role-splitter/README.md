@@ -16,6 +16,9 @@ In a first time: me
 People who want an easy time-tracking focused on assigning role to day chunk.
 
 # Needs
+1. Define role budgets
+2. Review actual use over budgets
+3. Plan futur use to satisfy budgets
 
 - Split work days and week-end in multiple chunks
 - Define roles
