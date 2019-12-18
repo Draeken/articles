@@ -119,7 +119,7 @@ There may be two side container: one for navigation (rapid access to other main 
 
 How to handle assistive components on mobile?
 Issue: impossible to display main + each assistive component on small screen.
-component container with assistives. Could be grill of small cards to choose which main component to focus, then having a bottom bar for assistive and "back" to choose another main component. (instead of back, it could be a breadcrumb: home > main comp 1 > comp 2, with icons instead of comp title).
+component container with assistives. Could be grill of small cards to choose which main component to focus, then having a bottom bar for assistive and "back" to choose another main component. (instead of back, it could be a breadcrumb: home > main comp 1 > comp 2, with icons instead of comp title). Depending on space requirement & importance, assistive component could be displayed next to the main component. Only use bottom bar if there is no available place beside main component.
 
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
 
