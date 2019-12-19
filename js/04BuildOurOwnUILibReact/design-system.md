@@ -54,7 +54,7 @@ Focus on feature, user action but not entire screen. Then, see what composants a
 # Layout
 
 Grid system: for each focusable component, we define a set of component to be displayed, and the system automatically place them.
-Elements of first importance are centered. Related elements are placed nearby. Elements of second impportance are on the edges, far from center.
+Elements of first importance are centered. Related (assistive) elements are placed nearby. Elements of second impportance are on the edges, far from center.
 Grid system assure the good composition of each screen, by adjusting position of each components (main & side), to maintain the whole balanced.
 Fixed elements? AppBar, Drawer, NavigationBar, BottomBar? Could be placed like other secondary elements
 Elements where visibility change (reduced AppBar upon scrolling)? Another layer ?
@@ -133,6 +133,9 @@ focus on component: enter
 keyboard shortcut for focusing any component in the app (like when you want to open a file on IDE)
 
 # Components
+Main component should regroup one view and actions that can be taken by user, related to that view (eg: filtering view, edit, etc)
+Assistive should be another related view that can help user take decision.
+Alternative view: an alternative view should not be another assistive component, but rather a view which share the same context (filter) than the original view. On desktop these views could be side by side, but on mobile, user should switch with a control within the component (not via bottom bar as it reserved for navigating to another component).
 
 There are small component - button, dropdown, input, and complexe one which contains many small components - assistive or main components.
 How to design them? Could the grid system be useful?
