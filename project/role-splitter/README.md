@@ -8,7 +8,10 @@ With simplicity and efficiency
 
 # What
 
-A product to let you split your days in chunks, and associate a role on each chunk - like a time tracker. You can define a Chart goal and compare it to your actual role use, on the 2 last weeks. This way, you can see what roles are underused and plan accordingly.
+A product to let you split your days in chunks, and associate a role on each chunk - like a time tracker. You can define a Chart goal and compare it to your actual role use, on the 2 last weeks. This way, you can see what roles are underused and plan accordingly. They may have other tools to help you plan which role to prioritize, like:
+- assigning tasks to role with a minimal estimated hours for completion. Don't switch to a role which hasn't the required minimal hours of work. It's like washing the dishes, it needs a minimal amount of dishes to be optimal.
+- in business there are a lot of method to determine what to do next.
+It may be interesting to have a plugin system to let user choose whih tools to enable. Role budget can be seen as a plugin to help user choosing his role.
 
 # Users
 
@@ -16,19 +19,30 @@ In a first time: me
 People who want an easy time-tracking focused on assigning role to day chunk.
 
 # Needs
-1. Define role budgets
-2. Review actual use over budgets
-3. Plan futur use to satisfy budgets
 
-- Split work days and week-end in multiple chunks
-- Define roles
-- Define the chart goal - maybe with an option to set a minimal amount of hours
-- track chunk
+The global user need is to make a good use of his time according to his goals. While a solution that could automatically plan user's time isn't available, we could fall back to a set of assistive tools to help user plan his time by choosing which role to play.
+There are needs from the chunk system framework, and needs for each individual plugin.
 
-# Futher needs
+## Shared needs
+User needs to plan what to do next. => schedule of future chunks that user can assign to specific role, with recommendations.
+System needs to know:
+- when assigning a chunk: for each role: have a recommendation score computed by each enabled plugin
+- which roles are available (give default role)
+- how chunks are organized among the week (give default organization)
+- which plugins are enabled (all by default)
+- plugin's configuration (give a default one)
+
+## Budget plugin needs
+- define the chart goal - maybe with an option to set a minimal amount of hours
+- edit past chunk affectation
+
+NB: multiple plugins could need the same data/component (eg: chunk usage history)
+## Task plugin needs
+- affect tasks to role
+- edit tasks done
+
+## Futher needs
 - multiple devices
-- have suggestion of how to spend time
-  - define roles restriction on specific chunks - eg: no mapping or music on work day, for better suggestion
 - on mobile app, could use notifications & quick response - a way to track chunks without opening the app
 
 # Properties

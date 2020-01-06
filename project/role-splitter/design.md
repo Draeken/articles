@@ -1,8 +1,8 @@
-# Role Budget Dashboard
+# Budget Plugin Dashboard
 ## Composed of
   - display current budget
   - allow changing it (sliders - highlight the given amount vs the total capacity)
-  - allow adding or removing role in budget
+  // - allow adding or removing role in budget // is a shared need: role management
 ## With Assistance of
   - past cumulative amount of time used on each role - Role Usage History
 
