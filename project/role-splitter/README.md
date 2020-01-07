@@ -26,11 +26,11 @@ There are needs from the chunk system framework, and needs for each individual p
 ## Shared needs
 User needs to plan what to do next. => schedule of future chunks that user can assign to specific role, with recommendations.
 System needs to know:
-- when assigning a chunk: for each role: have a recommendation score computed by each enabled plugin
-- which roles are available (give default role)
-- how chunks are organized among the week (give default organization)
-- which plugins are enabled (all by default)
-- plugin's configuration (give a default one)
+- when assigning a chunk: for each role: have a recommendation score computed by each enabled plugin (main comp)
+- which roles are available (give default role) (main comp) - there should be shortcut to avoid going back to the root view.
+- how chunks are organized among the week (give default organization) (chunk schedule parameter)
+- which plugins are enabled (all by default) (app parameter)
+- plugin's configuration (give a default one) (mains comp - one per plugin)
 
 ## Budget plugin needs
 - define the chart goal - maybe with an option to set a minimal amount of hours

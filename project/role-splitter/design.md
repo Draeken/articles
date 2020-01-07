@@ -1,3 +1,9 @@
+# Chunk schedule
+## Composed of
+  -
+## With Assistance of
+Why assistive component should only be "helper to take a decision" and not setup/options/parameters or other actions?
+
 # Budget Plugin Dashboard
 ## Composed of
   - display current budget
