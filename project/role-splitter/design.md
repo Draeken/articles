@@ -1,8 +1,15 @@
 # Chunk schedule
 ## Composed of
-  -
+  - chunk schedule
+  - chunk role assignation (with link to edit role) - could be with drag&drop on desktop & modale with role card on mobile; on desktop, always allow easy assignation with keyboard
+  - period (time range / day) selection
 ## With Assistance of
-Why assistive component should only be "helper to take a decision" and not setup/options/parameters or other actions?
+  - each plugin should have its assistive view
+
+# Role Manager
+## Composed of
+## With Assistance of
+  - role usage history (cumulative hours / histogram to see usage over time): highlight low used role that could be archived
 
 # Budget Plugin Dashboard
 ## Composed of
