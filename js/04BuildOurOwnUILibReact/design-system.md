@@ -26,7 +26,8 @@ Subtle glow
 
 ## Font
 
-Titles & Body: thin sans-serif
+Titles: bold sans-serif
+Body: thin sans-serif
 
 ## Space
 
@@ -106,13 +107,20 @@ Keeping B allow user to fastly change focus on another sibling. This prevent the
 
 User could possibly focus a component through a link to it. Then, instead of keeping the parent component in priority, keep the link's parent component in priority - always keep in priority the focus's source component.
 
+Direct focus is also possible from global component search.
+with this breadcrumb: root -> A
+if user direct focus on B (with B sibling of A), then: root -> A -> B ; but not root -> B.
+with: root -> A -> B -> C
+if user direct focus on A, then: root -> A
+Breadcrumb is made from user focus history
+
 Could possibly decide on how much available memory there is. (performance.memory only available on Chrome)
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
 Focus should be used in last resort: ideally, every daily workflow/main use case could be done without focusing. This prevent losing time on context switching.
 Consider having interface dynamic to each user: designer could find a good composition that satisfy most of the user (the default composition), then, it adapts to each user - usage statistic, most viewed or used components.
 
-Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar?
+Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar? what if there is too many main components? NavBar is for breadcrumbs
 Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components.
 
 There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
@@ -143,6 +151,15 @@ Differences with root:
 - root have predetermined size - app size - determined by outside, components have size determined by inside (what they need).
 - root layout is dynamically computed from space available & components needs, small components should be rather static. Assistive can be dynamic.
 Design process could be easier to found after reviewing some components proposal
+
+## Component Icon
+App icons could have a gradient background and a stick based symbol (black or white) highly contrasted with background.
+Main components could have a neutral background with a stick (b&w) based symbol, very subtle colors could be used in foreground to fill symbol own empty space (but may not be necessary to distinguish them).
+Assistive components could have a abbreviation/initial and neutral background
+
+## Component Tile (main comp)
+Could use the comp icon in background with a scrim over it + component full name. To avoid empty space, as the icon is in a squarre shape, it should also use the same shape. Long name are wrapped & left align (centered would echo a more circle shape, which doesn't fit). Color used in icon could be mixed in a gradient and displayed as a border (same border as text alignement to offer a tangible support for the text)
+
 ## Home screen:
 
 What to display? In case of there is a main component of 1st importance, display it. It may be strange, on home screen, to display only some components. Add scroll (horizontal in landscape) if all main components can't fit in viewport.
