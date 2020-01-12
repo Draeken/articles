@@ -77,6 +77,8 @@ there could be different level of focus:
 - can't be dismissed (force action / selection)
 - suited for list of focusable elements: allow user to change focus instantly without doing the unfocus + focus on other element
 
+eg: when a parent component spawns a child component, if it is smaller, it could be displayed on top of parent with a scrim applied on it. If it's larger, it could be displayed fullscreen on mobile or in a floating modale on desktop (on top of multiple  components). If there is enough place, it could refresh layout to match the "suited for lists" (having the child component displayed next to parent component).
+
 Focus on a item from a list: it should keep assistive elements from the list and add assistive from the focused item. eg: comparator components that is always available through the different focus on item. Comparator could be aware of the current focus and have a "tap to add currently focused game to comparator" suggestion. Comparator component could be focused as of every other assistive components, where it makes sense.
 
 Is it viable to have a fractal layout system? It means have different level of focus (focus on main component A which have multiple components, focus on A-A, trigger animations, focus on A-A-A ?) Yes, we can have multiple level of focus but not deep level of containerization : assistive components are always displayed on "root" component. Handle "single main component" differently that when there is many? The point would be to have a component as a context for the children. In this case, reuse the same NavBar but change its content (title, icons, etc).

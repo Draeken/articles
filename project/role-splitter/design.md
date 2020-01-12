@@ -2,7 +2,8 @@
 ## Chunk schedule
 ### Composed of
   - chunk schedule
-  - chunk role assignation (with link to edit role) - could be with drag&drop on desktop & modale with role card on mobile; on desktop, always allow easy assignation with keyboard
+  - chunk role assignation (with link to edit role) - modale with role card on mobile; on desktop, always allow easy assignation with keyboard
+  - each chunk is focusable and is linked to `Chunk Component` - list of focusable elements
   - period (time range / day) selection
   ### With Assistance of
   - each plugin should have its assistive view
@@ -15,7 +16,7 @@
   - archive/unarchive action
   - filter view/search
   ### With Assistance of
-  - role usage history (cumulative hours / histogram to see usage over time - alternative view): highlight low used role that could be archived
+  - `role usage history` (cumulative hours / histogram to see usage over time - alternative view): highlight low used role that could be archived
 
 ## Budget Plugin Dashboard
 ### Composed of
@@ -23,7 +24,17 @@
   - allow changing it (sliders - highlight the given amount vs the total capacity)
   // - allow adding or removing role in budget // is a shared need: role management
 ### With Assistance of
-  - past cumulative amount of time used on each role - Role Usage History
+  - past cumulative amount of time used on each role - `Role Usage History`
+
+# Second Components
+## Chunk Component
+Is spawned by Chunk Scheduler from a list of many chunks
+### Composed of
+  - if no role assigned:
+    - last role assigned
+    - list of role with score from plugins
+    - link to `Role Manager` component
+
 
 # Assistive Components
 ## Budget Plugin Assistance
