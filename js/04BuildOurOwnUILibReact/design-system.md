@@ -171,6 +171,8 @@ In
 ## Parameters & settings
 Settings are associated with components (or global app, wich is the root component). Display them on component focus.
 secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component.
+Eventually, display in settings those of the focused component and all its children, each on a separate menu item, eg:
+setting icon -> menu with "settings for comp A", "settings for comp B", etc... if there is only one entry, it should pop up settings component directly.
 ~~All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)~~
 
 Component grouping:
