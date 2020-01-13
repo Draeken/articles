@@ -11,6 +11,7 @@
 ### Settings
   - preset management (rename, view, archive)
   - day division ? may be unecessary - chunk edit is available on chunk focus: number of chunk per day, time span, for each day of the week. Preset system (save as preset, load preset, manual edit);
+  But how to add a chunk in this setting? when tapping on a empty space? FAB? focus on day -> easy control for deleting/editing or adding - but focus on day & focus on chunk may add too many focusable elements on screen
 
 ## Role Manager
 ### Composed of
@@ -70,3 +71,5 @@ Is spawned by Chunk Scheduler from a list of many chunks
 ## Chunk schedule
 ### Icon
 give the idea of a chunk schedule : linear vertical rectangles fill with different colors to represent different roles
+minimal height: 3 chunks visible, minimal width: one day column.
+maximal height: all chunks visible
