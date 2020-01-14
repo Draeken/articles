@@ -119,11 +119,12 @@ Breadcrumb is made from user focus history
 Could possibly decide on how much available memory there is. (performance.memory only available on Chrome)
 focus are hierarchized: ABC > A(DE) > D(FG). Each focus can be a different layer. Interface try to display a maximum layers begining with the last spawn.
 
-Focus should be used in last resort: ideally, every daily workflow/main use case could be done without focusing. This prevent losing time on context switching.
+Focus should be used in last resort: ideally, every daily workflow/main use case could be done without focusing. This prevent losing time on context switching. There are exceptions like the purchase workflow: consumer would want to focus an item before adding to his cart.
+
 Consider having interface dynamic to each user: designer could find a good composition that satisfy most of the user (the default composition), then, it adapts to each user - usage statistic, most viewed or used components.
 
 Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar? what if there is too many main components? NavBar is for breadcrumbs
-Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components.
+Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components. Additional control/action could come in with focus, as they may overload the screen if there were available for each non-focused components (especially true for list of focusable element).
 
 There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
 
