@@ -123,7 +123,7 @@ Focus should be used in last resort: ideally, every daily workflow/main use case
 
 Consider having interface dynamic to each user: designer could find a good composition that satisfy most of the user (the default composition), then, it adapts to each user - usage statistic, most viewed or used components.
 
-Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar? what if there is too many main components? NavBar is for breadcrumbs
+Lots of apps have a navigation bar that have one-click access to all the main components. When focusing one main components, other could be pinned on NavBar? what if there is too many main components? NavBar is for breadcrumbs.
 Main components displayed on home screen should be very "simple" for the sake of global clarity. It's only when user focus one that complexity comes in. Components doesn't morph from simple form to complexe one. Instead, complexity comes from all the assistive components. Additional control/action could come in with focus, as they may overload the screen if there were available for each non-focused components (especially true for list of focusable element).
 
 There may be two side container: one for navigation (rapid access to other main components), other specific to current context which store assistive components.
@@ -135,8 +135,9 @@ component container with assistives. Could be grill of small cards to choose whi
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
 
 # Navigation
+Click on desktop should behave like touch on mobile. Click on a focusable element will focus it instantly.
+focusable components can be selected through keyboard navigation. Then, user can use hotkey /keyboard shortcut to trigger action on selected component.
 ## Keyboard
-
 between main components/assistive elements: tab.
 between items in container: tab
 between container & main component: arrows

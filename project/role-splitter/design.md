@@ -2,7 +2,7 @@
 ## Chunk schedule
 ### Composed of
   - chunk schedule
-  - chunk role assignation (with link to edit role) - modale with role card on mobile; on desktop, always allow easy assignation with keyboard
+  - chunk role assignation (with link to edit role) - modale with role card on mobile; on desktop, always allow easy assignation with keyboard -> modale is `Chunk Component`
   - each chunk is focusable and is linked to `Chunk Component` - list of focusable elements
   - period (time range / day) selection
   - preset name that act as a dropdown, if chunks have been modified, automatically save as a new preset with the day's date as name.
@@ -80,5 +80,8 @@ Is spawned by Chunk Scheduler from a list of one or many days
 ## Chunk schedule
 ### Icon
 give the idea of a chunk schedule : linear vertical rectangles fill with different colors to represent different roles
+### Dimensions
 minimal height: 3 chunks visible, minimal width: one day column.
 maximal height: all chunks visible
+comfort variation for height: >>>
+comfort variation for width: >
