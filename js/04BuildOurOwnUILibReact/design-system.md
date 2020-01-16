@@ -135,14 +135,19 @@ component container with assistives. Could be grill of small cards to choose whi
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
 
 # Navigation
-Click on desktop should behave like touch on mobile. Click on a focusable element will focus it instantly.
-focusable components can be selected through keyboard navigation. Then, user can use hotkey /keyboard shortcut to trigger action on selected component.
+Click on desktop should behave like touch on mobile.
+
 ## Keyboard
 between main components/assistive elements: tab.
 between items in container: tab
 between container & main component: arrows
 focus on component: enter
 keyboard shortcut for focusing any component in the app (like when you want to open a file on IDE)
+focusable components can be selected through keyboard navigation. Then, user can use hotkey /keyboard shortcut to trigger action on selected component.
+
+## Mouse & fingers
+Click on a focusable element will focus it instantly.
+Ensure there is enough touch/click surface on focusable component to allow focus. Especially on component hosting other focusable components. In case of there isn't enough surface, add a dedicated area that will trigger focus (eg: button, text. Component's title)
 
 # Components
 Main component should regroup one view and actions that can be taken by user, related to that view (eg: filtering view, edit, etc)

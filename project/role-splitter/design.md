@@ -1,12 +1,15 @@
 # Main components
 ## Chunk schedule
+Focusable day isn't feasible due to its extreme similitude with the non focused version.
+day is focusable and let user edit current preset of chunks `Day Preset Component`
 ### Composed of
   - chunk schedule
   - chunk role assignation (with link to edit role) - modale with role card on mobile; on desktop, always allow easy assignation with keyboard -> modale is `Chunk Component`
   - each chunk is focusable and is linked to `Chunk Component` - list of focusable elements
   - period (time range / day) selection
   - preset name that act as a dropdown, if chunks have been modified, automatically save as a new preset with the day's date as name.
-  - each day is focusable and let user edit current preset of chunks `Day Preset Component`
+  - "add chunk" button
+  - have a "1 similar preset found" - "use it" ; "keep both"
 ### Assisted by
   - each plugin should have its assistive view
 ### Settings
@@ -54,11 +57,6 @@ Is spawned by Chunk Scheduler from a list of many chunks
 ### Settings
   - option to go to the next chunk after role assignement (if there were none)
 
-## Day Preset Component
-Is spawned by Chunk Scheduler from a list of one or many days
-### Composed of
-  - chunk card with option to change period or delete or rename
-  - "add chunk" button
 ### Assisted by
   - preset stats like number of day using it? editing this preset will create a new preset so it's not suited
 ### Settings
