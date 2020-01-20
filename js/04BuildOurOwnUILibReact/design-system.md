@@ -57,7 +57,7 @@ Focus on feature, user action but not entire screen. Then, see what composants a
 Grid system: for each focusable component, we define a set of component to be displayed, and the system automatically place them.
 Elements of first importance are centered. Related (assistive) elements are placed nearby. Elements of second impportance are on the edges, far from center.
 Grid system assure the good composition of each screen, by adjusting position of each components (main & side), to maintain the whole balanced.
-Grid size is fixed and depend on screen size. Grid size for main component should be larger than for secondary/assistive components. Main, secondary & assistive could have grid size that are prime together to distinguish them. Grid size may not be fully relative as component rely on it to estimate their space need.
+Grid size is fixed and depend on screen size. Grid size for main component should be larger than for secondary/assistive components. Main, secondary & assistive could have grid size that are prime together to distinguish them. -> doesn't work on small screen when you want to have one main & one assistive side by side... Grid size may not be fully relative as component rely on it to estimate their space need.
 Fixed elements? AppBar, Drawer, NavigationBar, BottomBar? Could be placed like other secondary elements
 Elements where visibility change (reduced AppBar upon scrolling)? Another layer ?
 Drawer:
