@@ -5,5 +5,27 @@ Is it possible to have chunk loading with auto-layout? Yes with React.lazy : laz
 How auto-layout layout ? It needs:
 - minimal size (0)
 - best size (1)
+- if best size is infinite in both axis, which axis to prioritize growth.
+
+## Largest first
 then try to maximize the satisfaction score.
-take the largest area (best size) component and place it on center, then add the second largest to one side of the root area (from bottom or right) and push the primary comp already placed in order to have the same satisfaction.
+take the largest area (best size) component and place it on center, then add the second largest to one side of the root area and push the primary comp already placed in order to have the same satisfaction.
+How to know on which side the newly component have to be added?
+
+## Potentials
+It's like auto-schedule algorithm but in 2D space rather than 1D. Issue: none of the component have a prefered place ?
+Portrait:
+x|x|x|x
+x|x|x|x
+x|x|x|x
+x|x|x|x
+x|x|x|x
+Place a component with infinite both axis & Y favored. min size: 3x2
+2|3|3|3
+2|3|3|3
+2|2|2|2
+2|2|2|2
+1|1|1|1
+Place a clone of this component
+Test each side & corner for lowest score
+bottom, bottom right, bottom left have the lowest score
