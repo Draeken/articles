@@ -21,11 +21,70 @@ x|x|x|x
 x|x|x|x
 x|x|x|x
 Place a component with infinite both axis & Y favored. min size: 3x2
-2|3|3|3
-2|3|3|3
+2|x|x|x
+2|x|x|x
 2|2|2|2
 2|2|2|2
 1|1|1|1
 Place a clone of this component
 Test each side & corner for lowest score
 bottom, bottom right, bottom left have the lowest score
+go for bottom right:
+2|x|x|x
+2|x|x|x
+2|2|2|2
+2|y|y|y
+1|y|y|y
+
+update previously placed components potential:
+2|x|x|x
+2|x|x|x
+2|2|2|2
+0|y|y|y
+0|y|y|y
+
+update last placed compont potential:
+2|x|x|x
+2|x|x|x
+4|4|4|4
+2|y|y|y
+2|y|y|y
+
+place z: 1x2 fixed size component, then update potentials:
+z|x|x|x
+z|x|x|x
+2|4|4|4
+2|y|y|y
+2|y|y|y
+
+after all elements are placed, make them fill available space:
+if we start by x:
+z|x|x|x
+z|x|x|x
+0|x|x|x
+2|y|y|y
+2|y|y|y
+a cell got a 0 potential score, which is bad because we want to optimize space use
+
+if we start with y:
+z|x|x|x
+z|x|x|x
+y|y|y|y
+y|y|y|y
+y|y|y|y
+success, even if y has a far better score than x
+
+layer displaying both component potentials
+3|4|4|4
+4|5|5|5
+4|4|4|4
+4|5|5|5
+3|4|4|4
+Materialization of first component, remove its layer potential:
+1|x|x|x
+2|x|x|x
+2|2|2|2
+2|3|3|3
+2|3|3|3
+
+## With CSS Grid
