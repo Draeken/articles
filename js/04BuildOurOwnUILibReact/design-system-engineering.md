@@ -88,3 +88,14 @@ Materialization of first component, remove its layer potential:
 2|3|3|3
 
 ## With CSS Grid
+Could use a predefined layout organization choosed from what components to display. Then build the layout with css grid.
+predefined layout:
+stack of horizontal cell
+____
+____
+____
+stack of vertical cell
+|||
+|||
+|||
+layout can be parameterized to suit component needs.
