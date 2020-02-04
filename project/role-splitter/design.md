@@ -1,7 +1,7 @@
 # Main components
 ## Chunk schedule
 Focusable day isn't feasible due to its extreme similitude with the non focused version.
-day is focusable and let user edit current preset of chunks `Day Preset Component`
+~~day is focusable and let user edit current preset of chunks `Day Preset Component`~~
 ### Composed of
   - chunk schedule
   - chunk role assignation (with link to edit role) - modale with role card on mobile; on desktop, always allow easy assignation with keyboard -> modale is `Chunk Component`

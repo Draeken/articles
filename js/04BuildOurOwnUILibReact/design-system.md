@@ -293,3 +293,6 @@ listOfCards space request: max.
 widgetCreateNewCard: 1x8
 
 filterCards: (appBar): 1x5
+
+# Links
+https://diez.org

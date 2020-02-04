@@ -1,0 +1,15 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+      "tslint:latest",
+      "rxjs-tslint",
+      "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+      "no-implicit-dependencies": [true, "dev"],
+      "no-submodule-imports": [true, "rxjs"],
+      "no-console": true
+    },
+    "rulesDirectory": []
+}

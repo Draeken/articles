@@ -99,3 +99,14 @@ stack of vertical cell
 |||
 |||
 layout can be parameterized to suit component needs.
+screen can be divided into multiple patterns
+
+### DE needs
+It would be simpler to express the component size in term of a multiple of a base square.
+
+### Manual Process
+
+Create a grid layout manually, assign main component on it.
+Media query: if not enough space, use tile component.
+
+When focusing on a main component: have to create another grid. With React Router + animation, it could transition with respect to DS.
