@@ -2,14 +2,18 @@
     "defaultSeverity": "error",
     "extends": [
       "tslint:latest",
-      "rxjs-tslint",
-      "tslint-config-prettier"
+      "rxjs-tslint"
     ],
     "jsRules": {},
     "rules": {
       "no-implicit-dependencies": [true, "dev"],
       "no-submodule-imports": [true, "rxjs"],
-      "no-console": true
+      "no-console": false,
+      "quotemark": false,
+      "interface-name": false,
+      "object-literal-sort-keys": false,
+      "trailing-comma":false,
+      "arrow-parens": false
     },
     "rulesDirectory": []
 }

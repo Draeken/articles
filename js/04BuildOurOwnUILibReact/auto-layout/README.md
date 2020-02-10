@@ -18,3 +18,5 @@ Move C to center, push AB on right border, spawns DE on C side
 # What
 Grid size: [width, height]
 Component requirements: [mainComp[], assistiveComp[], prevSpace[]]
+with requirements: spawn position: center or one of 4 side, minimal size [width, height], best size [width, height] - in unit of grid or infinity
+returns: [[{ compId, place: {x: [start, span ], y: [start, span]}}]].

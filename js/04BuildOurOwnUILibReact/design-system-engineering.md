@@ -110,3 +110,57 @@ Create a grid layout manually, assign main component on it.
 Media query: if not enough space, use tile component.
 
 When focusing on a main component: have to create another grid. With React Router + animation, it could transition with respect to DS.
+
+### Potentials V2
+Grid size: 4x2, two components with minimal 1x2 & best: infinityx2, spawn in center.
+xxxx
+xxxx
+place A:
+xaxx
+xaxx
+potentials:
+2322
+2322
+place B:
+xabx
+xabx
+potentials:
+4554
+4554
+materialize A:
+2232
+2232
+xaxx
+xaxx
+update potentials:
+0x32
+0x32
+materialize B:
+0x00
+0x00
+xabx
+xabx
+How to growth min-sized requirement to their best ? compute a comfort score & compare to comfort score mean of all other potentials, increamenting slowly target's comfort.
+How to compute comfort for a potential ?
+eg:
+3 same requirements on a 1x6 grid:
+1st materialization should not span 3 cells (aaaxxx -> both remaining potentials, individually, has the same comfort score than the materialized), instead, it should span 2 cells to make room for other (aabbcc)
+Other strategy: place all requirements in min-size then, make them growth poco a poco. Compute comfort score by "how much larger it is from the min-size area" (instead of comparing relative to the best-size). How to push side component in order to grow ?
+xxxxxx
+xxxxxx
+xxxxxx
+xxxxxx
+xxxxxx
+xxxxxx
+push 'a' to center:
+xxxxxx
+xxxxxx
+xx33xx
+xx33xx
+xxxxxx
+xxxxxx
+
+### Physics based
+requirements: center; min-size: 1x1, comfort: 3x3
+center has a greater gravity force.
+pick a free cell near center, then apply force
