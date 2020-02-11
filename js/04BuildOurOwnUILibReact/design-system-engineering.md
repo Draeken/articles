@@ -101,17 +101,17 @@ stack of vertical cell
 layout can be parameterized to suit component needs.
 screen can be divided into multiple patterns
 
-### DE needs
+## DE needs
 It would be simpler to express the component size in term of a multiple of a base square.
 
-### Manual Process
+## Manual Process
 
 Create a grid layout manually, assign main component on it.
 Media query: if not enough space, use tile component.
 
 When focusing on a main component: have to create another grid. With React Router + animation, it could transition with respect to DS.
 
-### Potentials V2
+## Potentials V2
 Grid size: 4x2, two components with minimal 1x2 & best: infinityx2, spawn in center.
 xxxx
 xxxx
@@ -160,7 +160,13 @@ xx33xx
 xxxxxx
 xxxxxx
 
-### Physics based
+## Physics based
 requirements: center; min-size: 1x1, comfort: 3x3
 center has a greater gravity force.
 pick a free cell near center, then apply force
+
+## Architecture
+grid size + components -> placement
+using css grid: use absolute size for fixed size components & flex unit (fr) for growing components.
+What could be interesting: with a list of components, give a set of grids which are like breakpoints:
+for each grid there is a different layout setting. Express grid using css grid declaration. (grid-template-areas)
