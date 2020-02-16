@@ -135,6 +135,8 @@ component container with assistives. Could be grill of small cards to choose whi
 
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
 
+Layout engine give more space to components with a higher "comfort factor". Focused components have a higher factor than previous context.
+
 # Navigation
 Click on desktop should behave like touch on mobile.
 
@@ -154,6 +156,7 @@ Ensure there is enough touch/click surface on focusable component to allow focus
 Main component should regroup one view and actions that can be taken by user, related to that view (eg: filtering view, edit, etc)
 Assistive should be another related view that can help user take decision.
 Alternative view: an alternative view should not be another assistive component, but rather a view which share the same context (filter) than the original view. On desktop these views could be side by side, but on mobile, user should switch with a control within the component (not via bottom bar as it reserved for navigating to another component).
+Assistive components can be dismissed - sending them to the bottom bar - to make more room for main components or previous focus context.
 
 There are small component - button, dropdown, input, and complexe one which contains many small components - assistive or main components.
 How to design them? Could the grid system be useful?
