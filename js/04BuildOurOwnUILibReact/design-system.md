@@ -131,7 +131,7 @@ There may be two side container: one for navigation (rapid access to other main 
 
 How to handle assistive components on mobile?
 Issue: impossible to display main + each assistive component on small screen.
-component container with assistives. Could be grill of small cards to choose which main component to focus, then having a bottom bar for assistive and "back" to choose another main component. (instead of back, it could be a breadcrumb: home > main comp 1 > comp 2, with icons instead of comp title). Depending on space requirement (one requirements for one associated visual comfort - one component have many visual comfort) & importance, assistive component could be displayed next to the main component. Only use bottom bar if there is no available place beside main component.
+component container with assistives. Could be grill of small cards to choose which main component to focus, then having a bottom bar (or side bar in landscape mode) for assistive and "back" to choose another main component. (instead of back, it could be a breadcrumb: home > main comp 1 > comp 2, with icons instead of comp title). Depending on space requirement (one requirements for one associated visual comfort - one component have many visual comfort) & importance, assistive component could be displayed next to the main component. Only use bottom bar if there is no available place beside main component.
 
 Each component should have a "way of displaying itself" depending on available size. eg: icon, icon/illustration + text, text, actual component.
 
@@ -181,7 +181,7 @@ If there is too much scrolling, could replace components with tiles that are a s
 In
 ## Parameters & settings
 Settings are associated with components (or global app, wich is the root component). Display them on component focus.
-secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component.
+secondary elements. (lower priority than assistive components which help taking action) Is located on appBar or similar container. Use similar workflow than low priority components linked to a main component. App settings contains theme settings
 Eventually, display in settings those of the focused component and all its children, each on a separate menu item, eg:
 setting icon -> menu with "settings for comp A", "settings for comp B", etc... if there is only one entry, it should pop up settings component directly.
 ~~All settings could be handled in one "big" component (similar to a main component). Should be fractal in its conception to the app. (with potential container bar & secondary elements inside it)~~
@@ -194,6 +194,9 @@ All of these are "side" or "helper". Grouping is done depending on:
 - requested size.
 - similarity
 
+## AppBar
+
+search (alternative of keyboard shortcut to focus on any component) - Breadcrumb (display app fullname when on home, with icon ; then, only display icon) - settings (could display user picture to highlight the connected account - but in other focus, could simply be a gear)
 
 # Examples
 
