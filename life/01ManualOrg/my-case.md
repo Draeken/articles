@@ -1,8 +1,10 @@
 Suis-je satisfais de la vie ?
+
+travailler avec une équipe avec laquelle on s'entends bien, sur un projet cool : +++++
+
 Je pense que la vie peut être beaucoup plus intéressante et enrichissante que ça. De mon point de vue, ça serait avoir une puissance créatrice plus forte : pouvoir matérialiser des idées plus rapidement, à une plus grande échelle, grâce à plus de moyens. Pas forcément être présent du début jusqu'à la fin, mais être présent au début pour assurer une certaine direcion. - [Foster your projects](https://vanslaars.io/post/foster-your-projects/). Pouvoir rencontrer davantage de gens :
   -> créer des projets utiles aux autres ? Pousse à la rencontre de ses potentiels utilisateurs / cibles
   -> m'investir dans la boite ?
-  -> devenir thérapeute mémoire cellulaire ? NOP
 
 Différents chemins :
 - vivre des petits plaisirs - sorties, vacances, loisirs accessibles, JV, films (ordinaire) : bonheur hédonique
@@ -16,9 +18,9 @@ Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre e
 Quel cap définir : -la personne que l'on souhaiterait être- ou [la vie que l'on souhaiterait mener] ?
 D'après Franck Lopvet : se poser la question de la personne que l'on souhaite être à chaque "décision" à prendre. Ne pas imposer de règle que l'on devrait suivre tout le temps. C'est à chaque moment qu'il faut se poser la question. Cela peut paraitre couteux en énergie, mais en fait, cette question se répond plutôt rapidement, car elle se répond avec nos tripes.
 Accepter la personne que l'on est, accepter notre attrait pour certaines activités.
-J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party (un peu moins maintenant - c'est répétitif ou voir carrément pas intéressant). Quelles seraient les autres activités possibles et facile d'accès ?
+J'aime vivre des expériences intenses, notamment via les jeux multi compétitifs (FPS, Moba, Strat) et surtout les couch-party (un peu moins maintenant - c'est répétitif ou voir carrément pas intéressant - même si les jeux de société, c'est bien plus cool que ce que je pensais). Quelles seraient les autres activités possibles et facile d'accès ?
 - Sport: ultimate, marathon, basket, tennis, natation ?
-- Faire tourner son business
+- Faire tourner son business -> trop de confontration, d'intérêts/parties contraires
 - Aventure: s'adonner totalement à un projet, en minimisant le temps passé aux autres tâches (veille, lecture, jeux, emails, réseaux sociaux). Une sorte de rush/sprint sur une période déterminée. -> Avoir le contrôle de son environement. Très difficile à mener en étant tout seul. Eventuellement plus simple dans des WeWorks - lieux de co-working.
 
 Mon objectif : Me retrouver dans un esprit de cammaraderie, d'avoir les mêmes ambitions où objectifs - ostracisé car se mouvant en extrêmistan (cf: cygne noir), c'est quelque chose de génial. Que ça soit être en relation avec des gens ambitieux (petite équipe) et avec qui je partagerais des projets qui ont du sens - développer des systèmes pour faciliter la vie, l'apprentissage / favoriser le développement d'idées en réalisations - si ces projets n'existent pas déjà. Sinon, créer pour le plaisir - mais surtout pour voir ses créations être utilisées et appréciées (quoi de plus gratifiant ?) ; ou retrouver cet esprit de cammaraderie dans le jeu - qui mette suffisament le groupe à l'épreuve - ou qui soit basé sur la cohésion du groupe.
