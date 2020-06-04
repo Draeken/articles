@@ -1,6 +1,19 @@
 Suis-je satisfais de la vie ?
 
 travailler avec une équipe avec laquelle on s'entends bien, sur un projet cool : +++++
+Pas évident à trouver, et pas facile de rester motiver indéfiniment. Avantage du secteur du JV: diversité des projets et efforts d'innovation.
+
+## stratégie de maximisation du temps personnel
+sources de revenue passives:
+- louer la place de parking
+- finance/dividendes
+sources de revenue actives:
+- freelance/indep
+- patreon
+- CDI sur 4j/semaine
+
+freelance permettrait d'organiser le calendrier de tel sorte à avoir des "trous" et occuper le temps autrement.
+dans le cas de freelance/patreon : nécessite de construire sa propre marque
 
 Je pense que la vie peut être beaucoup plus intéressante et enrichissante que ça. De mon point de vue, ça serait avoir une puissance créatrice plus forte : pouvoir matérialiser des idées plus rapidement, à une plus grande échelle, grâce à plus de moyens. Pas forcément être présent du début jusqu'à la fin, mais être présent au début pour assurer une certaine direcion. - [Foster your projects](https://vanslaars.io/post/foster-your-projects/). Pouvoir rencontrer davantage de gens :
   -> créer des projets utiles aux autres ? Pousse à la rencontre de ses potentiels utilisateurs / cibles
