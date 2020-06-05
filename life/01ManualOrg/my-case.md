@@ -15,6 +15,28 @@ sources de revenue actives:
 freelance permettrait d'organiser le calendrier de tel sorte à avoir des "trous" et occuper le temps autrement.
 dans le cas de freelance/patreon : nécessite de construire sa propre marque
 
+## Dissociation identitaire
+Lorsqu'on s'intéresse à plusieurs domaines éloignés les uns des autres, il est intéressant de ne pas tout faire refléter par une même identité (du moins dans un cadre pro/communautaire). Dans mon cas, on pourrait avoir:
+- identité principale: software eng. -> méthodologie, architecture, outils & technologies, techniques, algo, webdev, développement d'app, devops
+- gamedev, modding, level design, map creation
+
+Quoi partager ?
+- feelings sur un projet en cours (eg: l'internationalisation avec Flutter, c'est pas un peu lourd ?)
+- problème rencontré sur un projet en cours (eg: j'essaie d'ajouter un chat dans une app Next.js & firestore, pas simple de gérer une nouvelle conversation!)
+- avancement sur projet (avec éventuellement un visuel)
+- avis sur un article/livre
+- citation d'un article/livre
+- réagir/commenter les posts des autres
+
+rédaction d'article : dans quel but ?
+- apprendre, approfondir & partager
+- enrichir le profil
+
+Video:
+- présentation d'une idée, avec prototyping (After Effect)
+- review de code?
+- tutos (mais ça demande beaucoup de boulot)
+
 Je pense que la vie peut être beaucoup plus intéressante et enrichissante que ça. De mon point de vue, ça serait avoir une puissance créatrice plus forte : pouvoir matérialiser des idées plus rapidement, à une plus grande échelle, grâce à plus de moyens. Pas forcément être présent du début jusqu'à la fin, mais être présent au début pour assurer une certaine direcion. - [Foster your projects](https://vanslaars.io/post/foster-your-projects/). Pouvoir rencontrer davantage de gens :
   -> créer des projets utiles aux autres ? Pousse à la rencontre de ses potentiels utilisateurs / cibles
   -> m'investir dans la boite ?
@@ -89,6 +111,7 @@ Lorsqu'une activité nous plait, cela nous pousse à dégager du temps pour s'y 
 - si on veut changer de projet, c'est compliqué - car on y est impliqué
 - plus difficile de gérer les conflits entre associés
 - difficile de trouver les bonnes personnes
+- perte de motivation contagieux
 
 Les projets ambitieux nécessitent une équipe. Il serait trop long et démotivant d'acquérir toutes les connaissances nécéssaires pour réaliser quelque chose de qualité, et de se charger de tout. Dans l'idéal il faudrait travailler sur ces projets dans le cadre d'une entreprise, et réserver les plus petits projets au temps libre (à faire seul ou via Colony). En premier projet rénumérateur, la moins complexe pourrait être l'API derrière CakeTime. Il y a un marché avec de la concurrence sur lesquelles on pourrait se baser, en proposant une approche très différente.
 
