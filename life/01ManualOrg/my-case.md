@@ -15,6 +15,12 @@ sources de revenue actives:
 freelance permettrait d'organiser le calendrier de tel sorte à avoir des "trous" et occuper le temps autrement.
 dans le cas de freelance/patreon : nécessite de construire sa propre marque
 
+Quelles actions ont le plus d'impacte ?
+- mener à bien un projet perso -> intègre un portfolio
+- rédaction d'articles -> blog
+- profil GitHub / StackOverflow
+- présence sur les réseaux
+
 ## Dissociation identitaire
 Lorsqu'on s'intéresse à plusieurs domaines éloignés les uns des autres, il est intéressant de ne pas tout faire refléter par une même identité (du moins dans un cadre pro/communautaire). Dans mon cas, on pourrait avoir:
 - identité principale: software eng. -> méthodologie, architecture, outils & technologies, techniques, algo, webdev, développement d'app, devops
@@ -27,6 +33,8 @@ Quoi partager ?
 - avis sur un article/livre
 - citation d'un article/livre
 - réagir/commenter les posts des autres
+
+stackoverflow : apporter son aide
 
 rédaction d'article : dans quel but ?
 - apprendre, approfondir & partager
