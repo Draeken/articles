@@ -58,6 +58,30 @@ Dans les petits plaisirs, nous retrouvons des erzats de ce que l'on peut vivre e
 - parce qu'on en a intrinséquement envie
 - ça nous apporte joie & bonheur car on vit un personnage qui est en phase avec nous - pas un personnage bâti sur un château de carte.
 
+Concernant Sid : même s'il y a une volonté apparante d'autonomie, toutes les excuses justifient son inactivité. Le bénéfice de se faire entretenir l'emporte sur la liberté de l'autonomie. Vu que se faire entrenenir n'est pas bien vue, et nuirait à son estime de soi, c'est la volonté d'autonomie qui est mise en avant. Dans le cadre d'une famille, les parents peuvent mettre en avant plusieurs points pour une volonté d'autonomie plus forte à leurs enfants :
+- cette période ou l'enfant est entretenu tout frais payé est temporaire, et il faudra être prêt pour assurer une vie autonome.
+- faire prendre conscience de l'avantage d'investir en soi-même.
+- l'autorité parentale
+Aucune n'est applicable avec Sid. Même pour le deuxième point, son hermétisme à toute leçon pour bien préparer son avenir (de peur de mal se sentir) rend les choses compliquées.
+
+Quels sont les problèmes à vivre avec une personne qui ne souhaite que se faire entretenir ?
+- mise en concurrence de celui qui entretient le mieux
+- difficulté à intégrer la personne à l'effort commun, aux plannifications (évenements, activités, ... - c'est plus simple quand c'est une surprise)
+- pas simple de rester motivé quand les efforts ne sont pas équitablement partagés.
+- énergivore
+
+Stratégie de détachement :
+Axes: non violent (protège les relations amicales), radical (évite les rechutes)
+- psychologique :
+La plupart des moments attachants ne sont pas due à son identité propre. Les autres seraient plus appropriés à un enfant.
+Le moment où un enfant sera envisageable est très loin.
+Tous les problèmes d'une relation avec une personne entretenue sont valables dans ce cas, et intolérables.
+- physique :
+couper l'entretient :
+Alimentaire (choisir des repas/aliments non appréciés par l'entretenue); faire attention en achetant des repas rapide d'élaboration (produits congelés, conserves, lyophilisés : c'est ce qui est le plus apprécié d'une entretenue seule).
+Confort : pas d'achat pouvant améliorer son confort.
+Réduire au minimum les activités partagées : dans un instant d'euphorie, je pourrais perdre ma garde et rechuter. Il faudrait alors repartir de 0. Dans cette optique : mettre en pause les activitées
+
 Quel cap définir : -la personne que l'on souhaiterait être- ou [la vie que l'on souhaiterait mener] ?
 D'après Franck Lopvet : se poser la question de la personne que l'on souhaite être à chaque "décision" à prendre. Ne pas imposer de règle que l'on devrait suivre tout le temps. C'est à chaque moment qu'il faut se poser la question. Cela peut paraitre couteux en énergie, mais en fait, cette question se répond plutôt rapidement, car elle se répond avec nos tripes.
 Accepter la personne que l'on est, accepter notre attrait pour certaines activités.
