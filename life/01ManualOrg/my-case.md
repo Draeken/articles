@@ -80,7 +80,11 @@ Tous les problèmes d'une relation avec une personne entretenue sont valables da
 couper l'entretient :
 Alimentaire (choisir des repas/aliments non appréciés par l'entretenue); faire attention en achetant des repas rapide d'élaboration (produits congelés, conserves, lyophilisés : c'est ce qui est le plus apprécié d'une entretenue seule).
 Confort : pas d'achat pouvant améliorer son confort.
-Réduire au minimum les activités partagées : dans un instant d'euphorie, je pourrais perdre ma garde et rechuter. Il faudrait alors repartir de 0. Dans cette optique : mettre en pause les activitées
+Réduire au minimum les activités partagées : dans un instant d'euphorie, je pourrais perdre ma garde et rechuter. Il faudrait alors repartir de 0. Dans cette optique : mettre en pause les activitées l'incluant, le temps d'un détachement de deux côtés.
+Au quotidien :
+- le matin : regarder rapidement la TV le temps du petit déj et passer à autre chose
+- le soir : pas d'anime, pas de film. Reportage Arte ou ThinkerView.
+Une fois que le détachement sera bien amorcé, annoncer un ultimatum pour le déménagement de ses affaires.
 
 Quel cap définir : -la personne que l'on souhaiterait être- ou [la vie que l'on souhaiterait mener] ?
 D'après Franck Lopvet : se poser la question de la personne que l'on souhaite être à chaque "décision" à prendre. Ne pas imposer de règle que l'on devrait suivre tout le temps. C'est à chaque moment qu'il faut se poser la question. Cela peut paraitre couteux en énergie, mais en fait, cette question se répond plutôt rapidement, car elle se répond avec nos tripes.
@@ -129,6 +133,17 @@ Concernant AutoSchedule :
 Il est plus facile de concevoir les choses lorsque le périmètre est bien découpé.
 Il est plus motivant de travailler dans un environement qui favorise le travail bien fait. De se dire qu'on contribue à un projet en y apportant des solutions propres, extensible, réutilisable, maintenable. Bien découper même si le périmètre de lancement est très réduit.
 C'est pour ça que réfléchir en amont à comment son code sera découpé en plusieurs projets aillant chacun leur indépendance est important.
+
+## Routines
+
+activité sportive :
+- fitness en VR
+- voir les exercices qui font travailler le plus de muscles
+Quel est le meilleur moment pour le faire ? le matin étant réservé au travail créatif
+
+participer à des meetups certains soirs de semaine : permet de rencontrer de nouvelles personnes, d'étendre son point de vue, d'augmenter ses chances de bonnes opportunitées, de travailler son social
+- avoir des cartes de visite ?
+- travailler son style ? corporate décontracté -> cravate chemise, haut de forme
 
 ## Le problème de l'optimum local
 
