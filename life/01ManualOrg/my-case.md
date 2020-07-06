@@ -1,5 +1,5 @@
 Suis-je satisfais de la vie ?
-
+Ce qui me motive : être fier de moi/de mon groupe, de mes succès & accomplissements
 travailler avec une équipe avec laquelle on s'entends bien, sur un projet cool : +++++
 Pas évident à trouver, et pas facile de rester motiver indéfiniment. Avantage du secteur du JV: diversité des projets et efforts d'innovation.
 
