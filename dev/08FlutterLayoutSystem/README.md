@@ -3,8 +3,8 @@
 How Flutter Layout works
 Layout rules
 How common widgets act in this system
-Common Pitfalls/How to debug
-How to create 
+How to debug
+How to create
 
 ## How Flutter Layout works
 
@@ -19,9 +19,14 @@ Dans le cas d'un widget sliver, c'est différent. Les enfants de sliver peuvent 
 ## Layout Rules
 Ormis la règle générale "Les contraintes descendent; les tailles remontent; les parents décident de la taille", il y a quelques règles à respecter pour ne pas générer d'erreurs. Il s'agit soit d'erreurs lié à une taille infinie, soit une taille plus grande que le containeur dans lequel cela doit s'afficher :
 - le cas ou un enfant demande une taille infinie à un parent non contraignant
-- pour certains widget comme `FittedBox`, impossible d'avoir un enfant demandant une taille infinie
 - un enfant demande une taille plus grande qu'un containeur parent, ayant comme intermédiaire un parent non contraignant
-Les widgets les plus connus étant non contraignant sont les `flex boxes` (`Row` ou `Column`) et les slivers (`ListView` ou `ScrollView`).
+
+Dans le premier cas, le projet ne peut pas compiler, tandis que dans le second, en mode dev, un bandeau de mise en garde est affiché.
+Il y a aussi des règles spécifiques à certains widgets :
+- concernant `FittedBox`, impossible d'avoir un enfant demandant une taille infinie
+- la contrainte cross direction d'un flex ne doit pas être non contraignant (la hauteur pour un Row, ou la largeur pour une Column)
+
+Les widgets les plus connus étant non contraignant sont les `flex boxes` (`Row` ou `Column`) avec un shrinkWrap à false et les slivers (`ListView` ou `ScrollView`).
 
 ## How common widgets act in this system
 Pour savoir comment un widget va se comporter dans le système de mise en page, deux solutions :
@@ -32,15 +37,15 @@ Dans tous les cas, il est peu probable de bien deviner son comportement en se fi
 - [] https://api.flutter.dev/flutter/widgets/Flex-class.html
 
 ### Dans un contexte contraignant
-Center, Align voudront être aussi grand que possible.
+Center, Align, Flex voudront être aussi grand que possible.
 ### Dans un contexte non contraignant
-Center, Align prendront la taille de leur enfant (ou plus si spécifié).
+Center, Align, Flex prendront la taille de leur enfant (ou plus si spécifié).
 ### Dans un context Flex (Row/Column)
 Expanded : permet à l'enfant de prendre la place restante le long de l'axe principale
 Spacer : permet de prendre de la place (comme un Expanded avec un enfant vide).
 
 https://flutter.dev/docs/development/ui/widgets/layout
 
-## Common Pitfalls/How to debug
+## How to debug
 https://flutter.dev/docs/development/tools/devtools/inspector
 
