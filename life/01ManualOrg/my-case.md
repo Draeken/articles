@@ -21,6 +21,23 @@ Quelles actions ont le plus d'impacte ?
 - profil GitHub / StackOverflow
 - présence sur les réseaux
 
+### Rédaction d'articles
+Est-ce vraiment adapté à mon cas ?
+Avantages:
+  - périmètre assez clair, possibilité de mettre une deadline ou de savoir quand s'arrêter
+    - pousse au travail
+  - intègre un portfolio, fait état de nos connaissances
+  - pousse à creuser un sujet
+    - permet de mieux mémoriser
+Inconvéniants :
+  - figé dans le temps (mais possiblité de faire des updates)
+  - demande beaucoup de travail
+  - ça ne m'emballe pas
+Est-ce du temps bien consacré ? Le temps utilisé pour s'assurer de la qualité et de l'exaustivité pourraient l'être à développer le projet.
+Alternative : Wiki personnel -> règle tous les inconvéniants de la rédaction d'article, mais ne pousse pas au travail et n'est pas vraiment intégrable à un portfolio.
+Proposition : enrichir le wiki personnel lors de l'étude d'un sujet ou d'une résolution de problème avec comme état d'esprit : pouvoir comprendre en relisant les notes dans 5 ans. Une fois qu'un article wiki couvre suffisament le sujet (75% ?), le convertir en article.
+Après avoir enrichi un article wiki, noter le % de couverture.
+
 ## Dissociation identitaire
 Lorsqu'on s'intéresse à plusieurs domaines éloignés les uns des autres, il est intéressant de ne pas tout faire refléter par une même identité (du moins dans un cadre pro/communautaire). Dans mon cas, on pourrait avoir:
 - identité principale: software eng. -> méthodologie, architecture, outils & technologies, techniques, algo, webdev, développement d'app, devops
