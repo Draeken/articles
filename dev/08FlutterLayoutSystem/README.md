@@ -1,10 +1,10 @@
 # Flutter Layout System
 ## Questions
-How Flutter Layout works
-Layout rules
-How common widgets act in this system
-How to debug
-How to create
+How Flutter Layout works (100%)
+Layout rules (100%)
+How common widgets act in this system (25%)
+How to debug (30%)
+How to create (0%)
 
 ## How Flutter Layout works
 
