@@ -16,3 +16,14 @@ Organized like project scheduler: each step has a list of dependences.
 Generate presentation (non-linear, prezy-like, with ontology map in a corner).
 Input: ontology, what concepts or relations to present (in order), what has to be explained (concept - relation).
 How to know what is the minimal set of propeties of a concept that needs to be explained, relative our goal.
+
+## Why
+A world where every single point of view is respected.
+
+## How
+Representation of knowledge subjective to each.
+(concept) : characteres, stories, actions, landmark, laws, justice, friendship, love, recipe
+concepts are subjective and there could be an infinit amount of slightly different definition of the "same" concept.
+concept have properties.
+concept adheres/agrees to subjective version of other concepts.
+concept can evolve (properties, or adherence to other concepts).
