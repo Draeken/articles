@@ -25,10 +25,12 @@ Dans tous les cas, l'état propre à un composant, qui n'est utilisé nul part a
 Avoir un reducer pour chaque partie distincte.
 Le terme "slice" designe un reducer et ses actions associées, correspondant à une partie distincte de l'état.
 Possibilité d'utilsier `createSlice`/`createReducer` (venant de Redux ToolKit, qui utilise Immer en interne) pour retourner une copie modifiée de l'état sans toute la complexité visuelle des spread operators.
-Pour fournir le store à une app React, on utilise les hooks `useSelector` qui cible une partie de l'état général et `useDispatch` pour déclencher des actions. Le provider se trouve à la racine de l'app. Le composant utilisant `useSelector` sera ré-évalué à chaque fois que `useSelector` retourne une nouvelle référence.
+Pour fournir le store à une app React, on utilise les hooks `useSelector` qui cible une partie de l'état général et `useDispatch` pour déclencher des actions. Le provider se trouve à la racine de l'app. Le composant utilisant `useSelector` sera ré-évalué à chaque fois que `useSelector` retourne une nouvelle référence. Il est d'usage de centraliser les fonctions d'un même slice utilisées comme selecteur (on pourrait vouloir récupérer les mêmes données sur une autre page).
 Lorsqu'on a besoin d'une valeur aléatoire (eg: id unique), il est nécessaire de le générer en amont et de le passer en payload à l'action. Ce cas est géré via la propriété `prepare` d'un réducer donné à `createSlice`.
 
 Le thunk est une fonction créant une action asynchrone, prenant `dispatch` et `getState` en paramètre. Il est d'usage que le thunk dispatch dès son appel une action indicant le démarrage de l'action asynchrone (-> état de chargement, avoir un retour côté UI, prévoir le succès. On pourrait placer une propriété "status" à côté de ce qu'on met à jour, avec les options "pending", "idle", "complete" et "error" - cela est fait automatiquement via `createAsyncThunk`), puis en fonction du retour asynchrone, déclencher une action de réussite ou d'erreur. Le workflow est le suivant : status idle -> dans le composant, si "idle" on dispatch une thunk action fetchData -> status pending -> affichage du loader dans le composant -> en fonction du status "complete" ou "error", afficher le résultat ou le message d'erreur.
+
+Pour éviter qu'un selecteur complexe s'éxécute à chaque ré-éxecution, on peut le mémoizer : le résultat sera le même tant que ce sur quoi dépend le calcul du selecteur ne change pas. `createSelector` fourni avec Redux ToolKit intègre ce fonctionnement, via la bibliothèque `Reselect`.
 
 ## How to use it with TypeScript
 If you're using TypeScript, you should use the builder callback form of extraReducers.
