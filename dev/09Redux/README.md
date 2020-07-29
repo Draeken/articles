@@ -32,5 +32,21 @@ Le thunk est une fonction créant une action asynchrone, prenant `dispatch` et `
 
 Pour éviter qu'un selecteur complexe s'éxécute à chaque ré-éxecution, on peut le mémoizer : le résultat sera le même tant que ce sur quoi dépend le calcul du selecteur ne change pas. `createSelector` fourni avec Redux ToolKit intègre ce fonctionnement, via la bibliothèque `Reselect`.
 
+Pour éviter des ré-éxecution de composant inutiles, il peut être envisageable de maintenir dans le store plusieurs formes d'un même état, mais qui ne mettra pas à jour à la même fréquence. Par exemple pour une liste de message, quand le message est mis à jour, cela va changer la référence de la liste et ré-éxecuter les composants qui y dépendant. Mais si on veut qu'un composant ne dépendant que du nombre de messages, on pourrait maintenir dans le store cette information, qui ne serait mise à jour que lors de l'ajout ou la supression d'un message. `createEntityAdapter` permet de faire ça. Cela fait écho à la normalisation de la donnée (https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape) :
+
+```javascript
+{
+  users: {
+    ids: ["user1", "user2", "user3"],
+    entities: {
+      "user1": {id: "user1", firstName, lastName},
+      "user2": {id: "user2", firstName, lastName},
+      "user3": {id: "user3", firstName, lastName},
+    }
+  }
+}
+```
+On utilise l'ID comme clef de mapping, plutôt que de faire une recherche sur l'ID. Le tableau d'ID permet également de définir un ordre entre les items. La normalisation vise une représentation des données plutôt plate, car lorsque la donnée est trop imbriquée, cela entraine souvent des ré-éxecutions inutiles. Les composants graphiques se transmettront des IDs et seront responsables de récupérer via le store l'objet associé, plutôt que de transmettre l'objet directement, si la donnée n'avait pas été normalisée.
+
 ## How to use it with TypeScript
 If you're using TypeScript, you should use the builder callback form of extraReducers.
