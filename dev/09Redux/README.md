@@ -47,6 +47,7 @@ Pour éviter des ré-éxecution de composant inutiles, il peut être envisageabl
 }
 ```
 On utilise l'ID comme clef de mapping, plutôt que de faire une recherche sur l'ID. Le tableau d'ID permet également de définir un ordre entre les items. La normalisation vise une représentation des données plutôt plate, car lorsque la donnée est trop imbriquée, cela entraine souvent des ré-éxecutions inutiles. Les composants graphiques se transmettront des IDs et seront responsables de récupérer via le store l'objet associé, plutôt que de transmettre l'objet directement, si la donnée n'avait pas été normalisée.
+Pour modéliser une relation many-to-many, il est possible de reprendre le fonctionnement d'une base relationel et d'utiliser une table de jointure.
 
 ## How to use it with TypeScript
 If you're using TypeScript, you should use the builder callback form of extraReducers.
