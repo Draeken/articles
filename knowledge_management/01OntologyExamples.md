@@ -11,6 +11,8 @@ Organized like project scheduler: each step has a list of dependences.
 'Cooked rice'(food): nutritive information ; is 'Rice'(general)
 'Cooked rice'(recipe)(court-bouillement): is 'Cooked rice'(food) ; needs x 'Raw rice'(recipe); needs 3x 'Water'(recipe); result in 2x 'Cooked rice'(food);
 
+
+
 ## Application
 
 Generate presentation (non-linear, prezy-like, with ontology map in a corner).
@@ -27,3 +29,7 @@ concepts are subjective and there could be an infinit amount of slightly differe
 concept have properties.
 concept adheres/agrees to subjective version of other concepts.
 concept can evolve (properties, or adherence to other concepts).
+
+Define concept in optic to compare it with similar concept. eg: define recipe to allow comparison with similar recipes.
+
+Concepts start by being owned by its creator, but if enough people connects with this concept, it becomes public. Modification needs a majority of validation.
