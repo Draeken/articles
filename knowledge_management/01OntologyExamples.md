@@ -59,3 +59,11 @@ user 3 auto-switch on concept with the most users
 (pink apple); brand
 (red apple) specified concept
 (red & yellow, small, very ripe apple)
+(vin blanc sec)
+
+---
+
+Each user can create a new entry, that can depict generic product, raw product, or final product (obtained from recipe).
+For well-known branded product, (oreo), it can be concidered as a generic product label, and accepts original oreo and bootlegs as implementation.
+Entry's label is in user's language, and may have alias & ISO denomination (pain au chocolat, chocolatine / oreo, biscuit au chocolat fourré à la crème pâtissière). It provides properties (composition of properties), nutritive information could be informed through a property (eg: nutrition = nutritionOf(apple)).
+For an existing final product entry, an user could copy it to adapt it to its language.
