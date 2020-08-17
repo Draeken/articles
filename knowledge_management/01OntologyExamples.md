@@ -56,7 +56,7 @@ user 3 auto-switch on concept with the most users
 
 (apple); root concept for apple
 (default apple)
-(pink apple); brand
+(pink apple); brand <- not supposed to be in this DB
 (red apple) specified concept
 (red & yellow, small, very ripe apple)
 (vin blanc sec)
@@ -67,3 +67,26 @@ Each user can create a new entry, that can depict generic product, raw product, 
 For well-known branded product, (oreo), it can be concidered as a generic product label, and accepts original oreo and bootlegs as implementation.
 Entry's label is in user's language, and may have alias & ISO denomination (pain au chocolat, chocolatine / oreo, biscuit au chocolat fourré à la crème pâtissière). It provides properties (composition of properties), nutritive information could be informed through a property (eg: nutrition = nutritionOf(apple)).
 For an existing final product entry, an user could copy it to adapt it to its language/region. Equivalence between two products is subjective and should be an entry. Equivalence could inform the target audience (country, culture, region).
+Implementation of concepts (products found in supermarket) could be linked to concept by users, specifying a level of quality for each product.
+Does raw product concept needs to be localized? We could have an unique tomato concept and have recipes using tomatos be localized. But tomato concept will have tons of links to implementations. If implementation are localized, it could filter to suit recipes.
+But it's better to have raw product concept be localized: fewer links & for aggregated info, it's less prone to large variations.
+
+## Is it possible to have the same concept name under the same localization?
+Yes -> when someone wants to edit description or properties
+No -> avoid duplicate ; -> add "last update", with "used by [count]" it should suggest the best suit.
+
+## What kind of raw product to register
+generic localized (product that comes to mind in this localization).
+specified product () -> should it includes a field to the "parent" or "generic" concept? Yes -> avoid having too many raw product concept ; when asking user if there is tomatoes in this market, if the response is "no", don't ask for specified tomatoes.
+
+## How to register a raw product
+is: raw_product
+Name/description; (apple/red apple)
+Localization (town;state/region;country;culture/civilization)
+specialization of -> raw product concept
+nutritional information -> aggregated from implementers
+color -> aggregated from implementers
+price -> aggregated from implementers
+
+## Classification/groups
+Subjective -> user create a new class as a new concept.
