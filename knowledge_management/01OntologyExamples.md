@@ -84,9 +84,12 @@ is: raw_product
 Name/description; (apple/red apple)
 Localization (town;state/region;country;culture/civilization)
 specialization of -> raw product concept
-nutritional information -> aggregated from implementers
+nutritional information -> table //aggregated from implementers
 color -> aggregated from implementers
 price -> aggregated from implementers
 
+Nutritional information are often given for a general class and not for varieties, or varieties are specified through difference with general class.
+Raw product could describe the default or the most common variety. Then all varieties are grouped together using a new class.
+
 ## Classification/groups
-Subjective -> user create a new class as a new concept.
+Subjective user create a new class as a new concept.
