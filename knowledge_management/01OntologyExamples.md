@@ -86,7 +86,7 @@ specified product () -> should it includes a field to the "parent" or "generic" 
 - raw_product
 - product_class
 - equivalence
-- recipes
+- recipes (as simple as cooked rice)
 
 ## How to register a raw product
 is: raw_product

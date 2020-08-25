@@ -29,6 +29,18 @@ Gérer un type générique et les valeurs possibles des propriétés de ce type
 
 `as const` is a simple way to make an array tuple.
 
+```typescript
+const extraKeys = ['app', 'title', 'package', 'deeplink', 'url', 'logo', 'image', 'type'] as const;
+
+export type Extra ={
+  [key in typeof extraKeys[number]]: string;
+};
+
+const myExtra: Extra = getExtra();
+myExtra.app = 'toto';
+myExtra.dude = 'tata'; // throw error
+```
+
 when you have a interface like
 interface Test {
   foo: {
