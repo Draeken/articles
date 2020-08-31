@@ -71,6 +71,7 @@ Equivalence is a way to give a local name to a foreign product.
 Implementation of concepts (products found in supermarket) could be linked to concept by users, specifying a level of quality for each product. Implementations are handled in another DB (like OpenFoodFacts), where users could rate and categorize (discount - standard - premium) products.
 Does raw product concept needs to be localized? We could have an unique tomato concept and have recipes using tomatos be localized. But tomato concept will have tons of links to implementations. If implementation are localized, it could filter to suit recipes.
 But it's better to have raw product concept be localized: fewer links & for aggregated info, it's less prone to large variations.
+Note about localization: instead of engrave it on concept item (raw product, equivalence), just store it on user profil. As we know how many users adhere the concept, we can aggregate its localization. And it's less error-prone.
 
 ## Is it possible to have the same concept name under the same localization?
 Yes -> when someone wants to edit description or properties
@@ -80,7 +81,8 @@ to conclude: yes -> add "last update", with "used by [count]" it should suggest 
 
 ## What kind of raw product to register
 generic localized (product that comes to mind in this localization).
-specified product () -> should it includes a field to the "parent" or "generic" concept? Yes -> avoid having too many raw product concept ; when asking user if there is tomatoes in this market, if the response is "no", don't ask for specified tomatoes.
+specified product () -> should it includes a field to the "parent" or "generic" concept? Yes -> avoid having too many raw product concept ; when asking user if there is tomatoes in this market, if the response is "no", don't ask for specified tomatoes. -> specified/"generic"(default) are in the same class/group -> no needs for a link to "parent". We ask user if there is the group "tomatoes" in the market.
+conclusion: no.
 
 ## List of item types
 - raw_product
@@ -91,8 +93,9 @@ specified product () -> should it includes a field to the "parent" or "generic" 
 ## How to register a raw product
 is: raw_product
 Name/description; (apple/red apple)
-Localization (town;state/region;country;culture/civilization)
-specialization of -> raw product concept
+// Localization (town;state/region;country;culture/civilization) is on user side
+// specialization of -> raw product concept ; what's the need?
+tags -> link to class/group "is a"
 nutritional information -> table //aggregated from implementers ()
 color
 price -> aggregated from implementers
@@ -101,4 +104,9 @@ Nutritional information are often given for a general class and not for varietie
 Raw product could describe the default or the most common variety. Then all varieties are grouped together using a new class.
 
 ## Classification/groups
-Subjective user create a new class as a new concept.
+Subjective user create a new class/group as a new concept.
+- is:product_class
+- name/description
+// - list of products
+
+-> issue: when someone add a product to a class, it forks the class. As it may happen often, it's not suitable. Other solution: have a product_class without list, and each product can reference a class (through tags/labels).
