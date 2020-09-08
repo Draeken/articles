@@ -42,6 +42,9 @@ user 1 updates concept A, user 2 stay on unmodified concept A
 user 2 follow updates
 (user 1)->(concept A')<-(user 2)
 
+OR user 2 updates concept A:
+(user 1)->(concept A with diff)->(concept A)<-(concept A with other diff)<-(user 2)
+
 ---
 
 (user 1)->(concept A with diff)->(concept A)<-(user 2 + user 3)
@@ -107,6 +110,28 @@ Raw product could describe the default or the most common variety. Then all vari
 Subjective user create a new class/group as a new concept.
 - is:product_class
 - name/description
+- could aggregate info from each items
 // - list of products
 
 -> issue: when someone add a product to a class, it forks the class. As it may happen often, it's not suitable. Other solution: have a product_class without list, and each product can reference a class (through tags/labels).
+
+recipe could be added in a same vein as products:
+"cutted carrots" regroups all the recipes for cutted carrots.
+ALl these concepts are correlated in this way:
+1. class of products
+2. raw products concepts
+3. species/actual products, found in supermarket
+4. class of recipes
+5. actual recipes
+
+1. regroups raw products concepts
+2. regroups species/actual products
+4/5. could have the same name as a class of product
+5. could reference class of product, raw product or species/actual product
+
+Merge class of products & class of recipes
+class of recipe: pâte carbonara:
+input: [sauce carbonara, pâtes cuites]
+operation: mélanger
+
+"sauce carbonara" -> class of recipe/product (could be bought ready-to-use in supermarket, or home made)
