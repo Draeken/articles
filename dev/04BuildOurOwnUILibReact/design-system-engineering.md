@@ -165,6 +165,15 @@ requirements: center; min-size: 1x1, comfort: 3x3
 center has a greater gravity force.
 pick a free cell near center, then apply force
 
+Physics based consume too much resources, and can hardly be on server-side due to the high amount of state to compute, if we want all state to be determined with the first serving. Pre-determined spaces with permutations should be easier.
+
+## Placement based on growing axis
+Component could be placed appropriatly on a grid based on their growing axis. Place them with their minimal shape, then make them grow.
+group components by similar growth scheme and place them simultaneously.
+- both axis : center
+- vertical axis : left/right sides
+- horizontal axis : top/bottom sides
+
 ## Architecture
 grid size + components -> placement
 using css grid: use absolute size for fixed size components & flex unit (fr) for growing components.
