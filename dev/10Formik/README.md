@@ -11,8 +11,14 @@ Formik fournit le composant Field, venant remplacer le <input>, qui fait le bind
 
 Comment ça s'utilise :
 on initie Formik avec les propriétés initialValues, et le callbacks onSubmit. On y imbrique ensuite le formulaire via Form (composant qui bind le submit natif au submit de Formik) et des composants Field. à chaque field, on renseigne la propriété name, qui doit avoir une valeur correspondante dans le initialValues (il est possible d'avoir des sous objets -> "fieldA.subfieldB").
+Formik peut prendre une fonction de rendu (plutôt que d'y mettre directement l'élément Form). Cela permet de récupérer différentes propriétés/callbacks de Formik comme validateForm, errors, touched.
 
 La validation :
 - fonction avec un objet contenant l'ensemble des valeurs du formulaire, nous laisse gérer comment le valider et retourner un objet errors reprenant les champs du formulaire. Cette méthode supporte la validation asynchrone.
 - schéma de validation (avec la lib de validation Yup)
 - propriété validate de Field / useField. peut être asynchrone et sera mergé avec la validation racine. Est exécuté à chaque onChange/onBlur, et avant une soumission par défaut (peut être modifié via validateOnChange/OnBlur sur le composant Formik racine).
+L'affichage de l'erreur à l'écran est à la charge du dev (contrairement aux éléments natif du dom, pour les validations les plus courantes).
+voici un exemple :
+```typescript
+{touched.username && errors.username && <div>{errors.username}</div>}
+```
