@@ -69,7 +69,7 @@ React element are immutable and don't have their own persistent identity. They'r
 
 React render method takes a react element and a host container to create, through host API, the host instances in the provided container to match the provided react element.
 
-Because DOM node creation/destruction is slow (+ it loses scroll, focus or other state information), React will try to re-use the same host instances between different renders, when the type and place matches with the react element tree.
+Because DOM node creation/destruction is slow (+ it loses scroll, focus or other state information), React will try to re-use the same host instances between different renders, when the type and place matches with the react element tree. If there is a mismatch, it will be unmounted with all its children.
 
 In react element's children array, null is a valid value. When using conditional rendering, it's either null or the revealed react element, so sibling nodes stay in the same place and are re-used between renders.
 
@@ -78,3 +78,25 @@ In array, if element are reordered, React will updates every nodes, because it's
 Components are functions that takes on object of props and return a React element.
 
 Components aren't meant to be called but rather used with JSX (that will transform them in a react element like { type: ComponentFn, props: {}}). Later, in React internals, the component will be called with its props. This allow React to add features around components lile lazy evaluation, optimized reconciliation, add local state to components.
+
+Render phase: react calls components and performs reconcilliation, may be asynchronous.
+Commit phase: react operates on the host trees; always synchronous
+
+React local state and memo cache are bound to component tree position and are destroyed together.
+
+By default, when a component schedule an update, all its subtree is re-rendered. If a component is often re-rendered with the same props, we can use React.memo.
+
+Because React batches components updates (like those from event handlers),
+doing this:
+```javascript
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function handleClick() {
+    increment();
+    increment();
+    increment();
+  }
+```
+would result in calling 3 times setCount(1). To resolves this, it should use a function (currentState) => newState.
