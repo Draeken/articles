@@ -100,3 +100,13 @@ doing this:
   }
 ```
 would result in calling 3 times setCount(1). To resolves this, it should use a function (currentState) => newState.
+Batching avoid unecessary re-render.
+
+When using useEffect, React tends to defer its execution after a browser re-paint, to avoid hurting time to interactive/first paint. useLayout to do it before browser re-paint.
+
+Internally, Hooks, eg: useState, are stored in a linked list local to the component and its identity in the tree. For each call of "useState", it increment the pointer/index and return the corresponding item, or push one if none exist. Before each rendering, pointer is reinitialized. The order of Hook calls is important: if a useState call is missing (eg: conditional statement), or order swapped, the state content will be swapped too. That's why Hook call must be to the top level of the component, not in a callback function, condionally called, nor in a loop (which may change in length).
+
+Don’t stop the data flow. Props and state can change, and components should handle those changes whenever they happen.
+Always be ready to render. A component shouldn’t break because it’s rendered more or less often.
+No component is a singleton. Even if a component is rendered just once, your design will improve if rendering twice doesn’t break it.
+Keep the local state isolated. Think about which state is local to a particular UI representation — and don’t hoist that state higher than necessary.
