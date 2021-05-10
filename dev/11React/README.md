@@ -80,6 +80,8 @@ Components are functions that takes on object of props and return a React elemen
 
 Components aren't meant to be called but rather used with JSX (that will transform them in a react element like { type: ComponentFn, props: {}}). Later, in React internals, the component will be called with its props. This allow React to add features around components lile lazy evaluation, optimized reconciliation, add local state to components.
 
+The main body of a react function component is executed during render phase. Function passed to useEffect are executed asynchronously after the render and commit phase (layout and paint) but before next render. This is unlike componentDidMount/DidUpdate that are fired synchroniously after DOM mutation. If you need the same behavior as these lifecycle, there is useLayoutEffect, to prevent visual inconsistency.
+
 Render phase: react calls components and performs reconcilliation, may be asynchronous.
 Commit phase: react operates on the host trees; always synchronous
 
