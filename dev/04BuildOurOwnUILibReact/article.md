@@ -14,20 +14,21 @@ Last (but not least :), you can build a solution specific for your needs, cuttin
 ## Design choices
 
 Why building custom components that souldn't deviate from original behavior rather than using vanilla HTML elements (input, select, checkbox, etc...)?
- - Allow maximal customization. Vanilla elements can be hard to apply style to (eg: the date picker). If you have to add fonctionalities, it may be impossible with vanilla (think about a select where each option have a leading icon). The thing is: if you want to replace vanilla with custom, and still support accessibility, it may be hard or time consuming to develop them well.
- - Consistensy: vanilla elements are rendered differently depending on browser, OS and platform. If you want to provide a consistent experience, you may have no choice but using custom components. Also, a bunch of vanilla elements lack of browser support (eg: input type month or week) and fallback to simple text input. If you develop components not available natively, like tabs, you can easily feel the whole experience homogenenous if you replace native components with custom one.
+
+- Allow maximal customization. Vanilla elements can be hard to apply style to (eg: the date picker). If you have to add fonctionalities, it may be impossible with vanilla (think about a select where each option have a leading icon). The thing is: if you want to replace vanilla with custom, and still support accessibility, it may be hard or time consuming to develop them well.
+- Consistensy: vanilla elements are rendered differently depending on browser, OS and platform. If you want to provide a consistent experience, you may have no choice but using custom components. Also, a bunch of vanilla elements lack of browser support (eg: input type month or week) and fallback to simple text input. If you develop components not available natively, like tabs, you can easily feel the whole experience homogenenous if you replace native components with custom one.
 
 About Vanilla Elements
-| Pros 	| Cons 	|
-|:----	|:----	|
-| Accessible: great keyboard support, sementic   	| Not supported by all browser 	|
-| Render nicely on mobile 	| Inconsistent rendering between plateform	|
+| Pros | Cons |
+|:---- |:---- |
+| Accessible: great keyboard support, sementic | Not supported by all browser |
+| Render nicely on mobile | Inconsistent rendering between plateform |
 
 About Custom Elements
-| Pros 	| Cons 	|
-|:----	|:----	|
-| Full control over rendering   	| Have to be developed	|
-|  	| Heavyweight	|
+| Pros | Cons |
+|:---- |:---- |
+| Full control over rendering | Have to be developed |
+| | Heavyweight |
 
 About vanilla inputs not supported by all browser, a solution would be to detect the platform and expose an alternative.
 
@@ -40,23 +41,32 @@ When designing a complex component, instead of trying to generalize the top pare
 There are multiple approach to design modular components in React. The first I tried was to build in a functional fashion all the way up. This way, you stop writing JSX, but you compose functions.
 
 For simple component creation:
-````tsx
-const divElem = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />;
-const addAfter = (elem: Node | string) => (props: any) => ({...props, children: <>{props.children}{elem}</>});
-const addClass = (...newClass: string[]) => (props: any) => ({...props, className: cx([props.className, ...newClass])});
 
-export const MyBytton = compose(
-  addAfter('Button'),
-  addClass(
-    borderRadius(4),
-    textTransform('uppercase')
+```tsx
+const divElem = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />;
+const addAfter = (elem: Node | string) => (props: any) => ({
+  ...props,
+  children: (
+    <>
+      {props.children}
+      {elem}
+    </>
   ),
-  divElem
-)({});
-````
+});
+const addClass = (...newClass: string[]) => (props: any) => ({ ...props, className: cx([props.className, ...newClass]) });
+
+export const MyBytton = compose(addAfter('Button'), addClass(borderRadius(4), textTransform('uppercase')), divElem)({});
+```
 
 Then all state is kept in an App State, all state logic is handled by a reducer and render logic is handled by dedicated generic functions. Programming this way is cumbersome, can be hard to understand how the data flow is coordinated and hasn't a good support from TypeScript. Functional fashion is still a very good thing, reason react is cool but I wanted something more flexible.
 High Order Component can be composed in the same way, but each time it wraps the initial component by another one. I don't like this idea.
 Render props can be elegant for handling conditional rendering. For me, the arrival of hooks change everything. Instead of writing PureComponents, you can write simple function, without overhead, skipping deep component tree nesting, and still benefit from "pure" perf using React.memo.
 
 When I used Material-UI, I found the theme mechanism appealing. One config, in one place, to affect the styling of every used components. Easy to configure as it's just a key-value structure. When it's dynamically edited, changes are immediatly reflected. And it's a great way for component designer to be consistent, storing styling values and reusing them across components. Using a theme can be a great help when you tackle responsivness, or ambiant-awareness : the theme is dynamically build in respond to context. Technically, before Hooks introduction, I used Emotion `ThemeProvider`, which provide a theme at the root node and that you can use in your components using the HoC `withTheme`. Now, I can just use what React natively provides, with useContext hook. I'm not an advocate of big config file, so to tackle default theme, I prefer when each component defines it's own theme (but can access a common theme config), and expose it through an interface. Each component receive the user's theme, merge it with its own theme (which is first merged with what is needed from the common theme) and then used to style the component. To make the theme responsible, it's quite easy, you just need a set of rules and a function which return a built theme from a set of active rules. It could also be possible to use a reducer with the current theme a the newly enabled or disabled rule, but it may be less flexible. Rules are standard media query.
+
+## Monorepos
+
+Pros of monorepos:
+
+- transparency: With polyrepos, you could easily loose track of what is being made, with new repos being made without even knowing it. Pull requests are only checked by people working on the same repo.
+- Quicker & safer changes: after making a change to a lib, with a monorepo, you run the tests on all the differents projects that could depend on that lib. You can modify code on multiple projects in one pass.
