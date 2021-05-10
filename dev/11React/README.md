@@ -70,7 +70,7 @@ React element are immutable and don't have their own persistent identity. They'r
 
 React render method takes a react element and a host container to create, through host API, the host instances in the provided container to match the provided react element.
 
-Because DOM node creation/destruction is slow (+ it loses scroll, focus or other state information), React will try to re-use the same host instances between different renders, when the type and place matches with the react element tree.
+Because DOM node creation/destruction is slow (+ it loses scroll, focus or other state information), React will try to re-use the same host instances between different renders, when the type and place matches with the react element tree. If there is a mismatch, it will be unmounted with all its children.
 
 In react element's children array, null is a valid value. When using conditional rendering, it's either null or the revealed react element, so sibling nodes stay in the same place and are re-used between renders.
 
@@ -80,4 +80,36 @@ Components are functions that takes on object of props and return a React elemen
 
 Components aren't meant to be called but rather used with JSX (that will transform them in a react element like { type: ComponentFn, props: {}}). Later, in React internals, the component will be called with its props. This allow React to add features around components lile lazy evaluation, optimized reconciliation, add local state to components.
 
-The main body of a react function component is executed during render phase. Function passed to useEffect are executed asynchronously after the render and commit phase (layout and paint) but before next render. This is unlike componentDidMount/DidUpdate that are fired synchroniously after DOM mutation. If you need the same behavior as these lifecycle, there is useLayoutEffect, to prevent visual inconsistency.
+Render phase: react calls components and performs reconcilliation, may be asynchronous.
+Commit phase: react operates on the host trees; always synchronous
+
+React local state and memo cache are bound to component tree position and are destroyed together.
+
+By default, when a component schedule an update, all its subtree is re-rendered. If a component is often re-rendered with the same props, we can use React.memo.
+
+Because React batches components updates (like those from event handlers),
+doing this:
+
+```javascript
+function increment() {
+  setCount(count + 1);
+}
+
+function handleClick() {
+  increment();
+  increment();
+  increment();
+}
+```
+
+would result in calling 3 times setCount(1). To resolves this, it should use a function (currentState) => newState.
+Batching avoid unecessary re-render.
+
+When using useEffect, React tends to defer its execution after a browser re-paint, to avoid hurting time to interactive/first paint. useLayout to do it before browser re-paint.
+
+Internally, Hooks, eg: useState, are stored in a linked list local to the component and its identity in the tree. For each call of "useState", it increment the pointer/index and return the corresponding item, or push one if none exist. Before each rendering, pointer is reinitialized. The order of Hook calls is important: if a useState call is missing (eg: conditional statement), or order swapped, the state content will be swapped too. That's why Hook call must be to the top level of the component, not in a callback function, condionally called, nor in a loop (which may change in length).
+
+Don’t stop the data flow. Props and state can change, and components should handle those changes whenever they happen.
+Always be ready to render. A component shouldn’t break because it’s rendered more or less often.
+No component is a singleton. Even if a component is rendered just once, your design will improve if rendering twice doesn’t break it.
+Keep the local state isolated. Think about which state is local to a particular UI representation — and don’t hoist that state higher than necessary.
